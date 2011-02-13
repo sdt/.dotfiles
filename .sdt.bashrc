@@ -17,7 +17,7 @@ alias j=jobs
 alias http="plackup -MPlack::App::Directory -e 'Plack::App::Directory->new({ root => \$ENV{PWD} })->to_app;'"
 
 #set -o vi
-shopt s dotglob
+shopt -s dotglob
 
 setcolor() { echo "\[\033[$1m\]"; }
 
@@ -103,7 +103,7 @@ if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
 fi
 
-if [ -d $HOME/git/git-acheivements ]; then
+if [ -d $HOME/git/git-achievements ]; then
     PATH="$PATH:$HOME/git/git-achievements"
     alias git="git-achievements"
 fi
