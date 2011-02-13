@@ -3,8 +3,8 @@
 #
 alias l='/bin/ls -F --color=auto'
 alias ls='/bin/ls -lF --color=auto'
-alias la='l -a'
-alias lsa='ls -a'
+alias la='l -A'
+alias lsa='ls -A'
 alias m=less
 alias md=mkdir
 alias h=history
@@ -17,6 +17,7 @@ alias j=jobs
 alias http="plackup -MPlack::App::Directory -e 'Plack::App::Directory->new({ root => \$ENV{PWD} })->to_app;'"
 
 #set -o vi
+shopt s dotglob
 
 setcolor() { echo "\[\033[$1m\]"; }
 
