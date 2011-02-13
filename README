@@ -1,0 +1,5 @@
+I've added my unix dotfiles to github at https://github.com/sdt/Dotfiles/
+
+The pattern is that the default dotfile sources .sdt.$dotfile, so that the
+customisations are all in sdt.dotfile. Further machine-specific customisations
+are in an optional file .sdt.dotfile.local, which is not committed.
