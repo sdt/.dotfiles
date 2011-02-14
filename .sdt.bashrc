@@ -70,9 +70,17 @@ is_vim_server_running()
     gvim --serverlist | grep -q -i `hostname`
 }
 
-vi() 
-{ 
-    local vimcmd="gvim --servername `hostname`"
+can_run()
+{
+    which $1 > /dev/null
+    return $?
+}
+
+# If gvim exists set up our gvim-in-tabs system
+if canrun gvim; then
+    vi()
+    {
+        local vimcmd="gvim --servername `hostname`"
 
 #TODO:  cannot find a way of passing this to vim as one argument
 #       keeps getting sent as qw/ '+set tags=$tagsfile' /
@@ -81,19 +89,20 @@ vi()
 #        vimcmd+=" '+set tags=$tagsfile'"
 #    fi
 
-    if is_vim_server_running ; then
-        if [ $# == 0 ]; then
-            vimcmd+=" --remote-send :tablast<CR> --remote-send :tabnew<CR>"
+        if is_vim_server_running ; then
+            if [ $# == 0 ]; then
+                vimcmd+=" --remote-send :tablast<CR> --remote-send :tabnew<CR>"
+            else
+                vimcmd+=" --remote-tab-silent"
+            fi
         else
-            vimcmd+=" --remote-tab-silent"
+            vimcmd+=" -p"
         fi
-    else
-        vimcmd+=" -p"
-    fi
 
-    #echo $vimcmd
-    $vimcmd "$@"
-}
+        #echo $vimcmd
+        $vimcmd "$@"
+    }
+fi
 
 mcd() { mkdir $1 && cd $1; }
 
