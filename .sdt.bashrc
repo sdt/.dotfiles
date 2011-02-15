@@ -42,6 +42,7 @@ SETRESET=$(setcolor 0)
 SETBOLD=$(setcolor 1)
 
 HISTSIZE=2000
+export EDITOR=vim
 
 PS1='\[\e]0;\u@\h\a\]'
 PS1+="${debian_chroot:+($debian_chroot)}"
