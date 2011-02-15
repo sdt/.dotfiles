@@ -77,7 +77,7 @@ can_run()
 }
 
 # If gvim exists set up our gvim-in-tabs system
-if canrun gvim; then
+if can_run gvim; then
     vi()
     {
         local vimcmd="gvim --servername `hostname`"
