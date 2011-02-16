@@ -21,6 +21,12 @@ shopt -s dotglob
 
 setcolor() { echo "\[\033[$1m\]"; }
 
+eval $(lesspipe)
+
+# remove ':' from completion word breaks so man Some::Perl doesn't escape
+# http://tiswww.case.edu/php/chet/bash/FAQ   /E13
+export COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
+
 BLACK=30
 RED=31
 GREEN=32
