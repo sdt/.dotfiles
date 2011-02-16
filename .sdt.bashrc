@@ -111,6 +111,38 @@ if can_run gvim; then
     }
 fi
 
+if can_run iselect; then
+    function fv {
+        local query=$1;
+        [ -n "$query" ] || return;
+        local found=`find . -type f -name $query`;
+        if [ -z "$found" ]; then
+            found=`find . -type f -name "*$query*"`
+            [ -z "$found" ] && return ;
+        fi;
+        #SDT? [ -z "$found" ] && return ;
+        #local edit=`iselect -a -m "$found"`;
+        #[ -n "$edit" ] && vi "$edit";
+
+        # reading array http://tinyurl.com/la6juc
+        # allows -m option to work
+        local OIFS="$IFS"
+        IFS=$'\n';
+        set -f ;
+        local edit=( $(iselect -a -m "$found" ) ) ;
+        set +f ;
+        IFS="$OIFS"
+
+        #perl -le 'print join"|",@ARGV' ${edit[@]};
+        [ -n "$edit" ] && vi ${edit[@]};
+    };
+else
+    function fv {
+        echo iselect not installed
+    };
+fi
+
+
 mcd() { mkdir $1 && cd $1; }
 
 alias mydebuild='debuild -uc -us -i -I -tc'
