@@ -129,7 +129,7 @@ if can_run iselect; then
         local OIFS="$IFS"
         IFS=$'\n';
         set -f ;
-        local edit=( $(iselect -a -m "$found" ) ) ;
+        local edit=( $(iselect -a -m "$found" -t "$query" -n "vi" ) ) ;
         set +f ;
         IFS="$OIFS"
 
