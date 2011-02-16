@@ -115,21 +115,15 @@ if can_run iselect; then
     function fv {
         local query=$1;
         [ -n "$query" ] || return;
-        local found=`find . -type f -name $query`;
-        if [ -z "$found" ]; then
-            found=`find . -type f -name "*$query*"`
-            [ -z "$found" ] && return ;
-        fi;
-        #SDT? [ -z "$found" ] && return ;
-        #local edit=`iselect -a -m "$found"`;
-        #[ -n "$edit" ] && vi "$edit";
+        found=`find . -type f -name "*$query*"`
+        [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
         # allows -m option to work
         local OIFS="$IFS"
         IFS=$'\n';
         set -f ;
-        local edit=( $(iselect -a -m "$found" -t "$query" -n "vi" ) ) ;
+        local edit=( $(iselect -f -a -m "$found" -t "$query" -n "vi" ) ) ;
         set +f ;
         IFS="$OIFS"
 
