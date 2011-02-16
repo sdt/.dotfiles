@@ -1,5 +1,5 @@
 set columns=80
 
-if filereadable("~/.sdt.gvimrc.local")
-    source ~/.sdt.gvimrc.local
+if filereadable("~/.dotfiles/gvimrc.local")
+    source ~/.dotfiles/gvimrc.local
 endif

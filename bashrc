@@ -156,6 +156,6 @@ if [ -d $HOME/git/git-achievements ]; then
     alias git="git-achievements"
 fi
 
-if [ -e $HOME/.sdt.bashrc.local ]; then
-    source $HOME/.sdt.bashrc.local
+if [ -e ~/.dotfiles/bashrc.local ]; then
+    source ~/.dotfiles/bashrc.local
 fi

@@ -1,5 +1,11 @@
 I've added my unix dotfiles to github at https://github.com/sdt/Dotfiles/
 
-The pattern is that the default .$DOTFILE sources .sdt.$DOTFILE, so that the
-customisations are all in .sdt.$DOTFILE. Further machine-specific customisations
-are in an optional file .sdt.$DOTFILE.local, which is not committed.
+The pattern is that the default ~/.$DOTFILE sources ~/.dotfiles/$DOTFILE, so
+that the customisations are all in ~/.dotfiles/$DOTFILE. Further 
+machine-specific customisations are in an optional file 
+~/.dotfiles/$DOTFILE.local, which is not committed.
+
+Currently have:
+    .bashrc
+    .vimrc
+    .gvimrc

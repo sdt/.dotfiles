@@ -39,6 +39,6 @@ map =d 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r
 
 set guifont=Fixedsys\ Excelsior\ 3.01-L\ 12
 
-if filereadable("~/.sdt.vimrc.local")
-    source ~/.sdt.vimrc.local
+if filereadable("~/.dotfiles/vimrc.local")
+    source ~/.dotfiles/vimrc.local
 endif
