@@ -115,7 +115,7 @@ if can_run iselect; then
     function fv {
         local query=$1;
         [ -n "$query" ] || return;
-        found=`find . -type f -name "*$query*"`
+        found=`find . -type f \( -name "*$query*" -! -iname '.*.sw?' \)`
         [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
