@@ -125,6 +125,7 @@ if can_run iselect; then
         set -f ;
         trap 'echo Or maybe not...' INT
         local edit=( $(iselect -f -a -m "$found" -t "$query" -n "vi" ) ) ;
+        trap INT
         set +f ;
         IFS="$OIFS"
 
