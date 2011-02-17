@@ -117,10 +117,10 @@ yamldump() {
 }
 
 if can_run iselect; then
-    function fv {
+    fv() {
         local query=$1;
         [ -n "$query" ] || return;
-        found=`find . -type f \( -name "*$query*" -! -iname '.*.sw?' \)`
+        found=`find . -type f \( -iname "*$query*" -! -iname '.*.sw?' \)`
         [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
@@ -134,17 +134,16 @@ if can_run iselect; then
         set +f ;
         IFS="$OIFS"
 
-        #perl -le 'print join"|",@ARGV' ${edit[@]};
         [ -n "$edit" ] && vi ${edit[@]};
-    };
+    }
 
-    function f {
+    f() {
         local query=${!#};
         local cmdargs=$(($#-1));
         local cmd="${@:1:$cmdargs}";
 
         [ -n "$query" ] || return;
-        found=`find . -type f \( -name "*$query*" -! -iname '.*.sw?' \)`
+        found=`find . -type f \( -iname "*$query*" -! -iname '.*.sw?' \)`
         [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
@@ -158,14 +157,14 @@ if can_run iselect; then
         set +f ;
         IFS="$OIFS"
 
-        #perl -le 'print join"|",@ARGV' ${selected[@]};
         [ -n "$selected" ] && echo $cmd ${selected[@]} && $cmd ${selected[@]};
-
     }
-
-
 else
     function fv {
+        echo iselect not installed
+    };
+
+    function f {
         echo iselect not installed
     };
 fi
@@ -186,3 +185,5 @@ fi
 if [ -e ~/.dotfiles/bashrc.local ]; then
     source ~/.dotfiles/bashrc.local
 fi
+
+alias rebash='source ~/.bashrc'
