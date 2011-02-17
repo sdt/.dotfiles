@@ -138,6 +138,7 @@ else
     };
 fi
 
+alias yamldump="perl -MData::Dumper::Concise -MYAML -e 'print Dumper(YAML::LoadFile(\$_)) for @ARGV'"
 
 mcd() { mkdir $1 && cd $1; }
 
