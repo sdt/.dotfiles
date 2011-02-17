@@ -111,6 +111,11 @@ if can_run gvim; then
     }
 fi
 
+yamldump() {
+    perl -MData::Dumper::Concise -MYAML -e \
+        'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
+}
+
 if can_run iselect; then
     function fv {
         local query=$1;
@@ -134,9 +139,9 @@ if can_run iselect; then
     };
 
     function f {
- 	local query=${!#};
-	local cmdargs=$(($#-1));
-	local cmd="${@:1:$cmdargs}";
+        local query=${!#};
+        local cmdargs=$(($#-1));
+        local cmd="${@:1:$cmdargs}";
 
         [ -n "$query" ] || return;
         found=`find . -type f \( -name "*$query*" -! -iname '.*.sw?' \)`
@@ -148,13 +153,13 @@ if can_run iselect; then
         IFS=$'\n';
         set -f ;
         trap 'echo Or maybe not...' INT
-        local files=( $(iselect -f -a -m "$found" -t "$query" -n "vi" ) ) ;
+        local selected=( $(iselect -f -a -m "$found" -t "$query" -n "vi" ) ) ;
         trap INT
         set +f ;
         IFS="$OIFS"
 
-        #perl -le 'print join"|",@ARGV' ${files[@]};
-        [ -n "$files" ] && $cmd ${files[@]};
+        #perl -le 'print join"|",@ARGV' ${selected[@]};
+        [ -n "$selected" ] && echo $cmd ${selected[@]} && $cmd ${selected[@]};
 
     }
 
@@ -164,8 +169,6 @@ else
         echo iselect not installed
     };
 fi
-
-alias yamldump="perl -MData::Dumper::Concise -MYAML -e 'print Dumper(YAML::LoadFile(\$_)) for @ARGV'"
 
 mcd() { mkdir $1 && cd $1; }
 
