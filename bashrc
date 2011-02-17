@@ -132,6 +132,33 @@ if can_run iselect; then
         #perl -le 'print join"|",@ARGV' ${edit[@]};
         [ -n "$edit" ] && vi ${edit[@]};
     };
+
+    function f {
+ 	local query=${!#};
+	local cmdargs=$(($#-1));
+	local cmd="${@:1:$cmdargs}";
+
+        [ -n "$query" ] || return;
+        found=`find . -type f \( -name "*$query*" -! -iname '.*.sw?' \)`
+        [ -z "$found" ] && return ;
+
+        # reading array http://tinyurl.com/la6juc
+        # allows -m option to work
+        local OIFS="$IFS"
+        IFS=$'\n';
+        set -f ;
+        trap 'echo Or maybe not...' INT
+        local files=( $(iselect -f -a -m "$found" -t "$query" -n "vi" ) ) ;
+        trap INT
+        set +f ;
+        IFS="$OIFS"
+
+        #perl -le 'print join"|",@ARGV' ${files[@]};
+        [ -n "$files" ] && $cmd ${files[@]};
+
+    }
+
+
 else
     function fv {
         echo iselect not installed
