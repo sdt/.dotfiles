@@ -5,7 +5,14 @@ that the customisations are all in ~/.dotfiles/$DOTFILE. Further
 machine-specific customisations are in an optional file 
 ~/.dotfiles/$DOTFILE.local, which is not committed.
 
-Currently have:
-    .bashrc
+Sample usages:
+    .bashrc:
+        if [ -f ~/.dotfiles/bashrc ]; then
+            . ~/.dotfiles/bashrc
+        fi
+
     .vimrc
+        source ~/.dotfiles/vimrc
+
     .gvimrc
+        source ~/.dotfiles/gvimrc
