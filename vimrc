@@ -33,6 +33,8 @@ map =d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<ESC>kO/
 
 map =l o<ESC>0a#<ESC>79A=<ESC>
 
+map =s /\s\+$<CR>
+
 map! √ *
 
 map =d 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
