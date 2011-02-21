@@ -169,6 +169,17 @@ else
     };
 fi
 
+append_envvar() {
+    local envvar=$1
+    eval "local envval=\$$envvar"
+    if test -z $envval; then
+        eval "$envvar=\"$2\""
+    else
+        eval "$envvar=\"$envval:$2\""
+    fi
+    eval "echo \$envvar=\$$envvar"
+}
+
 mcd() { mkdir $1 && cd $1; }
 
 alias mydebuild='debuild -uc -us -i -I -tc'
