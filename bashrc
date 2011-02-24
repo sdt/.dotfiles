@@ -180,7 +180,11 @@ append_envvar() {
     eval "echo \$envvar=\$$envvar"
 }
 
-perlhere() { append_envvar PERL5LIB `pwd`; }
+append_envvar_here()    { append_envvar $1 $(pwd); }
+append_envvar_at()      { append_envvar $1 $(readlink -f $2); }
+
+perlhere() { append_envvar_here PERL5LIB; }
+perlat()   { append_envvar_at   PERL5LIB $1; }
 
 mcd() { mkdir $1 && cd $1; }
 
