@@ -59,8 +59,7 @@ PS1+="$SETBOLD$SETGREEN\u@\h \t"
 PS1+="$SETRESET\$"
 PS1+=" "
 
-find_file_upwards()
-{
+find_file_upwards() {
     local dir=`pwd`
 
     until [ -f $dir/$1 ] ; do
@@ -72,21 +71,18 @@ find_file_upwards()
     echo $dir/$1
 }
 
-is_vim_server_running()
-{
+is_vim_server_running() {
     gvim --serverlist | grep -q -i `hostname`
 }
 
-can_run()
-{
+can_run() {
     which $1 > /dev/null
     return $?
 }
 
 # If gvim exists set up our gvim-in-tabs system
 if can_run gvim; then
-    vi()
-    {
+    vi() {
         local vimcmd="gvim --servername `hostname`"
 
 #TODO:  cannot find a way of passing this to vim as one argument
@@ -160,11 +156,11 @@ if can_run iselect; then
         [ -n "$selected" ] && echo $cmd ${selected[@]} && $cmd ${selected[@]};
     }
 else
-    function fv {
+    fv() {
         echo iselect not installed
     };
 
-    function f {
+    f() {
         echo iselect not installed
     };
 fi
