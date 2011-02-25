@@ -1,7 +1,9 @@
 set nocompatible
 
 syntax on
-colorscheme dim
+if filereadable($HOME."/.vim/dim.vim")
+    colorscheme dim
+endif
 
 set autoindent showmatch 
 set noincsearch nobackup nocindent nohlsearch visualbell
@@ -41,6 +43,6 @@ map =d 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r
 
 set guifont=Fixedsys\ Excelsior\ 3.01-L\ 12
 
-if filereadable("~/.dotfiles/vimrc.local")
+if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
 endif
