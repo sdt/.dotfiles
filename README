@@ -17,3 +17,18 @@ Sample usages:
 
     .gvimrc
         source ~/.dotfiles/gvimrc
+
+
+Extra files:
+
+    Fixedsys font for vim
+
+        mkdir -p ~/.fonts
+        cd ~/.fonts
+        wget http://launchpadlibrarian.net/17249874/FSEX300-L.ttf
+        sudo fc-cache -f -c
+
+    Dim colorscheme for vim
+
+        mkdir -p ~/.vim/colors
+        wget -O ~/.vim/colors/dim.vim http://vimcolorschemetest.googlecode.com/svn/colors/Dim.vim
