@@ -6,7 +6,7 @@ machine-specific customisations are in an optional file
 ~/.dotfiles/$DOTFILE.local, which is not committed.
 
 There'a an install.sh script which appends the following lines to the 
-appropriate system dotfiles. Use at own risk.
+appropriate system dotfiles. Use at own risk!
 
 Sample usages:
     .bashrc:
