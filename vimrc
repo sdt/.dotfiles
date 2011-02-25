@@ -3,6 +3,8 @@ set nocompatible
 syntax on
 if filereadable($HOME."/.vim/dim.vim")
     colorscheme dim
+else
+    colorscheme pablo
 endif
 
 set autoindent showmatch 
@@ -15,7 +17,6 @@ set tabstop=4 shiftwidth=4 expandtab shiftround
 set tabpagemax=666
 set guitablabel=%t%m
 set showtabline=2
-" set columns=80
 
 let b:did_ftplugin = 1
 filetype indent off
@@ -40,8 +41,6 @@ map =s /\s\+$<CR>
 map! √ *
 
 map =d 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
-
-set guifont=Fixedsys\ Excelsior\ 3.01-L\ 12
 
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
