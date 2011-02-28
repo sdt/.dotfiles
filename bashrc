@@ -165,22 +165,22 @@ else
     };
 fi
 
-append_envvar() {
+prepend_envvar() {
     local envvar=$1
     eval "local envval=\$$envvar"
     if test -z $envval; then
-        eval "$envvar=\"$2\""
+        eval "export $envvar=\"$2\""
     else
-        eval "$envvar=\"$envval:$2\""
+        eval "$envvar=\"$2:$envval\""
     fi
     eval "echo \$envvar=\$$envvar"
 }
 
-append_envvar_here()    { append_envvar $1 $(pwd); }
-append_envvar_at()      { append_envvar $1 $(readlink -f $2); }
+prepend_envvar_here()    { prepend_envvar $1 $(pwd); }
+prepend_envvar_at()      { prepend_envvar $1 $(readlink -f $2); }
 
-perlhere() { append_envvar_here PERL5LIB; }
-perlat()   { append_envvar_at   PERL5LIB $1; }
+perlhere() { prepend_envvar_here PERL5LIB; }
+perlat()   { prepend_envvar_at   PERL5LIB $1; }
 
 mcd() { mkdir $1 && cd $1; }
 
