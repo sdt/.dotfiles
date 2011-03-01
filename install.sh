@@ -21,4 +21,6 @@ do_install() {
 do_install bashrc
 do_install vimrc
 do_install gvimrc
+
+echo "Installing ~/.dotfiles/gitignore to ~/.gitconfig ... ok."
 git config --global core.excludesfile ~/.dotfiles/gitignore
