@@ -180,7 +180,7 @@ prepend_envvar_here()    { prepend_envvar $1 $(pwd); }
 prepend_envvar_at()      { prepend_envvar $1 $(readlink -f $2); }
 
 perlhere() { prepend_envvar_here PERL5LIB; }
-perlat()   { prepend_envvar_at   PERL5LIB $1; }
+perlat()   { for i in $@; do prepend_envvar_at PERL5LIB $i; done; }
 
 mcd() { mkdir $1 && cd $1; }
 
