@@ -18,6 +18,8 @@ Sample usages:
     .gvimrc
         source ~/.dotfiles/gvimrc
 
+    git config --global core.excludesfile ~/.dotfiles/gitignore
+
 
 Extra files:
 

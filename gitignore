@@ -1,0 +1,6 @@
+# These files get ignored by git (don't put comments in the filespec lines!)
+.ptags
+*.swp
+*~
+.DS_Store
+.com.apple.timemachine.supported

@@ -21,3 +21,4 @@ do_install() {
 do_install bashrc
 do_install vimrc
 do_install gvimrc
+git config --global core.excludesfile ~/.dotfiles/gitignore
