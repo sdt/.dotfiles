@@ -1,7 +1,7 @@
 set nocompatible
 
 syntax on
-if filereadable($HOME."/.vim/dim.vim")
+if filereadable($HOME."/.vim/colors/dim.vim")
     colorscheme dim
 else
     colorscheme pablo
