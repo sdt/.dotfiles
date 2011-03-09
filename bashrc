@@ -165,13 +165,19 @@ else
     };
 fi
 
+envvar_contains() {
+    eval "echo \$$1" | egrep -q "(^|:)$2(:|\$)";
+}
+
 prepend_envvar() {
     local envvar=$1
     eval "local envval=\$$envvar"
     if test -z $envval; then
         eval "export $envvar=\"$2\""
     else
-        eval "$envvar=\"$2:$envval\""
+        if ! envvar_contains $envvar $2; then
+            eval "$envvar=\"$2:$envval\""
+        fi
     fi
     eval "echo \$envvar=\$$envvar"
 }
