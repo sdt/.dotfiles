@@ -166,17 +166,19 @@ else
 fi
 
 envvar_contains() {
-    eval "echo \$$1" | egrep -q "(^|:)$2(:|\$)";
+    local pathsep=${PATHSEP:-:}
+    eval "echo \$$1" | egrep -q "(^|$pathsep)$2($pathsep|\$)";
 }
 
 prepend_envvar() {
     local envvar=$1
+    local pathsep=${PATHSEP:-:}
     eval "local envval=\$$envvar"
     if test -z $envval; then
         eval "export $envvar=\"$2\""
     else
         if ! envvar_contains $envvar $2; then
-            eval "$envvar=\"$2:$envval\""
+            eval "$envvar=\"$2$pathsep$envval\""
         fi
     fi
     eval "echo \$envvar=\$$envvar"
@@ -185,8 +187,8 @@ prepend_envvar() {
 prepend_envvar_here()    { prepend_envvar $1 $(pwd); }
 prepend_envvar_at()      { prepend_envvar $1 $(readlink -f $2); }
 
-perlhere() { prepend_envvar_here PERL5LIB; }
-perlat()   { for i in $@; do prepend_envvar_at PERL5LIB $i; done; }
+perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
+perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 
 mcd() { mkdir $1 && cd $1; }
 
