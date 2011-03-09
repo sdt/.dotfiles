@@ -184,6 +184,14 @@ perlat()   { for i in $@; do prepend_envvar_at PERL5LIB $i; done; }
 
 mcd() { mkdir $1 && cd $1; }
 
+if can_run gvim; then
+    alias diff="colordiff -u"
+else
+    alias diff="diff -u"
+fi
+
+export LESS="-R"
+
 alias mydebuild='debuild -uc -us -i -I -tc'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
