@@ -10,6 +10,9 @@ else
 endif
 
 set columns=80
+set guioptions=egmrL
+set guitablabel=%t%m
+set showtabline=2
 
 if filereadable($HOME."/.dotfiles/gvimrc.local")
     source ~/.dotfiles/gvimrc.local
