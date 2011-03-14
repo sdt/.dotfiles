@@ -9,14 +9,11 @@ endif
 
 set autoindent showmatch 
 set noincsearch nobackup nocindent nohlsearch visualbell
-set guioptions=egmrL
 set indentexpr=""
 set formatoptions=""
 set scrolloff=3
 set tabstop=4 shiftwidth=4 expandtab shiftround
 set tabpagemax=666
-set guitablabel=%t%m
-set showtabline=2
 
 let b:did_ftplugin = 1
 filetype indent off
