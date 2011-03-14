@@ -155,14 +155,23 @@ if can_run iselect; then
 
         [ -n "$selected" ] && echo $cmd ${selected[@]} && $cmd ${selected[@]};
     }
-else
-    fv() {
-        echo iselect not installed
-    };
 
-    f() {
+    sargs() {
+        echo "WARNING: this still isn't working right..."
+        local IFS=$'\n'
+        VAR=($(cat));
+        IFS=' '
+
+        $@ "${VAR[@]}";
+    }
+else
+    no_iselect() {
         echo iselect not installed
-    };
+    }
+
+    f()     { no_iselect; }
+    fv()    { no_iselect; }
+    sargs() { no_iselect; }
 fi
 
 envvar_contains() {
