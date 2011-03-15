@@ -5,7 +5,7 @@ alias l='/bin/ls -F --color=auto'
 alias ls='/bin/ls -lF --color=auto'
 alias la='l -A'
 alias lsa='ls -A'
-alias m=less
+alias m='less -R'
 alias md=mkdir
 alias h=history
 
@@ -206,8 +206,6 @@ if can_run gvim; then
 else
     alias diff="diff -u"
 fi
-
-export LESS="-R"
 
 alias mydebuild='debuild -uc -us -i -I -tc'
 
