@@ -10,7 +10,7 @@ alias md=mkdir
 alias h=history
 
 alias hf='history|grep -i'
-alias ef='set|grep -i'
+alias ef='printenv|grep -i'
 alias rm='rm -i'
 alias j=jobs
 
