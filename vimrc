@@ -1,13 +1,21 @@
 set nocompatible
 
 syntax on
+
+" This needs to be before the colorscheme line so TrailingWhitespace isn't
+" clobbered
+:autocmd ColorScheme * highlight TrailingWhitespace ctermbg=red guibg=red
+:au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+:au InsertLeave * match TrailingWhitespace /\s\+$/
+:au BufWinEnter * match TrailingWhitespace /\s\+$/
+
 if filereadable($HOME."/.vim/colors/dim.vim")
     colorscheme dim
 else
     colorscheme pablo
 endif
 
-set autoindent showmatch 
+set autoindent showmatch
 set noincsearch nobackup nocindent nohlsearch visualbell
 set indentexpr=""
 set formatoptions=""
