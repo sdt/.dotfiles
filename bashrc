@@ -5,7 +5,7 @@ alias l='/bin/ls -F --color=auto'
 alias ls='/bin/ls -lF --color=auto'
 alias la='l -A'
 alias lsa='ls -A'
-alias m='less -R'
+m() { less -R $*; }
 alias md=mkdir
 alias h=history
 
@@ -113,33 +113,14 @@ yamldump() {
 }
 
 if can_run iselect; then
-    fv() {
-        local query=$1;
-        [ -n "$query" ] || return;
-        found=`find . -type f \( -iname "*$query*" -! -iname '.*.sw?' \)`
-        [ -z "$found" ] && return ;
-
-        # reading array http://tinyurl.com/la6juc
-        # allows -m option to work
-        local OIFS="$IFS"
-        IFS=$'\n';
-        set -f ;
-        trap 'echo Or maybe not...' INT
-        local edit=( $(iselect -f -a -m "$found" -t "$query" -n "vi" ) ) ;
-        trap INT
-        set +f ;
-        IFS="$OIFS"
-
-        [ -n "$edit" ] && vi ${edit[@]};
-    }
-
     f() {
         local query=${!#};
         local cmdargs=$(($#-1));
         local cmd="${@:1:$cmdargs}";
 
         [ -n "$query" ] || return;
-        found=`find . -type f \( -iname "*$query*" -! -iname '.*.sw?' \)`
+        found=$(find . \( -name .git -prune \) -o -! -iname '.*.sw?' \
+                | /bin/grep -i $query)
         [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
@@ -148,21 +129,12 @@ if can_run iselect; then
         IFS=$'\n';
         set -f ;
         trap 'echo Or maybe not...' INT
-        local selected=( $(iselect -f -a -m "$found" -t "$query" -n "vi" ) ) ;
+        local selected=( $(iselect -f -a -m "$found" -t "$query" -n "$cmd" ) ) ;
         trap INT
         set +f ;
         IFS="$OIFS"
 
         [ -n "$selected" ] && echo $cmd ${selected[@]} && $cmd ${selected[@]};
-    }
-
-    sargs() {
-        echo "WARNING: this still isn't working right..."
-        local IFS=$'\n'
-        VAR=($(cat));
-        IFS=' '
-
-        $@ "${VAR[@]}";
     }
 else
     no_iselect() {
@@ -170,9 +142,9 @@ else
     }
 
     f()     { no_iselect; }
-    fv()    { no_iselect; }
-    sargs() { no_iselect; }
 fi
+
+alias fv='f vi'
 
 envvar_contains() {
     local pathsep=${PATHSEP:-:}
