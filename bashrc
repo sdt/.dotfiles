@@ -21,7 +21,6 @@ shopt -s dotglob
 
 setcolor() { echo "\[\033[$1m\]"; }
 
-eval $(lesspipe)
 
 # remove ':' from completion word breaks so man Some::Perl doesn't escape
 # http://tiswww.case.edu/php/chet/bash/FAQ   /E13
@@ -178,6 +177,12 @@ if can_run gvim; then
 else
     alias diff="diff -u"
 fi
+
+if can_run lesspipe; then
+    eval $(lesspipe)
+fi
+
+can_run __git_ps1 || __git_ps1() { return 0; }
 
 alias mydebuild='debuild -uc -us -i -I -tc'
 
