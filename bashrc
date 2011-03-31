@@ -182,8 +182,6 @@ if can_run lesspipe; then
     eval $(lesspipe)
 fi
 
-can_run __git_ps1 || __git_ps1() { return 0; }
-
 alias mydebuild='debuild -uc -us -i -I -tc'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
