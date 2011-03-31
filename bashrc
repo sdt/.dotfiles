@@ -118,7 +118,7 @@ if can_run iselect; then
         local cmd="${@:1:$cmdargs}";
 
         [ -n "$query" ] || return;
-        found=$(find . \( -name .git -prune \) -o -! -iname '.*.sw?' \
+        found=$(find . \( -name .git -prune \) -o -type f -! -iname '.*.sw?' \
                 | /bin/grep -i $query)
         [ -z "$found" ] && return ;
 
