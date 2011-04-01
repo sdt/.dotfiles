@@ -1,6 +1,8 @@
 set nocompatible
-
 syntax on
+
+" Turn off the annoying continual highlight of matching parens
+let loaded_matchparen=1
 
 " Highlight trailing whitespace - http://vim.wikia.com/wiki/VimTip396
 " Make sure this is done before the colorscheme loads
@@ -9,6 +11,7 @@ syntax on
 :au InsertLeave * match TrailingWhitespace /\s\+$/
 :au BufWinEnter * match TrailingWhitespace /\s\+$/
 
+" Use the dim colorscheme if we have it
 if filereadable($HOME."/.vim/colors/dim.vim")
     colorscheme dim
 else
