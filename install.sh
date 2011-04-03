@@ -25,3 +25,5 @@ do_install gvimrc
 echo "Installing ~/.dotfiles/gitignore to ~/.gitconfig ... ok."
 git config --global core.excludesfile ~/.dotfiles/gitignore
 git config --global color.ui true
+git config --global alias.llog 'log --date=local'
+git config --global alias.ds 'diff --stat'
