@@ -133,7 +133,7 @@ if can_run iselect; then
         local cmd="${@:1:$num_cmdargs}";
 
         [ -n "$filespec" ] || return;
-        found=$(find . \( -name .git -prune \) -o -type f -! -iname '.*.sw?' \
+        local found=$(find . \( -name .git -prune \) -o -type f -! -iname '.*.sw?' \
                 | /bin/grep $grep_args $filespec)
         [ -z "$found" ] && return ;
 
