@@ -112,14 +112,29 @@ yamldump() {
 }
 
 if can_run iselect; then
-    f() {
-        local query=${!#};
-        local cmdargs=$(($#-1));
-        local cmd="${@:1:$cmdargs}";
+    iselect_and_run() {
+        # iselect_and_run [grepargs] cmd [cmdargs] filespec
 
-        [ -n "$query" ] || return;
+        # Grab the all the args that start with -
+        local grep_args=""
+        while [ $# -gt 0 ] && [ ${1:0:1} == '-' ] && [ $1 != '--' ]; do
+            grep_args+=" $1"
+            shift
+        done
+
+        if [ $# -lt 2 ]; then
+            # TODO: see if we can get the caller function name in here
+            echo "usage: iselect_and_run [grepargs] cmd [cmdargs] filespec"
+            return
+        fi
+
+        local filespec=${!#};
+        local num_cmdargs=$(($#-1));
+        local cmd="${@:1:$num_cmdargs}";
+
+        [ -n "$filespec" ] || return;
         found=$(find . \( -name .git -prune \) -o -type f -! -iname '.*.sw?' \
-                | /bin/grep -i $query)
+                | /bin/grep $grep_args $filespec)
         [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
@@ -128,7 +143,7 @@ if can_run iselect; then
         IFS=$'\n';
         set -f ;
         trap 'echo Or maybe not...' INT
-        local selected=( $(iselect -f -a -m "$found" -t "$query" -n "$cmd" ) ) ;
+        local selected=( $(iselect -f -a -m "$found" -t "$filespec" -n "$cmd" ) ) ;
         trap INT
         set +f ;
         IFS="$OIFS"
@@ -140,10 +155,11 @@ else
         echo iselect not installed
     }
 
-    f()     { no_iselect; }
+    iselect_and_run()     { no_iselect; }
 fi
 
-alias fv='f vi'
+alias fv='iselect_and_run -i vi'
+alias fvc='iselect_and_run vi'
 
 envvar_contains() {
     local pathsep=${PATHSEP:-:}
