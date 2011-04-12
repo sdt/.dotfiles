@@ -58,6 +58,8 @@ PS1+="$SETBOLD$SETGREEN\u@\h \t"
 PS1+="$SETRESET\$"
 PS1+=" "
 
+export DBIC_TRACE_PROFILE=console
+
 find_file_upwards() {
     local dir=`pwd`
 
