@@ -108,6 +108,10 @@ if can_run gvim; then
     }
 fi
 
+vs()  { find . -type f -iname '.*.sw?'; }
+vsd() { find . -type f -iname '.*.sw?' -print -delete; }
+
+
 yamldump() {
     perl -MData::Dumper::Concise -MYAML -e \
         'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
