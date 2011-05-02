@@ -194,7 +194,7 @@ perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 
 mcd() { mkdir $1 && cd $1; }
 
-if can_run gvim; then
+if can_run colordiff; then
     alias diff="colordiff -u"
 else
     alias diff="diff -u"
