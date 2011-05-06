@@ -7,3 +7,4 @@
 SETUP.sourceme.sh
 cover_db
 .~*#
+*-local.conf
