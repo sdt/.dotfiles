@@ -1,11 +1,11 @@
 I've added my unix dotfiles to github at https://github.com/sdt/Dotfiles/
 
 The pattern is that the default ~/.$DOTFILE sources ~/.dotfiles/$DOTFILE, so
-that the customisations are all in ~/.dotfiles/$DOTFILE. Further 
-machine-specific customisations are in an optional file 
+that the customisations are all in ~/.dotfiles/$DOTFILE. Further
+machine-specific customisations are in an optional file
 ~/.dotfiles/$DOTFILE.local, which is not committed.
 
-There'a an install.sh script which appends the following lines to the 
+There'a an install.sh script which appends the following lines to the
 appropriate system dotfiles. Use at own risk!
 
 Sample usages:
@@ -34,3 +34,7 @@ Extra files:
 
         mkdir -p ~/.vim/colors
         wget -O ~/.vim/colors/dim.vim http://vimcolorschemetest.googlecode.com/svn/colors/Dim.vim
+
+    Perl syntax files for vim
+
+        git://github.com/petdance/vim-perl.git
