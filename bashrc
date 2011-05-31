@@ -172,16 +172,25 @@ envvar_contains() {
     eval "echo \$$1" | egrep -q "(^|$pathsep)$2($pathsep|\$)";
 }
 
+strip_envvar() {
+    local pathsep=${PATHSEP:-:}
+    local haystack=$1
+    local needle=$2
+    echo $haystack | sed -e "s%^${needle}\$%%"  \
+                   | sed -e "s%^${needle}${pathsep}%%"   \
+                   | sed -e "s%${pathsep}${needle}\$%%"  \
+                   | sed -e "s%${pathsep}${needle}${pathsep}%${pathsep}%"
+}
+
 prepend_envvar() {
     local envvar=$1
     local pathsep=${PATHSEP:-:}
-    eval "local envval=\$$envvar"
+    eval "local envval=\$(strip_envvar \$$envvar $2)"
+    echo envval=$envval
     if test -z $envval; then
         eval "export $envvar=\"$2\""
     else
-        if ! envvar_contains $envvar $2; then
-            eval "$envvar=\"$2$pathsep$envval\""
-        fi
+        eval "$envvar=\"$2$pathsep$envval\""
     fi
     eval "echo \$envvar=\$$envvar"
 }
