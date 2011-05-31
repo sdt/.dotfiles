@@ -186,7 +186,6 @@ prepend_envvar() {
     local envvar=$1
     local pathsep=${PATHSEP:-:}
     eval "local envval=\$(strip_envvar \$$envvar $2)"
-    echo envval=$envval
     if test -z $envval; then
         eval "export $envvar=\"$2\""
     else
