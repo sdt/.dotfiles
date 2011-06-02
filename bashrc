@@ -173,6 +173,8 @@ envvar_contains() {
 }
 
 strip_envvar() {
+    [ $# -gt 1 ] || return;
+
     local pathsep=${PATHSEP:-:}
     local haystack=$1
     local needle=$2
@@ -189,9 +191,9 @@ prepend_envvar() {
     if test -z $envval; then
         eval "export $envvar=\"$2\""
     else
-        eval "$envvar=\"$2$pathsep$envval\""
+        eval "export $envvar=\"$2$pathsep$envval\""
     fi
-    eval "echo \$envvar=\$$envvar"
+    #eval "echo \$envvar=\$$envvar"
 }
 
 prepend_envvar_here()    { prepend_envvar $1 $(pwd); }
@@ -203,6 +205,7 @@ prepend_envvar_at()      {
 
 perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
 perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
+pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
 mcd() { mkdir $1 && cd $1; }
 
