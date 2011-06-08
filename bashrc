@@ -49,8 +49,7 @@ SETBOLD=$(setcolor 1)
 HISTSIZE=2000
 export EDITOR=vim
 
-PS1='\[\e]0;\u@\h\a\]'
-PS1+="${debian_chroot:+($debian_chroot)}"
+PS1="${debian_chroot:+($debian_chroot)}"
 PS1+="$SETBOLD$SETMAGENTA\$(__git_ps1 '(%s) ')"
 PS1+="$SETBOLD$SETBLUE\w"
 PS1+="\n"
