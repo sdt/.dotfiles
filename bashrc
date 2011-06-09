@@ -206,7 +206,7 @@ perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
 perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
-mcd() { mkdir $1 && cd $1; }
+mcd() { mkdir -p $1; cd $1; }
 
 if can_run colordiff; then
     alias diff="colordiff -u"
