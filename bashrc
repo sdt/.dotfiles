@@ -19,13 +19,14 @@ alias http="plackup -MPlack::App::Directory -e 'Plack::App::Directory->new({ roo
 #set -o vi
 shopt -s dotglob
 
-setcolor() { echo "\[\033[$1m\]"; }
-
 ismacos() { [[ "$OSTYPE" =~ darwin ]]; }
 
 # remove ':' from completion word breaks so man Some::Perl doesn't escape
 # http://tiswww.case.edu/php/chet/bash/FAQ   /E13
 export COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
+
+setcolor() { echo "\[\033[$1m\]"; }
+resetcolor() { echo "\[\033[2$1m\]"; }
 
 BLACK=30
 RED=31
@@ -35,6 +36,11 @@ BLUE=34
 MAGENTA=35
 CYAN=36
 WHITE=37
+BOLD=1
+ITALICS=3
+UNDERLINE=4
+INVERSE=7
+STRIKE=9
 
 SETBLACK=$(setcolor $BLACK)
 SETRED=$(setcolor $RED)
@@ -44,18 +50,27 @@ SETBLUE=$(setcolor $BLUE)
 SETMAGENTA=$(setcolor $MAGENTA)
 SETCYAN=$(setcolor $CYAN)
 SETWHITE=$(setcolor $WHITE)
-SETRESET=$(setcolor 0)
-SETBOLD=$(setcolor 1)
 
-HISTSIZE=2000
-export EDITOR=vim
+RESETALL=$(setcolor 0)
+
+SETBOLD=$(setcolor $BOLD)
+SETITALICS=$(setcolor $ITALICS)
+SETUNDERLINE=$(setcolor $UNDERLINE)
+SETINVERSE=$(setcolor $INVERSE)
+SETSTRIKE=$(setcolor $STRIKE)
+
+RESETBOLD=$(resetcolor 2)
+RESETITALICS=$(resetcolor $ITALICS)
+RESETUNDERLINE=$(resetcolor $UNDERLINE)
+RESETINVERSE=$(resetcolor $INVERSE)
+RESETSTRIKE=$(resetcolor $STRIKE)
 
 PS1="${debian_chroot:+($debian_chroot)}"
-PS1+="$SETBOLD$SETMAGENTA\$(__git_ps1 '(%s) ')"
-PS1+="$SETBOLD$SETBLUE\w"
+PS1+="$SETMAGENTA\$(__git_ps1 '(%s) ')"
+PS1+="$SETBLUE\w"
 PS1+="\n"
-PS1+="$SETBOLD$SETGREEN\u@\h \t"
-PS1+="$SETRESET\$"
+PS1+="$SETGREEN\u@\h \t"
+PS1+="$RESETALL\$"
 PS1+=" "
 
 # Less Colors for Man Pages
@@ -77,6 +92,9 @@ else
     export LESS_TERMCAP_ue=$'\E[0m'           # end underline
     export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 fi
+
+HISTSIZE=2000
+export EDITOR=vim
 
 export DBIC_TRACE_PROFILE=console
 
