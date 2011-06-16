@@ -114,13 +114,13 @@ is_vim_server_running() {
     gvim --serverlist | grep -q -i `hostname`
 }
 
-can_run() {
+has() {
     which $1 > /dev/null
     return $?
 }
 
 # If gvim exists set up our gvim-in-tabs system
-if can_run gvim; then
+if has gvim; then
     vi() {
         local vimcmd="gvim --servername `hostname`"
 
@@ -155,7 +155,7 @@ yamldump() {
         'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
 }
 
-if can_run iselect; then
+if has iselect; then
     iselect_and_run() {
         # iselect_and_run [grepargs] cmd [cmdargs] filespec
 
@@ -247,13 +247,13 @@ pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
 mcd() { mkdir -p $1; cd $1; }
 
-if can_run colordiff; then
+if has colordiff; then
     alias diff="colordiff -u"
 else
     alias diff="diff -u"
 fi
 
-if can_run lesspipe; then
+if has lesspipe; then
     eval $(lesspipe)
 fi
 
