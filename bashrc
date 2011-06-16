@@ -257,6 +257,9 @@ if can_run lesspipe; then
     eval $(lesspipe)
 fi
 
+# Handy alias for unravelling tricky perl constructs
+alias perlparse='perl -MO=Deparse,-p -e'
+
 alias mydebuild='debuild -uc -us -i -I -tc'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
