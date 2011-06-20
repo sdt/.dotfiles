@@ -1,6 +1,12 @@
 set nocompatible
 syntax on
 
+:filetype plugin on
+:runtime macros/matchit.vim
+
+au BufNewFile,BufRead *.tt2 setf tt2
+au BufNewFile,BufRead *.tt  setf tt2
+
 " Turn off the annoying continual highlight of matching parens
 let loaded_matchparen=1
 
@@ -26,8 +32,10 @@ set scrolloff=3
 set tabstop=4 shiftwidth=4 expandtab shiftround
 set tabpagemax=666
 
-let b:did_ftplugin = 1
-filetype indent off
+" I added these years ago to avoid some unwanted new indenting behaviour
+" These make the ftplugin-based stuff not work (like matchit)
+" let b:did_ftplugin = 1
+" filetype indent off
 
 " =i : add #include guards to .h file
 " map =i mi1GO1G"%pgUU:s/[^a-zA-Z0-9_]/_/gIINCLUDE_"iyyI#ifndef J0"ipI#define Go"ipI#endif // `i
@@ -46,7 +54,7 @@ map =l o<ESC>0a#<ESC>79A=<ESC>
 
 map =s /\s\+$<CR>
 
-map =tt :set syntax=tt2<CR>
+map =tt :set syntax=tt2html<CR>
 
 map! √ *
 
