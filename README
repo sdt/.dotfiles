@@ -8,6 +8,7 @@ machine-specific customisations are in an optional file
 There'a an install.sh script which appends the following lines to the
 appropriate system dotfiles. Use at own risk!
 
+
 Sample usages:
     .bashrc:
         source ~/.dotfiles/bashrc
@@ -17,8 +18,6 @@ Sample usages:
 
     .gvimrc
         source ~/.dotfiles/gvimrc
-
-    git config --global core.excludesfile ~/.dotfiles/gitignore
 
 
 Extra files:
@@ -37,5 +36,4 @@ Extra files:
 
     Perl syntax files for vim
 
-        git@github.com:sdt/vim-perl.git <- my fork with .tt2 ftplugin file
         git://github.com/petdance/vim-perl.git

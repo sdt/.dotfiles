@@ -1,6 +1,8 @@
 set nocompatible
 syntax on
 
+set runtimepath+=~/.dotfiles/vim
+
 au BufNewFile,BufRead *.tt2 setf tt2
 au BufNewFile,BufRead *.tt  setf tt2
 
