@@ -22,18 +22,19 @@ Sample usages:
 
 Extra files:
 
-    Fixedsys font for vim
+    Fixedsys font
 
         mkdir -p ~/.fonts
         cd ~/.fonts
         wget http://launchpadlibrarian.net/17249874/FSEX300-L.ttf
-        sudo fc-cache -f -c
+        sudo fc-cache -f
 
-    Dim colorscheme for vim
 
-        mkdir -p ~/.vim/colors
-        wget -O ~/.vim/colors/dim.vim http://vimcolorschemetest.googlecode.com/svn/colors/Dim.vim
+Acknowledgements:
 
-    Perl syntax files for vim
+    For my own convenience, I've copied some third-party files into my .dotfiles
+    tree. These are listed below. Please contact me if you're not happy about me
+    using these.
 
-        git://github.com/petdance/vim-perl.git
+        Vim perl files      - git://github.com/petdance/vim-perl.git
+        Vim dim colorscheme - http://vimcolorschemetest.googlecode.com/
