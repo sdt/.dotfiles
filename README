@@ -37,4 +37,5 @@ Extra files:
 
     Perl syntax files for vim
 
+        git@github.com:sdt/vim-perl.git <- my fork with .tt2 ftplugin file
         git://github.com/petdance/vim-perl.git

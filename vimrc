@@ -1,11 +1,11 @@
 set nocompatible
 syntax on
 
-:filetype plugin on
-:runtime macros/matchit.vim
-
 au BufNewFile,BufRead *.tt2 setf tt2
 au BufNewFile,BufRead *.tt  setf tt2
+
+:filetype plugin on
+:runtime macros/matchit.vim
 
 " Turn off the annoying continual highlight of matching parens
 let loaded_matchparen=1
