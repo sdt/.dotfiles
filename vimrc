@@ -20,11 +20,13 @@ let loaded_matchparen=1
 :au BufWinEnter * match TrailingWhitespace /\s\+$/
 
 " Use the dim colorscheme if we have it
-if filereadable($HOME."/.vim/colors/dim.vim")
-    colorscheme dim
-else
-    colorscheme pablo
-endif
+"if filereadable($HOME."/.vim/colors/dim.vim")
+"    colorscheme dim
+"else
+"    colorscheme pablo
+"endif
+" We've always got it now!
+colorscheme dim
 
 set autoindent showmatch
 set noincsearch nobackup nocindent nohlsearch visualbell
