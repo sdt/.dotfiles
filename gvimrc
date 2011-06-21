@@ -4,9 +4,13 @@ function! FontExists(fontname)
 endfunction
 
 if FontExists("Fixedsys Excelsior 3.01")
+    " X version of the fixed sys font
     set guifont=Fixedsys\ Excelsior\ 3.01-L\ 12
-else
-    set guifont=DejaVu\ Sans\ Mono\ 11
+elseif FontExists("FixedSys")
+    " Mac version of the fixed sys font
+    set guifont=Fixedsys\ :h15
+"else
+"    set guifont=DejaVu\ Sans\ Mono\ 11
 endif
 
 set columns=80

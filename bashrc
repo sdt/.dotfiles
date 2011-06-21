@@ -110,10 +110,6 @@ find_file_upwards() {
     echo $dir/$1
 }
 
-is_vim_server_running() {
-    gvim --serverlist | grep -q -i `hostname`
-}
-
 has() {
     which $1 > /dev/null
     return $?
@@ -121,6 +117,10 @@ has() {
 
 # If gvim exists set up our gvim-in-tabs system
 if has gvim; then
+    is_vim_server_running() {
+        gvim --serverlist | grep -q -i `hostname`
+    }
+
     vi() {
         local vimcmd="gvim --servername `hostname`"
 

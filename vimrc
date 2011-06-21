@@ -3,8 +3,8 @@ syntax on
 
 set runtimepath+=~/.dotfiles/vim
 
-au BufNewFile,BufRead *.tt2 setf tt2
-au BufNewFile,BufRead *.tt  setf tt2
+au BufNewFile,BufRead *.tt2 setf tt2html
+au BufNewFile,BufRead *.tt  setf tt2html
 
 :filetype plugin on
 :runtime macros/matchit.vim
@@ -58,7 +58,7 @@ map =l o<ESC>0a#<ESC>79A=<ESC>
 
 map =s /\s\+$<CR>
 
-map =tt :set syntax=tt2html<CR>
+map =tt :set syntax=tt2<CR>
 
 map! √ *
 
