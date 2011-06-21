@@ -33,8 +33,9 @@ set noincsearch nobackup nocindent nohlsearch visualbell
 set indentexpr=""
 set formatoptions=""
 set scrolloff=3
-set tabstop=4 shiftwidth=4 expandtab shiftround
+set tabstop=4 shiftwidth=4 expandtab shiftround smarttab
 set tabpagemax=666
+set confirm
 
 
 " I added these years ago to avoid some unwanted new indenting behaviour
