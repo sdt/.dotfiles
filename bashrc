@@ -235,10 +235,11 @@ prepend_envvar() {
 }
 
 prepend_envvar_here()    { prepend_envvar $1 $(pwd); }
-prepend_envvar_at()      {
-    local dir=$(readlink -e $2)
-    [ -z "$dir" ] && echo Can\'t find $2 && return
-    prepend_envvar $1 $dir
+
+prepend_envvar_at() {
+    cd $2 || return
+    prepend_envvar_here $1
+    cd - >> /dev/null
 }
 
 perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
