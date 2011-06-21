@@ -177,8 +177,8 @@ if has iselect; then
         local cmd="${@:1:$num_cmdargs}";
 
         [ -n "$filespec" ] || return;
-        local found=$(find . \( -name .git -prune \) -o -type f -! -iname '.*.sw?' \
-                | /bin/grep $grep_args $filespec)
+        local found=$(find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
+                | grep $grep_args $filespec)
         [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
