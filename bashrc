@@ -202,6 +202,31 @@ else
     iselect_and_run()     { no_iselect; }
 fi
 
+if has iselect && has ack; then
+    gv() {
+        # gv [ack-args]
+        local allfiles=$(ack --heading --break $@ | perl -pe '/:/ and s/^/\t/ or /./ and do { chomp; $_ = "<S:$_>$_\n" }')
+        [ -z "$allfiles" ] && return ;
+
+        local OIFS="$IFS"
+        IFS=$'\n';
+        set -f ;
+        trap 'echo Or maybe not...' INT
+        local selected=( $(iselect -f -m "$allfiles" ) ) ;
+        trap INT
+        set +f ;
+        IFS="$OIFS"
+
+        [ -n "$selected" ] && echo vi ${selected[@]} && vi ${selected[@]};
+    }
+
+else
+    gv() {
+        echo need to install iselect and ack
+    }
+
+fi
+
 alias fv='iselect_and_run -i vi'
 alias fvc='iselect_and_run vi'
 
