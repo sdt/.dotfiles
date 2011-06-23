@@ -27,3 +27,5 @@ git config --global core.excludesfile ~/.dotfiles/gitignore
 git config --global color.ui true
 git config --global alias.llog 'log --date=local'
 git config --global alias.ds 'diff --stat'
+git config --global alias.dc 'diff --cached'
+git config --global alias.dsc 'diff --stat --cached'
