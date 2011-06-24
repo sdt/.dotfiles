@@ -147,8 +147,7 @@ if has gvim; then
 fi
 
 vs()  { find . -type f -iname '.*.sw?'; }
-vsd() { find . -type f -iname '.*.sw?' -print -delete; }
-
+vsd() { find . -type f -iname '.*.sw?' -delete -exec echo Deleting {} ... \; ; }
 
 yamldump() {
     perl -MData::Dumper::Concise -MYAML -e \
@@ -202,7 +201,7 @@ else
     iselect_and_run()     { no_iselect; }
 fi
 
-if has iselect && has ack; then
+if has iselect; then
     gv() {
         # gv [ack-args]
         local allfiles=$(ack --heading --break $@ | perl -pe '(/^\d+:/ and s/^/\t/) or (/./ and do { chomp; $_ = "<S:$_>$_\n" })')
