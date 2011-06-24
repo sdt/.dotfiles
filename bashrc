@@ -205,7 +205,7 @@ fi
 if has iselect && has ack; then
     gv() {
         # gv [ack-args]
-        local allfiles=$(ack --heading --break $@ | perl -pe '/:/ and s/^/\t/ or /./ and do { chomp; $_ = "<S:$_>$_\n" }')
+        local allfiles=$(ack --heading --break $@ | perl -pe '(/^\d+:/ and s/^/\t/) or (/./ and do { chomp; $_ = "<S:$_>$_\n" })')
         [ -z "$allfiles" ] && return ;
 
         local OIFS="$IFS"
