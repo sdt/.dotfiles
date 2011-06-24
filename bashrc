@@ -177,7 +177,7 @@ if has iselect; then
 
         [ -n "$filespec" ] || return;
         local found=$(find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
-                | grep $grep_args $filespec)
+                | sort | grep $grep_args $filespec)
         [ -z "$found" ] && return ;
 
         # reading array http://tinyurl.com/la6juc
