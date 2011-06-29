@@ -241,6 +241,10 @@ else
     alias diff="diff -u"
 fi
 
+# Difference between two file trees
+#  difftree -q to show only the filenames
+alias difftree="diff -x .git -r"
+
 if has lesspipe; then
     eval $(lesspipe)
 fi
