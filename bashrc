@@ -154,80 +154,43 @@ yamldump() {
         'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
 }
 
-if has iselect; then
-    iselect_and_run() {
-        # iselect_and_run [grepargs] cmd [cmdargs] filespec
-
-        # Grab the all the args that start with -
-        local grep_args=""
-        while [ $# -gt 0 ] && [ ${1:0:1} == '-' ] && [ $1 != '--' ]; do
-            grep_args+=" $1"
-            shift
-        done
-
-        if [ $# -lt 2 ]; then
-            # TODO: see if we can get the caller function name in here
-            echo "usage: iselect_and_run [grepargs] cmd [cmdargs] filespec"
-            return
-        fi
-
-        local filespec=${!#};
-        local num_cmdargs=$(($#-1));
-        local cmd="${@:1:$num_cmdargs}";
-
-        [ -n "$filespec" ] || return;
-        local found=$(find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
-                | sort | grep $grep_args $filespec)
-        [ -z "$found" ] && return ;
-
-        # reading array http://tinyurl.com/la6juc
-        # allows -m option to work
-        local OIFS="$IFS"
-        IFS=$'\n';
-        set -f ;
-        trap 'echo Or maybe not...' INT
-        local selected=( $(iselect -f -a -m "$found" -t "$filespec" -n "$cmd" ) ) ;
-        trap INT
-        set +f ;
-        IFS="$OIFS"
-
-        [ -n "$selected" ] && echo $cmd ${selected[@]} && $cmd ${selected[@]};
-    }
-else
-    no_iselect() {
-        echo iselect not installed
-    }
-
-    iselect_and_run()     { no_iselect; }
+if ! ( has iselect ) ; then
+    iselect() { echo iselect not installed 1>&2 ; }
 fi
 
-if has iselect; then
-    gv() {
-        # gv [ack-args]
-        local allfiles=$(ack --heading --break $@ | perl -pe '(/^\d+:/ and s/^/\t/) or (/./ and do { chomp; $_ = "<S:$_>$_\n" })')
-        [ -z "$allfiles" ] && return ;
+vi_from_stdin() {
 
-        local OIFS="$IFS"
-        IFS=$'\n';
-        set -f ;
-        trap 'echo Or maybe not...' INT
-        local selected=( $(iselect -f -m "$allfiles" ) ) ;
-        trap INT
-        set +f ;
-        IFS="$OIFS"
+    # Read files from stdin into the $files array
+    local OIFS="$IFS"
+    IFS=$'\n';
+    set -f ;
+    trap 'echo Or maybe not...' INT
+    local files=( $(cat) )   # read files from stdin
+    trap INT
+    set +f ;
+    IFS="$OIFS"
 
-        [ -n "$selected" ] && echo vi ${selected[@]} && vi ${selected[@]};
-    }
+    # Reopen stdin to /dev/tty so that vim works properly
+    exec 0</dev/tty
 
-else
-    gv() {
-        echo need to install iselect and ack
-    }
+    # Run vim with the files
+    [ -n "$files" ] && echo vi $@ ${files[@]} && vi $@ ${files[@]};
+}
 
-fi
+gv() {
+    ack --heading --break $@ |\
+        perl -pe '(/^\d+:/ and s/^/\t/) or (/./ and do { chomp; $_ = "<S:$_>$_\n" })' |\
+            iselect -f -m | vi_from_stdin
+}
 
-alias fv='iselect_and_run -i vi'
-alias fvc='iselect_and_run vi'
+fv() {
+    find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
+                | sort | grep $@ | iselect -a -f -m | vi_from_stdin
+}
+
+lv() {
+    locate $@ | iselect -a -f -m | vi_from_stdin
+}
 
 envvar_contains() {
     local pathsep=${PATHSEP:-:}
