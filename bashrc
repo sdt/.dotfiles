@@ -268,6 +268,12 @@ alias perlparse='perl -MO=Deparse,-p -e'
 
 alias mydebuild='debuild -uc -us -i -I -tc'
 
+# Reload .bashrc
+rebash() {
+    unalias -a
+    source ~/.bashrc
+}
+
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
 fi
@@ -280,5 +286,3 @@ fi
 if [ -e ~/.dotfiles/bashrc.local ]; then
     source ~/.dotfiles/bashrc.local
 fi
-
-alias rebash='source ~/.bashrc'
