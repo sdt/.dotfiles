@@ -182,19 +182,28 @@ evi() {
     vi $@
 }
 
+# Grep-and-Vi
 gv() {
     ack --heading --break $@ |\
         perl -pe '(/^\d+:/ and s/^/\t/) or (/./ and do { chomp; $_ = "<S:$_>$_\n" })' |\
             iselect -f -m | ixargs evi
 }
 
+# Find-and-Vi
 fv() {
     find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
                 | sort | grep $@ | iselect -a -f -m | ixargs evi
 }
 
+# Locate-and-Vi
 lv() {
     locate $@ | iselect -a -f -m | ixargs evi
+}
+
+# find-Perl-module-and-Vi
+pv() {
+    find $(perl -le 'pop @INC; print for @INC' | uniq) -type f -iname '*.pm' |\
+            grep $@ | iselect -a -f -m | ixargs evi;
 }
 
 envvar_contains() {
