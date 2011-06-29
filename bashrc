@@ -174,12 +174,12 @@ ixargs() {
     exec 0</dev/tty
 
     # Run specified command with the files from stdin
-    [ -n "$files" ] && $@ ${files[@]}
+    [ -n "$files" ] && $@ "${files[@]}"
 }
 
 evi() {
     echo vi $@
-    vi $@
+    vi "$@"
 }
 
 # Grep-and-Vi
@@ -192,7 +192,7 @@ gv() {
 # Find-and-Vi
 fv() {
     find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
-                | sort | grep $@ | iselect -a -f -m | ixargs evi
+                | sort | fgrep $@ | iselect -a -f -m | ixargs evi
 }
 
 # Locate-and-Vi
