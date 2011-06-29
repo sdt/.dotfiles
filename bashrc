@@ -158,8 +158,8 @@ if ! ( has iselect ) ; then
     iselect() { echo iselect not installed 1>&2 ; }
 fi
 
-vi_from_stdin() {
-
+# ixargs is used similar to xargs, but works with interactive programs
+ixargs() {
     # Read files from stdin into the $files array
     local OIFS="$IFS"
     IFS=$'\n';
@@ -170,26 +170,31 @@ vi_from_stdin() {
     set +f ;
     IFS="$OIFS"
 
-    # Reopen stdin to /dev/tty so that vim works properly
+    # Reopen stdin to /dev/tty so that interactive programs work properly
     exec 0</dev/tty
 
-    # Run vim with the files
-    [ -n "$files" ] && echo vi $@ ${files[@]} && vi $@ ${files[@]};
+    # Run specified command with the files from stdin
+    [ -n "$files" ] && $@ ${files[@]}
+}
+
+evi() {
+    echo vi $@
+    vi $@
 }
 
 gv() {
     ack --heading --break $@ |\
         perl -pe '(/^\d+:/ and s/^/\t/) or (/./ and do { chomp; $_ = "<S:$_>$_\n" })' |\
-            iselect -f -m | vi_from_stdin
+            iselect -f -m | ixargs evi
 }
 
 fv() {
     find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
-                | sort | grep $@ | iselect -a -f -m | vi_from_stdin
+                | sort | grep $@ | iselect -a -f -m | ixargs evi
 }
 
 lv() {
-    locate $@ | iselect -a -f -m | vi_from_stdin
+    locate $@ | iselect -a -f -m | ixargs evi
 }
 
 envvar_contains() {
