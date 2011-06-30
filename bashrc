@@ -154,10 +154,6 @@ yamldump() {
         'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
 }
 
-if ! ( has uselect ) ; then
-    uselect() { echo uselect available at http://users.tpg.com.au/morepats/ 1>&2 ; }
-fi
-
 update-uselect() {
     local url=http://users.tpg.com.au/morepats/;
     local file=$(curl -s $url |\
@@ -299,4 +295,8 @@ fi
 
 if [ -e ~/.dotfiles/bashrc.local ]; then
     source ~/.dotfiles/bashrc.local
+fi
+
+if ! ( has uselect ) ; then
+    uselect() { echo uselect available at http://users.tpg.com.au/morepats/ 1>&2 ; }
 fi
