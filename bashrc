@@ -166,6 +166,10 @@ update-uselect() {
     cpanm $url$file;
 }
 
+upload-tpg() {
+    curl --user morepats ftp://users.tpg.com.au --upload-file "$@"
+}
+
 # ixargs is used similar to xargs, but works with interactive programs
 ixargs() {
     # Read files from stdin into the $files array
@@ -183,6 +187,10 @@ ixargs() {
 
     # Run specified command with the files from stdin
     [ -n "$files" ] && $@ "${files[@]}"
+}
+
+upload-uselect() {
+    find . -name 'App-USelect*.tar.gz' | uselect | ixargs upload-tpg
 }
 
 evi() {
