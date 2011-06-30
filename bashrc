@@ -154,9 +154,17 @@ yamldump() {
         'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
 }
 
-if ! ( has iselect ) ; then
-    iselect() { echo iselect not installed 1>&2 ; }
+if ! ( has uselect ) ; then
+    uselect() { echo uselect available at http://users.tpg.com.au/morepats/ 1>&2 ; }
 fi
+
+update-uselect() {
+    local url=http://users.tpg.com.au/morepats/;
+    local file=$(curl -s $url |\
+                    egrep -o 'App-USelect-[0-9.]*.tar.gz' |\
+                        tail -n 1);
+    cpanm $url$file;
+}
 
 # ixargs is used similar to xargs, but works with interactive programs
 ixargs() {
@@ -184,26 +192,24 @@ evi() {
 
 # Grep-and-Vi
 gv() {
-    ack --heading --break $@ |\
-        perl -pe '(/^\d+:/ and s/^/\t/) or (/./ and do { chomp; $_ = "<S:$_>$_\n" })' |\
-            iselect -f -m | ixargs evi
+    ack --heading --break $@ | uselect -s '!/^\d+:/' | ixargs evi
 }
 
 # Find-and-Vi
 fv() {
     find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
-                | sort | fgrep $@ | iselect -a -f -m | ixargs evi
+                | sort | fgrep $@ | uselect | ixargs evi
 }
 
 # Locate-and-Vi
 lv() {
-    locate $@ | iselect -a -f -m | ixargs evi
+    locate $@ | uselect | ixargs evi
 }
 
 # find-Perl-module-and-Vi
 pv() {
     find $(perl -le 'pop @INC; print for @INC' | uniq) -type f -iname '*.pm' |\
-            grep $@ | iselect -a -f -m | ixargs evi;
+            grep $@ | uselect | ixargs evi;
 }
 
 envvar_contains() {
