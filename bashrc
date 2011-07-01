@@ -195,24 +195,24 @@ evi() {
 
 # Grep-and-Vi
 gv() {
-    ack --heading --break $@ | uselect -s '!/^\d+:/' | ixargs evi
+    ack --heading --break "$@" | uselect -s '!/^\d+:/' | ixargs evi
 }
 
 # Find-and-Vi
 fv() {
     find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
-                | sort | fgrep $@ | uselect | ixargs evi
+                | sort | fgrep "$@" | uselect | ixargs evi
 }
 
 # Locate-and-Vi
 lv() {
-    locate $@ | uselect | ixargs evi
+    locate "$@" | uselect | ixargs evi
 }
 
 # find-Perl-module-and-Vi
 pv() {
     find $(perl -le 'pop @INC; print for @INC' | uniq) -type f -iname '*.pm' |\
-            grep $@ | uselect | ixargs evi;
+            fgrep "$@" | uselect | ixargs evi;
 }
 
 envvar_contains() {
