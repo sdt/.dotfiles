@@ -157,7 +157,7 @@ yamldump() {
 update-uselect() {
     local url=http://users.tpg.com.au/morepats/;
     local file=$(curl -s $url |\
-                    egrep -o 'App-USelect-[0-9.]*.tar.gz' |\
+                    egrep -o 'App-USelect-[0-9._]*.tar.gz' |\
                         tail -n 1);
     cpanm $url$file;
 }
@@ -169,14 +169,13 @@ upload-tpg() {
 # ixargs is used similar to xargs, but works with interactive programs
 ixargs() {
     # Read files from stdin into the $files array
-    local OIFS="$IFS"
     IFS=$'\n';
     set -f ;
     trap 'echo Or maybe not...' INT
     local files=( $(cat) )   # read files from stdin
     trap INT
     set +f ;
-    IFS="$OIFS"
+    IFS=$' \t\n'
 
     # Reopen stdin to /dev/tty so that interactive programs work properly
     exec 0</dev/tty
