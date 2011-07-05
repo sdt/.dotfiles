@@ -25,6 +25,8 @@ ismacos() { [[ "$OSTYPE" =~ darwin ]]; }
 # http://tiswww.case.edu/php/chet/bash/FAQ   /E13
 export COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 
+export NETHACKOPTIONS='color, catname:Fraidy, dogname:Moby, fixinv, fruit:One, hilite_pet, name:player, runmode:walk, disclose:yi ya yv yg yc'
+
 setcolor() { echo "\[\033[$1m\]"; }
 resetcolor() { echo "\[\033[2$1m\]"; }
 
