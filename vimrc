@@ -36,6 +36,7 @@ set scrolloff=3
 set tabstop=4 shiftwidth=4 expandtab shiftround smarttab
 set tabpagemax=666
 set confirm
+set errorfile=.vimerrors.err
 
 
 " I added these years ago to avoid some unwanted new indenting behaviour
@@ -51,7 +52,7 @@ let mapleader="="
 " =c : check perl syntax
 " =x : run perl script
 " map <Leader>c :%w !perl -c<CR>
-map <Leader>c :! perl -MVi::QuickFix -c %<CR><CR>:cg<CR>:cl<CR>
+map <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
 map <Leader>x :%w !perl<CR>
 
 " =n : set news mode
