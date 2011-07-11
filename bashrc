@@ -95,6 +95,34 @@ else
     export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 fi
 
+echoerr() { echo $* 1>&2; }
+
+_yes_or_no() {
+    local default=$1 ; shift
+    local ucdefault=$(echo $default | tr '[:lower:]' '[:upper:]')
+    local yesno=yes/no
+    local yn=${yesno/$default/$ucdefault}
+    local prompt="$@ ($yn)? "
+
+    while true; do
+        local input; read -p "$prompt" input
+
+        [ -z $input ] && input=$default
+
+        case $input in
+            yes|y)
+                return 0
+                ;;
+            no|n|)
+                return 1
+                ;;
+        esac
+    done
+}
+
+YES_or_no() { _yes_or_no yes "$@"; }
+yes_or_NO() { _yes_or_no no  "$@"; }
+
 HISTSIZE=2000
 export EDITOR=vim
 
@@ -161,11 +189,15 @@ update-uselect() {
     local file=$(curl -s $url |\
                     egrep -o 'App-USelect-[0-9._]*.tar.gz' |\
                         tail -n 1);
-    cpanm $url$file;
+    cpanm $url$file && unset -f uselect;
 }
 
 upload-tpg() {
     curl --user morepats ftp://users.tpg.com.au --upload-file "$@"
+}
+
+upload-uselect() {
+    find . -name 'App-USelect*.tar.gz' | uselect | ixargs upload-tpg
 }
 
 # ixargs is used similar to xargs, but works with interactive programs
@@ -184,10 +216,6 @@ ixargs() {
 
     # Run specified command with the files from stdin
     [ -n "$files" ] && $@ "${files[@]}"
-}
-
-upload-uselect() {
-    find . -name 'App-USelect*.tar.gz' | uselect | ixargs upload-tpg
 }
 
 evi() {
@@ -299,5 +327,12 @@ if [ -e ~/.dotfiles/bashrc.local ]; then
 fi
 
 if ! ( has uselect ) ; then
-    uselect() { echo uselect available at http://users.tpg.com.au/morepats/ 1>&2 ; }
+    uselect() {
+        if tty -s; then
+            echoerr -n 'uselect not installed - '
+            yes_or_NO 'install uselect' && update-uselect
+        else
+            echoerr 'uselect not installed - use update-uselect'
+        fi
+    }
 fi
