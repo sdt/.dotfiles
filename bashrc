@@ -227,7 +227,7 @@ evi() {
 
 # Grep-and-Vi
 gv() {
-    ack --heading --break "$@" | uselect -s '!/^\d+:/' | ixargs evi
+    ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' | ixargs evi
 }
 
 # Find-and-Vi
@@ -235,6 +235,8 @@ fv() {
     find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
                 | sort | fgrep "$@" | uselect | ixargs evi
 }
+
+fvi() { fv -i "$@"; }
 
 # Locate-and-Vi
 lv() {
