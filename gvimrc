@@ -9,8 +9,8 @@ if FontExists("Fixedsys Excelsior 3.01")
 elseif FontExists("FixedSys")
     " Mac version of the fixed sys font
     set guifont=Fixedsys\ :h15
-"else
-"    set guifont=DejaVu\ Sans\ Mono\ 11
+else
+    set guifont=liberation\ mono\ 12
 endif
 
 set columns=80
