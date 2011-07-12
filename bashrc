@@ -27,6 +27,8 @@ export COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 
 export NETHACKOPTIONS='color, catname:Coco, dogname:Walter the farting dog, fixinv, fruit:bum nugget, hilite_pet, runmode:walk, disclose:yi ya yv yg yc, noautopickup, nocmdassist, boulder:0'
 
+export SCREENRC="$HOME/.dotfiles/screenrc"
+
 setcolor() { echo "\[\033[$1m\]"; }
 resetcolor() { echo "\[\033[2$1m\]"; }
 
