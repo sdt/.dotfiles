@@ -149,7 +149,7 @@ has() {
 
 # If gvim exists set up our gvim-in-tabs system
 if has gvim; then
-    is_vim_server_running() {
+    is_gvim_server_running() {
         gvim --serverlist | grep -q -i `hostname`
     }
 
@@ -163,7 +163,7 @@ if has gvim; then
 #        vimcmd+=" '+set tags=$tagsfile'"
 #    fi
 
-        if is_vim_server_running ; then
+        if is_gvim_server_running ; then
             if [ $# == 0 ]; then
                 vimcmd+=" --remote-send :tablast<CR> --remote-send :tabnew<CR>"
             else
@@ -177,6 +177,27 @@ if has gvim; then
         $vimcmd "$@"
     }
 fi
+
+if true; then
+    is_vim_server_running() {
+        vim --serverlist | grep -q -i `hostname`
+    }
+
+    v() {
+        local vimcmd="vim --servername `hostname`"
+
+        if ! is_vim_server_running; then
+            screen -t "I'm vim" $vimcmd
+            while ! is_vim_server_running; do
+                sleep 1
+            done
+        fi
+
+        $vimcmd --remote "$@"
+        screen -X select "I'm vim"
+    }
+fi
+
 
 vs()  { find . -type f -iname '.*.sw?'; }
 vsd() { find . -type f -iname '.*.sw?' -delete -exec echo Deleting {} ... \; ; }
