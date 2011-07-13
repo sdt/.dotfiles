@@ -178,7 +178,7 @@ if has gvim; then
     }
 fi
 
-if true; then
+if [ -n "$STY" ]; then
     is_vim_server_running() {
         vim --serverlist | grep -q -i `hostname`
     }
