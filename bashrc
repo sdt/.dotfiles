@@ -312,6 +312,26 @@ perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
 perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
+# Start up screen in an intelligent fashion
+#
+start_screen() {
+    case $(screen -ls | fgrep -c '(Detached)') in
+        0)
+            # No detached sessions - start a new session
+            exec screen -c $HOME/.dotfiles/screenrc
+            ;;
+        1)
+            # One detached session - connect to it
+            exec screen -r
+            ;;
+        *)
+            # More that one detached session - let the user decide
+            echo
+            screen -r
+            ;;
+    esac
+}
+
 mcd() { mkdir -p $1; cd $1; }
 
 if has colordiff; then
