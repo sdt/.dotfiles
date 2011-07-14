@@ -2,7 +2,8 @@
 altscreen on
 defscrollback 1000
 hardstatus alwayslastline
-hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a "
+hardstatus string "%{.bW}%-w%{.ck}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a "
+#hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a "
 startup_message off
 vbell off
 termcapinfo xterm* ti@:te@
