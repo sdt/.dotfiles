@@ -27,7 +27,6 @@ export COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 
 export NETHACKOPTIONS='color, catname:Coco, dogname:Walter the farting dog, fixinv, fruit:bum nugget, hilite_pet, runmode:walk, disclose:yi ya yv yg yc, noautopickup, nocmdassist, boulder:0'
 
-export SCREENRC="$HOME/.dotfiles/screenrc"
 export IGNOREEOF=1
 
 setcolor() { echo "\[\033[$1m\]"; }
@@ -312,13 +311,15 @@ perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
 perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
+export SCREENRC="$HOME/.dotfiles/screenrc"
+
 # Start up screen in an intelligent fashion
 #
 start_screen() {
     case $(screen -ls | fgrep -c '(Detached)') in
         0)
             # No detached sessions - start a new session
-            exec screen -c $HOME/.dotfiles/screenrc
+            exec screen
             ;;
         1)
             # One detached session - connect to it
@@ -327,10 +328,12 @@ start_screen() {
         *)
             # More that one detached session - let the user decide
             echo
-            screen -r
+            screen -r       # this will fail and list the sessions
             ;;
     esac
 }
+
+alias sc='screen -X'
 
 mcd() { mkdir -p $1; cd $1; }
 
