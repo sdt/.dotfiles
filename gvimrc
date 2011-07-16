@@ -18,6 +18,8 @@ set guioptions=egmrL
 set guitablabel=%t%m
 set showtabline=2
 
+colorscheme solarized
+
 if filereadable($HOME."/.dotfiles/gvimrc.local")
     source ~/.dotfiles/gvimrc.local
 endif
