@@ -363,6 +363,13 @@ rebash() {
     source ~/.bashrc
 }
 
+# Update dotfiles
+redot() {
+    pushd ~/.dotfiles
+    git pull && rebash
+    popd
+}
+
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
 fi
