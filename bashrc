@@ -355,6 +355,7 @@ fi
 alias perlparse='perl -MO=Deparse,-p -e'
 
 alias mydebuild='debuild -uc -us -i -I -tc'
+alias debfiles='dpkg-deb -c'
 
 # Reload .bashrc
 rebash() {
