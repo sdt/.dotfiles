@@ -130,6 +130,14 @@ export EDITOR=vim
 
 export DBIC_TRACE_PROFILE=console
 
+ff() {
+    ack -f | fgrep "$@";
+}
+
+ffu() {
+    ff "$@" | uselect;
+}
+
 find_file_upwards() {
     local dir=`pwd`
 
