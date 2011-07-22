@@ -343,6 +343,27 @@ else
     alias diff="diff -u"
 fi
 
+# Use this to remap git remotes to their rw equivalents in submodules
+fixgitremote() {
+    local remote=${1:-origin}
+    local new_url=$( \
+        git remote -v show |\
+        grep $remote |
+        grep -m 1 \(push\) |\
+        sed -n -e 's#^.*git://\([^/]*\)/\(.*\) .*$#git@\1:\2#p'
+    )
+    if [ -z "$new_url" ] ; then
+        echo Can\'t find read-only push url for $remote
+        git remote -v show
+        return 1
+    fi
+
+    echo git remote set-url --push $remote $new_url
+    git remote set-url --push $remote $new_url
+
+    git remote -v show
+}
+
 # Difference between two file trees
 #  difftree -q to show only the filenames
 alias difftree="diff -x .git -r"
