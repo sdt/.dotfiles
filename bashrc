@@ -130,6 +130,14 @@ export EDITOR=vim
 
 export DBIC_TRACE_PROFILE=console
 
+ff() {
+    ack -f | fgrep "$@";
+}
+
+ffu() {
+    ff "$@" | uselect;
+}
+
 find_file_upwards() {
     local dir=`pwd`
 
@@ -382,6 +390,13 @@ alias debfiles='dpkg-deb -c'
 rebash() {
     unalias -a
     source ~/.bashrc
+}
+
+# Update dotfiles
+redot() {
+    pushd ~/.dotfiles
+    git pull && rebash
+    popd
 }
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
