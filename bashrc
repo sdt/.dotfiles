@@ -320,6 +320,7 @@ perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
 export SCREENRC="$HOME/.dotfiles/screenrc"
+export ACKRC="$HOME/.dotfiles/ackrc"
 
 # Start up screen in an intelligent fashion
 #
