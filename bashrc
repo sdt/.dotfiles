@@ -373,6 +373,16 @@ fixgitremote() {
     git remote -v show
 }
 
+# Git submodules helpers
+crgit() {
+    "$@"
+    git submodule foreach --recursive "$@"
+}
+
+rgit() {
+    crgit git "$@"
+}
+
 # Difference between two file trees
 #  difftree -q to show only the filenames
 alias difftree="diff -x .git -r"
