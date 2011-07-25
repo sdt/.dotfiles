@@ -5,6 +5,7 @@
 *~
 .DS_Store
 .com.apple.timemachine.supported
+junit_output.xml
 SETUP.sourceme.sh
 cover_db
 cover_html
