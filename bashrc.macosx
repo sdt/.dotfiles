@@ -1,0 +1,15 @@
+# Macos-specific stuff
+#
+alias l='/bin/ls -FG'
+alias ls='/bin/ls -lFG'
+
+# Homebrew stuff
+#
+# Assuming brew is already in PATH. Set this up in bashrc.local if necessary.
+#
+
+BREW_ROOT=$(brew --prefix)
+
+if [ -f ${BREW_ROOT}/etc/bash_completion ]; then
+  . ${BREW_ROOT}/etc/bash_completion
+fi

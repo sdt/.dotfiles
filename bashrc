@@ -413,6 +413,10 @@ if [ -e ~/.dotfiles/bashrc.local ]; then
     source ~/.dotfiles/bashrc.local
 fi
 
+if ismacos && [ -e ~/.dotfiles/bashrc.macosx ]; then
+    source ~/.dotfiles/bashrc.macosx
+fi
+
 if ! ( has uselect ) ; then
     uselect() {
         if tty -s; then
