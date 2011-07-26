@@ -18,6 +18,14 @@ set guioptions=egmrL
 set guitablabel=%t%m
 set showtabline=2
 
+" ^C yanks to clipboard in visual-select mode
+vmap <C-C> "+y
+
+" ^V pastes in insert mode and command-mode
+" (insert mode needs special handling to override ^V)
+exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+cmap <C-V> <C-R>+
+
 colorscheme solarized
 
 if filereadable($HOME."/.dotfiles/gvimrc.local")
