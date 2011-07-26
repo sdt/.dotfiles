@@ -343,6 +343,7 @@ start_screen() {
 }
 
 alias sc='screen -X'
+alias sch='sc title $(hostname)'
 
 mcd() { mkdir -p $1; cd $1; }
 
