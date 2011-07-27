@@ -231,6 +231,15 @@ upload-uselect() {
     find . -name 'App-USelect*.tar.gz' | uselect | ixargs upload-tpg
 }
 
+# locate variants - only files or only dirs
+flocate() {
+    locate "$@" | perl -nlE 'say if -f'
+}
+
+dirlocate() {   # dlocate already exists
+    locate "$@" | perl -nlE 'say if -d'
+}
+
 # ixargs is used similar to xargs, but works with interactive programs
 ixargs() {
     # Read files from stdin into the $files array
@@ -269,7 +278,7 @@ fvi() { fv -i "$@"; }
 
 # Locate-and-Vi
 lv() {
-    locate "$@" | uselect | ixargs evi
+    flocate "$@" | uselect | ixargs evi
 }
 
 # find-Perl-module-and-Vi
