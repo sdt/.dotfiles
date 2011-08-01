@@ -420,6 +420,9 @@ redot() {
     popd
 }
 
+vpnup() { sudo ifup   tun0; }
+vpndn() { sudo ifdown tun0; }
+
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
 fi
