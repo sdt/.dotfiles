@@ -401,6 +401,9 @@ if has lesspipe; then
     eval $(lesspipe)
 fi
 
+# Dist::Zilla config lives in ~/.dotfiles/dzil
+export DZIL_GLOBAL_CONFIG_ROOT=${HOME}/.dotfiles/dzil
+
 # Handy alias for unravelling tricky perl constructs
 alias perlparse='perl -MO=Deparse,-p -e'
 
