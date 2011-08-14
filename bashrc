@@ -270,8 +270,7 @@ gv() {
 
 # Find-and-Vi
 fv() {
-    find . \( -name .git -prune \) -o -type f -not -iname '.*.sw?' \
-                | sort | fgrep "$@" | uselect | ixargs evi
+    ff "$@" | sort | uselect | ixargs evi
 }
 
 fvi() { fv -i "$@"; }
