@@ -151,7 +151,7 @@ find_file_upwards() {
 }
 
 has() {
-    which $1 2&>1 > /dev/null
+    which $1 2>&1 > /dev/null
     return $?
 }
 
