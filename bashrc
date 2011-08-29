@@ -131,7 +131,7 @@ export EDITOR=vim
 export DBIC_TRACE_PROFILE=console
 
 ff() {
-    ack -f | fgrep "$@";
+    ack -a -f | fgrep "$@";
 }
 
 ffu() {
