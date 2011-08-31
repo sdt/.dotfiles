@@ -215,6 +215,11 @@ yamldump() {
         'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
 }
 
+xmldump() {
+    perl -MData::Dumper::Concise -MXML::Simple -e \
+        'local $/;$x=<>; print Dumper(XMLin($x, ForceArray => ["entry"]));'
+}
+
 update-uselect() {
     local url=http://users.tpg.com.au/morepats/;
     local file=$(curl -s $url |\
