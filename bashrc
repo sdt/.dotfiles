@@ -14,7 +14,7 @@ alias ef='printenv|grep -i'
 alias rm='rm -i'
 alias j=jobs
 
-alias http="plackup -MPlack::App::Directory -e 'Plack::App::Directory->new({ root => \$ENV{PWD} })->to_app;'"
+alias http="plackup -MPlack::App::Directory -e'Plack::App::Directory->new->to_app'"
 
 #set -o vi
 shopt -s dotglob
