@@ -151,9 +151,12 @@ find_file_upwards() {
 }
 
 has() {
-    which $1 2>&1 > /dev/null
-    return $?
+    type -t "$@" > /dev/null
 }
+
+if has mvim && ! has gvim; then
+    gvim() { mvim "$@"; }
+fi
 
 # If gvim exists set up our gvim-in-tabs system
 if has gvim; then
