@@ -18,6 +18,9 @@ set guioptions=egmrL
 set guitablabel=%t%m
 set showtabline=2
 
+" ^A selects all
+map <C-A> ggVG
+
 " ^C yanks to clipboard in visual-select mode
 vmap <C-C> "+y
 
@@ -25,6 +28,9 @@ vmap <C-C> "+y
 " (insert mode needs special handling to override ^V)
 exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 cmap <C-V> <C-R>+
+
+" ^-tab rotates through tabs
+map <C-Tab> :tabn<cr>
 
 colorscheme solarized
 
