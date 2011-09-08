@@ -24,6 +24,9 @@ map <C-A> ggVG
 " ^C yanks to clipboard in visual-select mode
 vmap <C-C> "+y
 
+" ^C-A does ^A ^C, but keeps cursor position
+map <C-A><C-C> :%y+<CR>
+
 " ^V pastes in insert mode and command-mode
 " (insert mode needs special handling to override ^V)
 exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
