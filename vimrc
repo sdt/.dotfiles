@@ -47,7 +47,7 @@ set errorfile=.vimerrors.err
 let mapleader="="
 
 " =i : add #include guards to .h file
-" map <Leader>i mi1GO1G"%pgUU:s/[^a-zA-Z0-9_]/_/gIINCLUDE_"iyyI#ifndef J0"ipI#define Go"ipI#endif // `i
+" map <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
 
 " =c : check perl syntax
 " =x : run perl script
@@ -58,18 +58,19 @@ map <Leader>x :%w !perl<CR>
 " =n : set news mode
 map <Leader>n :set ro<CR>:set ic<CR>:set syntax=mail<CR>
 
+" =d : insert date line into debian changelog
 map <Leader>d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<ESC>kO//<ESC>78A=<ESC>
 
-map <Leader>l o<ESC>0a#<ESC>79A=<ESC>
-
+" =s : search for trailing whitespace
 map <Leader>s /\s\+$<CR>
 
+" =tt : switch to tt2 syntax
 map <Leader>tt :set syntax=tt2<CR>
 
-map! √ *
-
+" =d : insert date line into debian changelog
 map <Leader>d 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
 
+" =pa/A insert perl AUTHOR line
 map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
 map <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
 
