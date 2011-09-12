@@ -1,9 +1,17 @@
 # GNU Screen config file
+#
+# These colors are defined in bashrc
+#   SCR_AW_FG=k     active window
+#   SCR_AW_BG=c
+#   SCR_IW_FG=W     inactive window
+#   SCR_IW_BG=b
+#   SCR_FG=Y        the rest
+#   SCR_BG=.
+#
 altscreen on
-defscrollback 1000
+defscrollback 5000
 hardstatus alwayslastline
-hardstatus string "%{.bW}%-w%{.ck}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a "
-#hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a "
+hardstatus string "%{.${SCR_IW_BG}${SCR_IW_FG}}%-w%{.${SCR_AW_BG}${SCR_AW_FG}}%n %t%{-}%+w %=%{.${SCR_BG}${SCR_FG}} %H %d/%m %C%a "
 startup_message off
 vbell off
 termcapinfo xterm* ti@:te@
