@@ -10,6 +10,5 @@ alias ls='/bin/ls -lFG'
 
 BREW_ROOT=$(brew --prefix)
 
-if [ -f ${BREW_ROOT}/etc/bash_completion ]; then
-  . ${BREW_ROOT}/etc/bash_completion
-fi
+source_if ${BREW_ROOT}/etc/bash_completion
+source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
