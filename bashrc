@@ -441,21 +441,17 @@ redot() {
 vpnup() { sudo ifup   tun0; }
 vpndn() { sudo ifdown tun0; }
 
-if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
-    source $HOME/perl5/perlbrew/etc/bashrc
-fi
+source_if() {
+    if [ -f $1 ]; then
+        source $1
+    fi
+}
 
-if [ -d $HOME/git/git-achievements ]; then
-    PATH="$PATH:$HOME/git/git-achievements"
-    alias git="git-achievements"
-fi
+source_if ~/perl5/perlbrew/etc/bashrc
+source_if ~/.dotfiles/bashrc.local
 
-if [ -e ~/.dotfiles/bashrc.local ]; then
-    source ~/.dotfiles/bashrc.local
-fi
-
-if ismacos && [ -e ~/.dotfiles/bashrc.macosx ]; then
-    source ~/.dotfiles/bashrc.macosx
+if ismacos ; then
+    source_if ~/.dotfiles/bashrc.macosx
 fi
 
 if ! ( has uselect ) ; then
