@@ -339,6 +339,8 @@ export ACKRC="$HOME/.dotfiles/ackrc"
 
 export SCREENRC="$HOME/.dotfiles/screenrc"
 
+export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
+
 export SCR_IW_FG=W
 export SCR_IW_BG=b
 export SCR_AW_FG=k
