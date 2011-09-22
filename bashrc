@@ -340,6 +340,8 @@ export ACKRC="$HOME/.dotfiles/ackrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
 
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
+export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | cut -d' ' -f 2-)
+minicpanm() { cpanm --mirror $CPAN_MINI_PATH --mirror-only "$@" ; }
 
 export SCR_IW_FG=W
 export SCR_IW_BG=b
