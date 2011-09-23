@@ -131,7 +131,7 @@ export EDITOR=vim
 export DBIC_TRACE_PROFILE=console
 
 ff() {
-    ack -a -f | fgrep "$@";
+    ack -a -f | fgrep "$@" | sort;
 }
 
 ffu() {
@@ -278,7 +278,7 @@ gv() {
 
 # Find-and-Vi
 fv() {
-    ff "$@" | sort | uselect | ixargs evi
+    ff "$@" | uselect | ixargs evi
 }
 
 fvi() { fv -i "$@"; }
@@ -340,6 +340,10 @@ export ACKRC="$HOME/.dotfiles/ackrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
 
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
+export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | cut -d' ' -f 2-)
+if [ -e $CPAN_MINI_PATH/RECENT ]; then
+    mcpanm() { cpanm --mirror $CPAN_MINI_PATH --mirror-only "$@" ; }
+fi
 
 export SCR_IW_FG=W
 export SCR_IW_BG=b

@@ -16,6 +16,7 @@ endif
 set columns=80
 set guioptions=egmrL
 set guitablabel=%t%m
+set mouse=
 set showtabline=2
 
 " ^A selects all
