@@ -67,8 +67,11 @@ map <Leader>s /\s\+$<CR>
 " =tt : switch to tt2 syntax
 map <Leader>tt :set syntax=tt2<CR>
 
-" =d : insert date line into debian changelog
-map <Leader>d 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
+" =dc : insert date line into debian changelog
+map <Leader>dc 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
+
+" =dd : insert Data::Dumper line
+map <Leader>dd Ouse Data::Dumper::Concise;<CR>print STDERR Dumper(
 
 " =pa/A insert perl AUTHOR line
 map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
