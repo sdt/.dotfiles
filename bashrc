@@ -414,6 +414,11 @@ rgit() {
     crgit git "$@"
 }
 
+fixgitemail() {
+    uselect sdt@dr.com stephen.thirlwall@strategicdata.com.au |\
+        xargs git config user.email
+}
+
 # Difference between two file trees
 #  difftree -q to show only the filenames
 alias difftree="diff -x .git -r"
