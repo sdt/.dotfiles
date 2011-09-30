@@ -340,8 +340,8 @@ export ACKRC="$HOME/.dotfiles/ackrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
 
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
-export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | cut -d' ' -f 2-)
-if [ -e $CPAN_MINI_PATH/RECENT ]; then
+export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
+if [ -e $CPAN_MINI_PATH/authors/01mailrc.txt.gz ]; then
     mcpanm() { cpanm --mirror $CPAN_MINI_PATH --mirror-only "$@" ; }
 fi
 
