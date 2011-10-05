@@ -419,6 +419,15 @@ fixgitemail() {
         xargs git config user.email
 }
 
+# somewhat clunky attempt at using git with uselect
+# eg. ugit diff
+# eg. ugit add
+# eg. ugit checkout --
+# CAREFUL!
+ugit () {
+    git status -s | uselect | sed -e 's/^...//' | xargs git "$@"
+}
+
 # Difference between two file trees
 #  difftree -q to show only the filenames
 alias difftree="diff -x .git -r"
