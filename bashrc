@@ -228,7 +228,7 @@ update-uselect() {
     local file=$(curl -s $url |\
                     egrep -o 'App-USelect-[0-9._]*.tar.gz' |\
                         tail -n 1);
-    cpanm $url$file && unset -f uselect;
+    PERL_CPANM_OPT='' cpanm $url$file && unset -f uselect;
 }
 
 upload-tpg() {
@@ -342,7 +342,7 @@ export SCREENRC="$HOME/.dotfiles/screenrc"
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
 export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
 if [ -e $CPAN_MINI_PATH/authors/01mailrc.txt.gz ]; then
-    mcpanm() { cpanm --mirror $CPAN_MINI_PATH --mirror-only "$@" ; }
+    export PERL_CPANM_OPT="--mirror /Users/stephent/perl5/minicpan --mirror-only"
 fi
 
 export SCR_IW_FG=W
