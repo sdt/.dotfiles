@@ -5,7 +5,7 @@ alias l='/bin/ls -F --color=auto'
 alias ls='/bin/ls -lF --color=auto'
 alias la='l -A'
 alias lsa='ls -A'
-m() { less -R "$*"; }
+m() { less -R "$@"; }
 alias md=mkdir
 alias h=history
 
