@@ -419,6 +419,43 @@ fixgitemail() {
         xargs git config user.email
 }
 
+do_or_dry() {
+    if [[ -n $DRY ]]; then
+        echo "$@"
+    else
+        eval "$@"
+    fi
+}
+
+gitbranchtotag() {
+
+    if [[ $1 = -n ]]; then
+        local DRY=1
+    elif [[ $1 = -f ]]; then
+        local DRY=
+    else
+        echo "Please specify -n (dry-run) or -f (force)"
+        return 1
+    fi
+    shift   # get rid of -n / -f
+
+    local lbr=$1
+    local rbr=origin/$1
+    local tag=attic/$lbr
+
+    git fetch origin            # get the latest version from origin
+    if ! git diff --exit-code --stat $lbr $rbr; then
+        echo
+        echo Local branch differs from remote.
+        echo Please merge remote changes and try again.
+        return 1
+    fi
+
+    do_or_dry git tag $tag $lbr            # create tag from branch
+    do_or_dry git branch -D $lbr           # delete branch
+    do_or_dry git push origin :$lbr $tag   # update origin with new tag / deleted branch
+}
+
 # somewhat clunky attempt at using git with uselect
 # eg. ugit diff
 # eg. ugit add
