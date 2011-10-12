@@ -21,6 +21,7 @@ do_install() {
 do_install bashrc
 do_install vimrc
 do_install gvimrc
+do_install tmux.conf
 
 echo "Installing ~/.dotfiles/gitignore to ~/.gitconfig ... ok."
 git config --global core.excludesfile ~/.dotfiles/gitignore
