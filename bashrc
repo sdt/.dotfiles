@@ -337,6 +337,8 @@ pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
 export ACKRC="$HOME/.dotfiles/ackrc"
 
+export INPUTRC="$HOME/.dotfiles/inputrc"
+
 export SCREENRC="$HOME/.dotfiles/screenrc"
 
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
