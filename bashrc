@@ -354,7 +354,7 @@ export SCR_AW_BG=c
 export SCR_FG=Y
 export SCR_BG=.
 
-# Start up screen in an intelligent fashion
+# Start up screen in an intelligentish fashion
 #
 start_screen() {
     case $(screen -ls | fgrep -c '(Detached)') in
@@ -376,6 +376,28 @@ start_screen() {
 
 alias sc='screen -X'
 alias sch='sc title $(hostname)'
+
+# Start up tmux in an intelligentish fashion
+start-tmux () {
+    unattached-tmux-sessions() {
+        tmux ls | fgrep -v '(attached)' "$@"
+    }
+    case $(unattached-tmux-sessions -c) in
+        0)
+            # No detached sessions - start a new session
+            tmux
+            ;;
+        1)
+            # One detached session - connect to it
+            tmux attach-session -t $(unattached-tmux-sessions | cut -d: -f 1)
+            ;;
+        *)
+            # More that one detached session - choose one
+            tmux attach-session -t $(unattached-tmux-sessions | uselect | cut -d: -f 1)
+            ;;
+    esac
+}
+
 
 mcd() { mkdir -p $1; cd $1; }
 
