@@ -398,6 +398,14 @@ start-tmux () {
     esac
 }
 
+alias gotmux=start-tmux
+
+tvim() {
+    local width=$1
+    [[ -n $width ]] || width=80
+
+    tmux split-window -h -l $width vim
+}
 
 mcd() { mkdir -p $1; cd $1; }
 
