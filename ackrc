@@ -4,3 +4,4 @@
 --ignore-dir=.cpanm
 --ignore-dir=.cpan
 --ignore-dir=perlbrew
+--ignore-dir=.Trash
