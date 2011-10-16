@@ -1,3 +1,6 @@
 --ignore-dir=cover_db
 --ignore-dir=cover_html
 --ignore-dir=.build
+--ignore-dir=.cpanm
+--ignore-dir=.cpan
+--ignore-dir=perlbrew
