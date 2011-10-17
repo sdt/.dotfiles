@@ -78,7 +78,10 @@ map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strat
 map <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
 
 " =b buffer list
-map <Leader>b :ls<CR>:b<SPACE>
+map <Leader>b :ls<CR>:b
+
+" =v buffer list
+map <Leader>v :call ListBuffers()<CR>:b
 
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
