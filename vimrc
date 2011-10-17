@@ -77,6 +77,9 @@ map <Leader>dd Ouse Data::Dumper::Concise;<CR>print STDERR Dumper(
 map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
 map <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
 
+" =b buffer list
+map <Leader>b :ls<CR>:b<SPACE>
+
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
 endif
