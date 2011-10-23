@@ -55,9 +55,6 @@ let mapleader="="
 map <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
 map <Leader>x :%w !perl<CR>
 
-" =n : set news mode
-map <Leader>n :set ro<CR>:set ic<CR>:set syntax=mail<CR>
-
 " =d : insert date line into debian changelog
 map <Leader>d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<ESC>kO//<ESC>78A=<ESC>
 
@@ -78,10 +75,15 @@ map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strat
 map <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
 
 " =b buffer list
-map <Leader>b :ls<CR>:b
+map <Leader>v :ls<CR>:b
+
+" == last buffer
+map <Leader>= :n#<CR>
 
 " =v buffer list
-map <Leader>v :call ListBuffers()<CR>:b
+map <Leader>n :call ListBuffers()<CR>:b
+
+map <Leader>bb :BufExplorer<CR>
 
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
