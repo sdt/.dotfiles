@@ -530,6 +530,9 @@ redot() {
 vpnup() { sudo ifup   tun0; }
 vpndn() { sudo ifdown tun0; }
 
+# Local bash completion overrides
+complete -f -X '!*.db' sqlite3
+
 source_if() {
     if [ -f $1 ]; then
         source $1
