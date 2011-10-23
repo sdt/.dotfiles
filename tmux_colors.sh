@@ -3,7 +3,7 @@
 # setup tmux colors
 case $SOLARIZED in
 
-    light|dark)
+    dark)
         tmux set -g window-status-current-attr dim
         tmux set -g window-status-current-bg black      # base02
         tmux set -g window-status-current-fg yellow     # yellow
@@ -11,7 +11,16 @@ case $SOLARIZED in
         tmux set -g status-attr bold
         tmux set -g status-bg black                     # base02
         tmux set -g status-fg green                     # base01
+        ;;
 
+    light)
+        tmux set -g window-status-current-attr dim
+        tmux set -g window-status-current-bg white      # base2
+        tmux set -g window-status-current-fg yellow     # yellow
+
+        tmux set -g status-attr bold
+        tmux set -g status-bg white                     # base2
+        tmux set -g status-fg cyan                      # base1
         ;;
 
     *)
