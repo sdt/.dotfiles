@@ -417,7 +417,7 @@ tvim() {
 
 invim() {
     [[ -n $TVIM ]] || tvim
-    tmux send-keys -t $TVIM "$@"
+    tmux send-keys -t $TVIM "$@" || tvim && tmux send-keys -t $TVIM "$@"
 }
 
 mcd() { mkdir -p $1; cd $1; }
