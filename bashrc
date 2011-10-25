@@ -404,7 +404,20 @@ tvim() {
     local width=$1
     [[ -n $width ]] || width=80
 
-    tmux split-window -h -l $width vim
+    if [[ -n $TVIM ]]; then
+        # TVIM already exists - do we have that pane?
+        tmux select-pane -t $TVIM && return
+
+        # If we get here, that pane no longer exists, so fall thru
+    fi
+
+    # Split a new pane, start vim in it, and record the pane id
+    export TVIM=$(tmux split-window -P -h -l $width 'exec vim')
+}
+
+invim() {
+    [[ -n $TVIM ]] || tvim
+    tmux send-keys -t $TVIM "$@"
 }
 
 mcd() { mkdir -p $1; cd $1; }
