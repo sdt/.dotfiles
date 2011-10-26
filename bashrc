@@ -399,10 +399,9 @@ start-tmux () {
     esac
 }
 
-alias gotmux=start-tmux
-
-# TMUX-only stuff
 if [[ -n $TMUX ]]; then
+
+    # Inside TMUX-only stuff
 
     tvim() {
         local width=$1
@@ -440,6 +439,12 @@ if [[ -n $TMUX ]]; then
         done
         tmux select-pane -t $TVIM
     }
+
+else
+
+    # Outside TMUX-only
+
+    alias gotmux=start-tmux
 
 fi
 
