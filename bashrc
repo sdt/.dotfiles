@@ -190,6 +190,7 @@ if has gvim; then
 fi
 
 if [ -n "$STY" ]; then
+    # Screen
     is_vim_server_running() {
         vim --serverlist | grep -q -i `hostname`
     }
@@ -400,25 +401,38 @@ start-tmux () {
 
 alias gotmux=start-tmux
 
-tvim() {
-    local width=$1
-    [[ -n $width ]] || width=80
+# TMUX-only stuff
+if [[ -n $TMUX ]]; then
 
-    if [[ -n $TVIM ]]; then
-        # TVIM already exists - do we have that pane?
-        tmux select-pane -t $TVIM && return
+    tvim() {
+        local width=$1
+        [[ -n $width ]] || width=80
 
-        # If we get here, that pane no longer exists, so fall thru
-    fi
+        if [[ -n $TVIM ]]; then
+            # TVIM already exists - do we have that pane?
+            tmux select-pane -t $TVIM && return
 
-    # Split a new pane, start vim in it, and record the pane id
-    export TVIM=$(tmux split-window -P -h -l $width 'exec vim')
-}
+            # If we get here, that pane no longer exists, so fall thru
+        fi
 
-invim() {
-    [[ -n $TVIM ]] || tvim
-    tmux send-keys -t $TVIM "$@" || tvim && tmux send-keys -t $TVIM "$@"
-}
+        # Split a new pane, start vim in it, and record the pane id
+        export TVIM=$(tmux split-window -P -h -l $width 'exec vim')
+    }
+
+    invim() {
+        [[ -n $TVIM ]] || tvim
+        tmux send-keys -t $TVIM "$@" || tvim && tmux send-keys -t $TVIM "$@"
+    }
+
+    unset -f vi
+    vim() {
+        for file in "$@"; do
+            invim :e space "$file" enter
+        done
+        tmux select-pane -t $TVIM
+    }
+
+fi
 
 mcd() { mkdir -p $1; cd $1; }
 
