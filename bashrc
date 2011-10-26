@@ -406,7 +406,15 @@ if [[ -n $TMUX ]]; then
 
     tvim() {
         local width=$1
-        [[ -n $width ]] || width=80
+        if [[ -z $width ]]; then
+            local scwidth=$(tmux lsc -t $TMUX_PANE |\
+                perl -nE 'say $1 if /\[(\d+)x\d+ /')
+            if [[ $scwidth -gt 240 ]]; then
+                width=161
+            else
+                width=80
+            fi
+        fi
 
         if [[ -n $TVIM ]]; then
             # TVIM already exists - do we have that pane?
