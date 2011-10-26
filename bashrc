@@ -421,7 +421,8 @@ if [[ -n $TMUX ]]; then
 
     invim() {
         [[ -n $TVIM ]] || tvim
-        tmux send-keys -t $TVIM "$@" || tvim && tmux send-keys -t $TVIM "$@"
+        tmux send-keys -t $TVIM "$@" ||\
+            ( tvim && tmux send-keys -t $TVIM "$@" )
     }
 
     unset -f vi
