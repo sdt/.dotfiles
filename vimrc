@@ -74,16 +74,18 @@ map <Leader>dd Ouse Data::Dumper::Concise;<CR>print STDERR Dumper(
 map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
 map <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
 
-" =b buffer list
+" =v buffer list
 map <Leader>v :ls<CR>:b
 
-" == last buffer
-map <Leader>= :n#<CR>
+" =- last buffer
+map <Leader>- :n#<CR>
+
+" ==
+map <Leader>= :BufExplorer<CR>
 
 " =v buffer list
 map <Leader>n :call ListBuffers()<CR>:b
 
-map <Leader>bb :BufExplorer<CR>
 
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
