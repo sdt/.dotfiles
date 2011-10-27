@@ -13,13 +13,13 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 "-----------------------------------------------------------------------------
-" :fv <pattern>
+" :FV <pattern>
 "
 " Loads file selector for files with filename matching pattern.
 " Search starts from current directory.
 
 command -nargs=1 FV call s:doFV('<args>')
-cabbrev fv FV
+"cabbrev fv FV
 
 function! s:doFV(pattern)
     let cmd='ack -a -f | fgrep ' . a:pattern . ' | sort | uselect'
@@ -27,12 +27,12 @@ function! s:doFV(pattern)
 endfunction
 
 "-----------------------------------------------------------------------------
-" :gv <pattern>
+" :GV <pattern>
 "
 " Loads file selector for files containing pattern.
 
 command -nargs=1 GV call s:doGV('<args>')
-cabbrev gv GV
+"cabbrev gv GV
 
 function! s:doGV(pattern)
     let cmd='ack --heading --break ' . a:pattern
@@ -41,12 +41,12 @@ function! s:doGV(pattern)
 endfunction
 
 "-----------------------------------------------------------------------------
-" :lv <pattern>
+" :LV <pattern>
 "
 " Like fv, but searches globally using locate.
 
 command -nargs=1 LV call s:doLV('<args>')
-cabbrev lv LV
+"cabbrev lv LV
 
 function! s:doLV(pattern)
     let cmd='locate ' . a:pattern . " | perl -nlE 'say if -f' | uselect"
