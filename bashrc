@@ -434,6 +434,8 @@ if [[ -n $TMUX ]]; then
 
     unset -f vi
     vim() {
+        [[ -n "$@" ]] || return; # do nothing if no files
+
         for file in "$@"; do
             invim :e space "$file" enter
         done
