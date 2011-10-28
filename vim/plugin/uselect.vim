@@ -72,6 +72,12 @@ function! s:LoadFilesFromCommand(command)
 endfunction
 
 "-----------------------------------------------------------------------------
+" This macro is a hack to work around a problem calling uselect from within
+" vim. After calling uselect, the search/commandline history keys don't work.
+" This fixes it. Probably a problem with uselects ncurses handling.
+map <Leader>0 :!<cr><cr>
+
+"-----------------------------------------------------------------------------
 " Standard postamble
 
 let &cpo = s:save_cpo
