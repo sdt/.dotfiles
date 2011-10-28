@@ -382,6 +382,9 @@ if [[ -n $TMUX ]]; then
 
     # Inside TMUX-only stuff
 
+    # tvim [width]
+    # - split a new tmux pane and start vim in it
+    # - the pane id is stored in $TVIM
     tvim() {
         local width=$1
         if [[ -z $width ]]; then
@@ -405,14 +408,19 @@ if [[ -n $TMUX ]]; then
         export TVIM=$(tmux split-window -P -h -l $width 'exec vim')
     }
 
+    # invim [keystrokes...]
+    # - sends keystrokes to the vim instance created by tvim
+    # - if no vim instance exists, one is created
+    # - keystroke syntax is the same as tmux send-keys
     invim() {
         [[ -n $TVIM ]] || tvim
         tmux send-keys -t $TVIM "$@" ||\
             ( tvim && tmux send-keys -t $TVIM "$@" )
     }
 
+    # gvim begone!
     unset -f vi
-    vim() {
+    vi() {
         [[ -n "$@" ]] || return; # do nothing if no files
 
         for file in "$@"; do
@@ -420,6 +428,20 @@ if [[ -n $TMUX ]]; then
         done
         tmux select-pane -t $TVIM
     }
+
+    unset -f fv gv lv
+    fv() {
+        vi $( ff "$@" | uselect )
+    }
+
+    gv() {
+        vi $( ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' )
+    }
+
+    lv() {
+        vi $( flocate "$@" | uselect )
+    }
+
 
 else
 
