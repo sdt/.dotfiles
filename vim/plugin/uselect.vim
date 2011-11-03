@@ -68,14 +68,10 @@ function! s:LoadFilesFromCommand(command)
             execute ':e ' . filename
         endif
     endfor
-    execute ':redraw!'
+    " HACK: The command-line history is broken after executing uselect - the
+    " up/down arrow keys don't work. This seems to fix it.
+    execute ':!'
 endfunction
-
-"-----------------------------------------------------------------------------
-" This macro is a hack to work around a problem calling uselect from within
-" vim. After calling uselect, the search/commandline history keys don't work.
-" This fixes it. Probably a problem with uselects ncurses handling.
-map <Leader>0 :!<cr><cr>
 
 "-----------------------------------------------------------------------------
 " Standard postamble
