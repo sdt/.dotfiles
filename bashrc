@@ -388,9 +388,11 @@ if [[ -n $TMUX ]]; then
     tvim() {
         local width=$1
         if [[ -z $width ]]; then
+            # /dev/pts/0: 0 [364x89 xterm-color] (utf8)
+            #                ^^^ width
             local scwidth=$(tmux lsc -t $TMUX_PANE |\
-                perl -nE 'say $1 if /\[(\d+)x\d+ /')
-            if [[ $scwidth -gt 240 ]]; then
+                cut -d \[ -f 2 | cut -d x -f 1)
+            if [[ $scwidth -ge 242 ]]; then
                 width=161
             else
                 width=80
@@ -398,14 +400,22 @@ if [[ -n $TMUX ]]; then
         fi
 
         if [[ -n $TVIM ]]; then
-            # TVIM already exists - do we have that pane?
+            # TVIM already exists - try to select that pane
             tmux select-pane -t $TVIM && return
 
             # If we get here, that pane no longer exists, so fall thru
         fi
 
-        # Split a new pane, start vim in it, and record the pane id
-        export TVIM=$(tmux split-window -P -h -l $width 'exec vim')
+        # Split a new pane, start vim in it, and record the pane index
+        local tvim_pane=$(tmux split-window -P -h -l $width 'exec vim')
+
+        # Extract just the pane index from session:window.pane
+        local tvim_index=$(echo $tvim_pane | cut -d . -f 2)
+
+        # Now convert the pane index into a global persistent id
+        # 1: [100x88] [history 0/10000, 0 bytes] %2
+        # ^^ index                           id  ^^
+        export TVIM=$(tmux lsp | grep ^${tvim_index}: | grep -o '%[0-9]\+')
     }
 
     # invim [keystrokes...]
