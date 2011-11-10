@@ -31,3 +31,8 @@ git config --global alias.ds 'diff --stat'
 git config --global alias.dc 'diff --cached'
 git config --global alias.dsc 'diff --stat --cached'
 git config --global alias.steve 'tag -f steve-was-here'
+git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+git config --global alias.wu 'log --stat origin..@{0}'
+git config --global alias.wup 'log -p origin..@{0} --'
+git config --global alias.w 'whatchanged -M -C -B'
+git config --global alias.cv 'commit -v'
