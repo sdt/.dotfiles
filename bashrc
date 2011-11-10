@@ -596,7 +596,7 @@ rebash() {
 # Update dotfiles
 redot() {
     pushd ~/.dotfiles
-    git pull && rebash
+    git pull && rebash && source install.sh
     popd
 }
 
