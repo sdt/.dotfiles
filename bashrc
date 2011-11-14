@@ -595,9 +595,20 @@ rebash() {
 
 # Update dotfiles
 redot() {
-    pushd ~/.dotfiles
-    git pull && rebash && source install.sh
-    popd
+    pushd ~/.dotfiles > /dev/null
+    if ! git diff --quiet --exit-code origin/master; then
+        echo You have local changes. Submit those and try again.
+    else
+        git fetch
+        if git diff --quiet --exit-code origin/master; then
+            echo Dotfiles up to date.
+        else
+            git merge origin/master
+            rebash
+            source install.sh
+        fi
+    fi
+    popd > /dev/null
 }
 
 vpnup() { sudo ifup   tun0; }
