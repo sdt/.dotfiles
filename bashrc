@@ -424,8 +424,9 @@ if [[ -n $TMUX ]]; then
     # - keystroke syntax is the same as tmux send-keys
     invim() {
         [[ -n $TVIM ]] || tvim
-        tmux send-keys -t $TVIM "$@" ||\
-            ( tvim && tmux send-keys -t $TVIM "$@" )
+        tmux send-keys -t $TVIM escape ||\
+            ( tvim && tmux send-keys -t $TVIM escape )
+        tmux send-keys -t $TVIM "$@"
     }
 
     # gvim begone!
