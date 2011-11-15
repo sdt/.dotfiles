@@ -22,7 +22,7 @@ command -nargs=1 FV call s:doFV('<args>')
 "cabbrev fv FV
 
 function! s:doFV(pattern)
-    let cmd='ack -a -f | fgrep ' . a:pattern . ' | sort | uselect'
+    let cmd='ack -a -f | fgrep -i ' . a:pattern . ' | sort | uselect'
     call s:LoadFilesFromCommand(cmd)
 endfunction
 
