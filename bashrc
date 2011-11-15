@@ -423,9 +423,8 @@ if [[ -n $TMUX ]]; then
     # - if no vim instance exists, one is created
     # - keystroke syntax is the same as tmux send-keys
     invim() {
-        [[ -n $TVIM ]] || tvim
-        tmux send-keys -t $TVIM escape ||\
-            ( tvim && tmux send-keys -t $TVIM escape )
+        ( [[ -n $TVIM ]] && tmux send-keys -t $TVIM escape ) || tvim
+        tmux send-keys -t $TVIM escape
         tmux send-keys -t $TVIM "$@"
     }
 
