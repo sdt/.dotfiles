@@ -2,7 +2,7 @@
 # Steve's .bashrc stuff
 #
 alias l='/bin/ls -F --color=auto'
-alias ls='/bin/ls -lF --color=auto'
+alias ls='l -lh'
 alias la='l -A'
 alias lsa='ls -A'
 m() { less -R "$@"; }
