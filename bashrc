@@ -584,6 +584,14 @@ export DZIL_GLOBAL_CONFIG_ROOT=${HOME}/.dotfiles/dzil
 # Handy alias for unravelling tricky perl constructs
 alias perlparse='perl -MO=Deparse,-p -e'
 
+# Run perl coverage tests on specified files
+# eg. cover_test t/some_test.t && http
+cover_test () {
+    rm -i -rf cover_db/
+    PERL5OPT=-MDevel::Cover env perl -Ilib $* 2> /dev/null
+    cover
+}
+
 alias mydebuild='debuild -uc -us -i -I -tc'
 alias debfiles='dpkg-deb -c'
 
