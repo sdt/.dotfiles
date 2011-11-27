@@ -415,6 +415,7 @@ if [[ -n $TMUX ]]; then
         # Now convert the pane index into a global persistent id
         # 1: [100x88] [history 0/10000, 0 bytes] %2
         # ^^ index                           id  ^^
+        export TDIR="$PWD"
         export TVIM=$(tmux lsp | grep ^${tvim_index}: | grep -o '%[0-9]\+')
     }
 
