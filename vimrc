@@ -86,6 +86,8 @@ map <Leader>= :BufExplorer<CR>
 " =v buffer list
 map <Leader>n :call ListBuffers()<CR>:b
 
+" =2 pairing mode
+map <Leader>2 :set invcursorline invcursorcolumn invnumber<CR>
 
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
