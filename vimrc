@@ -89,6 +89,9 @@ map <Leader>n :call ListBuffers()<CR>:b
 " =2 pairing mode
 map <Leader>2 :set invcursorline invcursorcolumn invnumber<CR>
 
+" =t8 8-space tabs
+map <Leader>t8 :set ts=8 sw=8 noet<CR>
+
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
 endif
