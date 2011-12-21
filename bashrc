@@ -6,7 +6,7 @@ alias ls='l -lh'
 alias la='l -A'
 alias lsa='ls -A'
 m() { less -R "$@"; }
-alias md=mkdir
+alias md='mkdir -p'
 alias h=history
 
 alias hf='history|grep -i'
