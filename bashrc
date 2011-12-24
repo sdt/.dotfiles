@@ -453,6 +453,10 @@ if [[ -n $TMUX ]]; then
         vi $( flocate "$@" | uselect )
     }
 
+    pv() {
+        vi $( find $(perl -le 'pop @INC; print for @INC' | sort -u ) \
+                    -type f -iname '*.pm' | sort -u | fgrep "$@" | uselect )
+    }
 
 else
 
