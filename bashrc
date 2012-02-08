@@ -442,8 +442,8 @@ if [[ -n $TMUX ]]; then
 
         tvim
         for file in "$@"; do
-            # TODO: vim doesn't like spaces need backslash escapes
-            local newfile=$( relpath $TVIM "$file" )
+            local newfile=$( relpath $TDIR "$file" )
+            #echo $TDIR '+' $file '=>' $newfile
             invim :e space "${newfile// /\\ }" enter
         done
         tmux select-pane -t $TVIM
