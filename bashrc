@@ -378,14 +378,27 @@ start_screen() {
 alias sc='screen -X'
 alias sch='sc title $(hostname)'
 
+relpath() {
+    perl -MPath::Class=file,dir -E '$f=dir(shift)->absolute;$t=file(shift)->absolute;say $f->subsumes($t)?$t->relative($f):$t' "$@" ;
+}
+
 if [[ -n $TMUX ]]; then
 
     # Inside TMUX-only stuff
+
+    tvim_running() { tmux lsp -t $TVIM 2> /dev/null 1> /dev/null; }
 
     # tvim [width]
     # - split a new tmux pane and start vim in it
     # - the pane id is stored in $TVIM
     tvim() {
+        if [[ -n $TVIM ]]; then
+            # TVIM already exists - try to select that pane
+            tmux select-pane -t $TVIM && return
+
+            # If we get here, that pane no longer exists, so fall thru
+        fi
+
         local width=$1
         if [[ -z $width ]]; then
             # /dev/pts/0: 0 [364x89 xterm-color] (utf8)
@@ -397,13 +410,6 @@ if [[ -n $TMUX ]]; then
             else
                 width=80
             fi
-        fi
-
-        if [[ -n $TVIM ]]; then
-            # TVIM already exists - try to select that pane
-            tmux select-pane -t $TVIM && return
-
-            # If we get here, that pane no longer exists, so fall thru
         fi
 
         # Split a new pane, start vim in it, and record the pane index
@@ -434,8 +440,11 @@ if [[ -n $TMUX ]]; then
     vi() {
         [[ -n "$@" ]] || return; # do nothing if no files
 
+        tvim
         for file in "$@"; do
-            invim :e space "$file" enter
+            # TODO: vim doesn't like spaces need backslash escapes
+            local newfile=$( relpath $TVIM "$file" )
+            invim :e space "${newfile// /\\ }" enter
         done
         tmux select-pane -t $TVIM
     }
