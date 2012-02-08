@@ -619,7 +619,7 @@ rebash() {
 redot() {
     pushd ~/.dotfiles > /dev/null
     if ! git diff --quiet --exit-code origin/master; then
-        echo You have local changes. Submit those and try again.
+        echo You have local changes. Sort those out and try again.
     else
         git fetch
         if git diff --quiet --exit-code origin/master; then
