@@ -5,19 +5,12 @@ that the customisations are all in ~/.dotfiles/$DOTFILE. Further
 machine-specific customisations are in an optional file
 ~/.dotfiles/$DOTFILE.local, which is not committed.
 
-There'a an install.sh script which appends the following lines to the
-appropriate system dotfiles. Use at own risk!
+Another pattern is for bashrc to set an environment variable pointing to an
+alternative dotfile, eg. DZIL_GLOBAL_CONFIG_ROOT=$HOME/.dotfiles/dzil
 
 
-Sample usages:
-    .bashrc:
-        source ~/.dotfiles/bashrc
-
-    .vimrc
-        source ~/.dotfiles/vimrc
-
-    .gvimrc
-        source ~/.dotfiles/gvimrc
+There'a an install.sh script which installs/updates various triggers and hooks
+outside the .dotfiles directory. Use at own risk!
 
 
 Acknowledgements:
