@@ -1,3 +1,3 @@
 local: ~/perl5/minicpan
-remote: http://cpan.mirrors.ilisys.com.au/
+remote: http://mirror.internode.on.net/pub/cpan/
 also_mirror: authors/00whois.xml
