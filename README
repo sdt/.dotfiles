@@ -20,20 +20,6 @@ Sample usages:
         source ~/.dotfiles/gvimrc
 
 
-Extra files:
-
-    Fixedsys font - X
-
-        mkdir -p ~/.fonts
-        cd ~/.fonts
-        wget http://launchpadlibrarian.net/17249874/FSEX300-L.ttf
-        sudo fc-cache -f
-
-    Fixedsys font - MacOs
-
-        http://www.insanelymac.com/forum/index.php?s=d573058a4b6296291044a968bf7911bb&act=attach&type=post&id=5921
-        extract to ~/Library/Fonts
-
 Acknowledgements:
 
     For my own convenience, I've copied some third-party files into my .dotfiles
