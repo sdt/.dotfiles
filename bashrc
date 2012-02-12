@@ -404,7 +404,7 @@ if [[ -n $TMUX ]]; then
             # /dev/pts/0: 0 [364x89 xterm-color] (utf8)
             #                ^^^ width
             local scwidth=$(tmux lsc -t $TMUX_PANE |\
-                cut -d \[ -f 2 | cut -d x -f 1)
+                egrep -o '[0-9]+x[0-9]+' | cut -d x -f 2 )
             if [[ $scwidth -ge 242 ]]; then
                 width=161
             else
