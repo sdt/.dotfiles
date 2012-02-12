@@ -474,7 +474,7 @@ else
     # Start up tmux in an intelligentish fashion
     gotmux () {
         unattached-tmux-sessions() {
-            tmux ls | fgrep -v '(attached)' "$@"
+            tmux ls 2> /dev/null | fgrep -v '(attached)' "$@"
         }
         case $(unattached-tmux-sessions -c) in
             0)
