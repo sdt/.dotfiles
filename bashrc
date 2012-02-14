@@ -394,7 +394,7 @@ if [[ -n $TMUX ]]; then
     tvim() {
         if [[ -n $TVIM ]]; then
             # TVIM already exists - try to select that pane
-            tmux select-pane -t $TVIM 2> /dev/null && return
+            tmux select-pane -t $TVIM && return
 
             # If we get here, that pane no longer exists, so fall thru
         fi
