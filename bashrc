@@ -386,17 +386,18 @@ if [[ -n $TMUX ]]; then
 
     # Inside TMUX-only stuff
 
-    tvim_running() { tmux lsp -t $TVIM 2> /dev/null 1> /dev/null; }
+    tvim_running() { tmux lsp -F '#{pane_id}' | grep -q '^'$TVIM'$'; }
 
     # tvim [width]
     # - split a new tmux pane and start vim in it
     # - the pane id is stored in $TVIM
     tvim() {
-        if [[ -n $TVIM ]]; then
+        if [[ -n $TVIM ]] && tvim_running; then
             # TVIM already exists - try to select that pane
             tmux select-pane -t $TVIM && return
 
             # If we get here, that pane no longer exists, so fall thru
+            # (shouldn't happen)
         fi
 
         local width=$1
