@@ -28,7 +28,6 @@ au BufWinEnter * match TrailingWhitespace /\s\+$/
 " We've always got it now!
 colorscheme dim
 
-set tildeop
 set autoindent showmatch
 set noincsearch nobackup nocindent nohlsearch visualbell
 set indentexpr=""
