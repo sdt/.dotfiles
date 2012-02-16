@@ -5,3 +5,8 @@
 --ignore-dir=.cpan
 --ignore-dir=perlbrew
 --ignore-dir=.Trash
+
+# This one is a bit of a special case
+--ignore-dir=speed-up-2009-10
+
+--sort-files
