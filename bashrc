@@ -138,6 +138,13 @@ ffu() {
     ff "$@" | uselect;
 }
 
+fx() {
+    # eg. fx $command-and-args $ff-search-term
+    # "${!#}"              == $ARGV[n-1]
+    # "${@:1:$(($# - 1))}" == $ARGV[0..n-2]
+    "${@:1:$(($# - 1))}" $( ff "${!#}" | uselect );
+}
+
 find_file_upwards() {
     local dir=`pwd`
 
