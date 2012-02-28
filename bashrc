@@ -542,7 +542,7 @@ rgit() {
 }
 
 fixgitemail() {
-    uselect sdt@dr.com stephen.thirlwall@strategicdata.com.au |\
+    uselect sdt@dr.com stephent@strategicdata.com.au |\
         xargs git config user.email
 }
 
