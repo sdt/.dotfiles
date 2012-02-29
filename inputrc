@@ -8,4 +8,7 @@ $if Bash
     "\e[A": history-search-backward
 $endif
 
+set editing-mode vi
+set keymap vi
+
 $include /etc/inputrc
