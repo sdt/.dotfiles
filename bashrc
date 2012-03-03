@@ -641,8 +641,10 @@ redot() {
     popd > /dev/null
 }
 
-vpnup() { sudo ifup   tun0; }
-vpndn() { sudo ifdown tun0; }
+pod() {
+    has perlzonji || cpanm App::perlzonji
+    perlzonji "$@"
+}
 
 # Local bash completion overrides
 complete -f -X '!*.db' sqlite3
