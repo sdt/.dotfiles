@@ -16,7 +16,7 @@ alias j=jobs
 
 alias http="plackup -MPlack::App::Directory -e'Plack::App::Directory->new->to_app'"
 
-#set -o vi
+set -o vi
 shopt -s dotglob
 
 ismacos() { [[ "$OSTYPE" =~ darwin ]]; }
