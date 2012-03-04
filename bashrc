@@ -628,14 +628,17 @@ redot() {
     pushd ~/.dotfiles > /dev/null
     if ! git diff --quiet --exit-code origin/master; then
         echo You have local changes. Sort those out and try again.
+        return 1
     else
         git fetch
         if git diff --quiet --exit-code origin/master; then
             echo Dotfiles up to date.
+            return 1
         else
             git merge origin/master
             rebash
             source install.sh
+            return 0
         fi
     fi
     popd > /dev/null
