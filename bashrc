@@ -649,6 +649,27 @@ pod() {
     perlzonji "$@"
 }
 
+export SSH_ENV="$HOME/.ssh/environment"
+
+# Don't call this directly
+_start_ssh_agent() {
+     echo "Initialising new SSH agent..."
+     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+     chmod 600 "${SSH_ENV}"
+     source "${SSH_ENV}"
+     /usr/bin/ssh-add;
+}
+
+# This should get called by the bashrc.local of personal machines (not servers)
+start_ssh_agent() {
+    if [ -f "${SSH_ENV}" ]; then
+         source "${SSH_ENV}" > /dev/null
+         ps -ef | grep $SSH_AGENT_PID | grep -q ssh-agent$ || _start_ssh_agent
+    else
+         _start_ssh_agent;
+    fi
+}
+
 # Local bash completion overrides
 complete -f -X '!*.db' sqlite3
 
