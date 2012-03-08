@@ -13,7 +13,6 @@ There'a an install.sh script which installs/updates various triggers and hooks
 outside the .dotfiles directory. Use at own risk!
 
 
-
 Acknowledgements:
 
     For my own convenience, I've copied some third-party files into my .dotfiles
