@@ -484,6 +484,7 @@ else
         unattached-tmux-sessions() {
             tmux ls 2> /dev/null | fgrep -v '(attached)' "$@"
         }
+        cd ~
         case $(unattached-tmux-sessions -c) in
             0)
                 # No detached sessions - start a new session
