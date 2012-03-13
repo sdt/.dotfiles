@@ -646,8 +646,8 @@ redot() {
 }
 
 pod() {
-    has perlzonji || cpanm App::perlzonji
-    perlzonji "$@"
+    has perlfind || cpanm App::perlfind
+    perlfind "$@"
 }
 
 export SSH_ENV="$HOME/.ssh/environment"
