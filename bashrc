@@ -166,57 +166,6 @@ if has mvim && ! has gvim; then
 fi
 
 # If gvim exists set up our gvim-in-tabs system
-if has gvim; then
-    is_gvim_server_running() {
-        gvim --serverlist | grep -q -i `hostname`
-    }
-
-    vi() {
-        local vimcmd="gvim --servername `hostname`"
-
-#TODO:  cannot find a way of passing this to vim as one argument
-#       keeps getting sent as qw/ '+set tags=$tagsfile' /
-#    local tagsfile=$(find_file_upwards .ptags)
-#    if [ -n "$tagsfile" ]; then
-#        vimcmd+=" '+set tags=$tagsfile'"
-#    fi
-
-        if is_gvim_server_running ; then
-            if [ $# == 0 ]; then
-                vimcmd+=" --remote-send :tablast<CR> --remote-send :tabnew<CR>"
-            else
-                vimcmd+=" --remote-tab-silent"
-            fi
-        else
-            vimcmd+=" -p"
-        fi
-
-        #echo $vimcmd
-        $vimcmd "$@"
-    }
-fi
-
-if [ -n "$STY" ]; then
-    # Screen
-    is_vim_server_running() {
-        vim --serverlist | grep -q -i `hostname`
-    }
-
-    v() {
-        local vimcmd="vim --servername `hostname`"
-
-        if ! is_vim_server_running; then
-            screen -t "I'm vim" $vimcmd
-            while ! is_vim_server_running; do
-                sleep 1
-            done
-        fi
-
-        $vimcmd --remote "$@"
-        screen -X select "I'm vim"
-    }
-fi
-
 
 vs()  { find . -type f -iname '.*.sw?'; }
 vsd() { find . -type f -iname '.*.sw?' -delete -exec echo Deleting {} ... \; ; }
