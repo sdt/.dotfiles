@@ -60,6 +60,8 @@ map <Leader>d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<
 
 " =s : search for trailing whitespace
 map <Leader>s /\s\+$<CR>
+" =S : delete all trailing whitespace
+map <Leader>S :%s/\s\+$//<CR>
 
 " =tt : switch to tt2 syntax
 map <Leader>tt :set syntax=tt2<CR>
