@@ -1,24 +1,70 @@
+export SOLARIZED_BASE03_FG=black
+export SOLARIZED_BASE02_FG=black
+export SOLARIZED_BASE01_FG=green
+export SOLARIZED_BASE00_FG=yellow
+export SOLARIZED_BASE0_FG=blue
+export SOLARIZED_BASE1_FG=cyan
+export SOLARIZED_BASE2_FG=white
+export SOLARIZED_BASE3_FG=white
+export SOLARIZED_YELLOW_FG=yellow
+export SOLARIZED_ORANGE_FG=red
+export SOLARIZED_RED_FG=red
+export SOLARIZED_MAGENTA_FG=magenta
+export SOLARIZED_VIOLET_FG=magenta
+export SOLARIZED_BLUE_FG=blue
+export SOLARIZED_CYAN_FG=cyan
+export SOLARIZED_GREEN_FG=green
+
+export SOLARIZED_BASE03_ATTR=bright
+export SOLARIZED_BASE02_ATTR=dim
+export SOLARIZED_BASE01_ATTR=bright
+export SOLARIZED_BASE00_ATTR=bright
+export SOLARIZED_BASE0_ATTR=bright
+export SOLARIZED_BASE1_ATTR=bright
+export SOLARIZED_BASE2_ATTR=dim
+export SOLARIZED_BASE3_ATTR=bright
+export SOLARIZED_YELLOW_ATTR=dim
+export SOLARIZED_ORANGE_ATTR=bright
+export SOLARIZED_RED_ATTR=dim
+export SOLARIZED_MAGENTA_ATTR=dim
+export SOLARIZED_VIOLET_ATTR=bright
+export SOLARIZED_BLUE_ATTR=dim
+export SOLARIZED_CYAN_ATTR=dim
+export SOLARIZED_GREEN_ATTR=dim
+
+# Background colours don't have attributes in curses (do they?)
+export SOLARIZED_BASE02_BG=black
+export SOLARIZED_BASE2_BG=white
+export SOLARIZED_YELLOW_BG=yellow
+export SOLARIZED_RED_BG=red
+export SOLARIZED_MAGENTA_BG=magenta
+export SOLARIZED_BLUE_BG=blue
+export SOLARIZED_CYAN_BG=cyan
+export SOLARIZED_GREEN_BG=green
+
 # setup tmux colors
 case $SOLARIZED in
 
     dark)
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_ATTR=dim
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_BG=black      # base02
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_FG=yellow     # yellow
+        export TMUX_COLOR_STATUS_BG=$SOLARIZED_BASE02_BG
+        export TMUX_COLOR_STATUS_FG=$SOLARIZED_BASE01_FG
+        export TMUX_COLOR_STATUS_ATTR=$SOLARIZED_BASE01_ATTR
 
-        export TMUX_COLOR_STATUS_ATTR=bold
-        export TMUX_COLOR_STATUS_BG=black                     # base02
-        export TMUX_COLOR_STATUS_FG=green                     # base01
+        export TMUX_COLOR_WINDOW_STATUS_CURRENT_BG=$SOLARIZED_BASE02_BG
+        export TMUX_COLOR_WINDOW_STATUS_CURRENT_FG=$SOLARIZED_YELLOW_FG
+        export TMUX_COLOR_WINDOW_STATUS_CURRENT_ATTR=$SOLARIZED_YELLOW_ATTR
+
         ;;
 
     light)
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_ATTR=dim
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_BG=white      # base2
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_FG=yellow     # yellow
+        export TMUX_COLOR_STATUS_BG=$SOLARIZED_BASE2_BG
+        export TMUX_COLOR_STATUS_FG=$SOLARIZED_BASE1_FG
+        export TMUX_COLOR_STATUS_ATTR=$SOLARIZED_BASE1_ATTR
 
-        export TMUX_COLOR_STATUS_ATTR=bold
-        export TMUX_COLOR_STATUS_BG=white                     # base2
-        export TMUX_COLOR_STATUS_FG=cyan                      # base1
+        export TMUX_COLOR_WINDOW_STATUS_CURRENT_BG=$SOLARIZED_BASE2_BG
+        export TMUX_COLOR_WINDOW_STATUS_CURRENT_FG=$SOLARIZED_YELLOW_FG
+        export TMUX_COLOR_WINDOW_STATUS_CURRENT_ATTR=$SOLARIZED_YELLOW_ATTR
+
         ;;
 
     *)
