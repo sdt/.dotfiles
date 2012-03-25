@@ -1,3 +1,4 @@
+# Color component of foreground colour+attr pair
 export SOLARIZED_BASE03_FG=black
 export SOLARIZED_BASE02_FG=black
 export SOLARIZED_BASE01_FG=green
@@ -15,6 +16,7 @@ export SOLARIZED_BLUE_FG=blue
 export SOLARIZED_CYAN_FG=cyan
 export SOLARIZED_GREEN_FG=green
 
+# Attr component of foreground color+attr pair
 export SOLARIZED_BASE03_ATTR=bright
 export SOLARIZED_BASE02_ATTR=dim
 export SOLARIZED_BASE01_ATTR=bright
@@ -32,7 +34,7 @@ export SOLARIZED_BLUE_ATTR=dim
 export SOLARIZED_CYAN_ATTR=dim
 export SOLARIZED_GREEN_ATTR=dim
 
-# Background colours don't have attributes in curses (do they?)
+# Background colors don't have attributes in curses (do they?)
 export SOLARIZED_BASE02_BG=black
 export SOLARIZED_BASE2_BG=white
 export SOLARIZED_YELLOW_BG=yellow
@@ -42,32 +44,31 @@ export SOLARIZED_BLUE_BG=blue
 export SOLARIZED_CYAN_BG=cyan
 export SOLARIZED_GREEN_BG=green
 
+set_tmux_color() {
+    local var_base=$1
+    local fg_color=$2
+    local bg_color=$3
+
+    eval "export TMUX_COLOR_${var_base}_BG=\$SOLARIZED_${bg_color}_BG"
+    eval "export TMUX_COLOR_${var_base}_FG=\$SOLARIZED_${fg_color}_FG"
+    eval "export TMUX_COLOR_${var_base}_ATTR=\$SOLARIZED_${fg_color}_ATTR"
+}
+
 # setup tmux colors
 case $SOLARIZED in
 
     dark)
-        export TMUX_COLOR_STATUS_BG=$SOLARIZED_BASE02_BG
-        export TMUX_COLOR_STATUS_FG=$SOLARIZED_BASE01_FG
-        export TMUX_COLOR_STATUS_ATTR=$SOLARIZED_BASE01_ATTR
-
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_BG=$SOLARIZED_BASE02_BG
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_FG=$SOLARIZED_YELLOW_FG
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_ATTR=$SOLARIZED_YELLOW_ATTR
-
+        set_tmux_color STATUS                   BASE01  BASE02
+        set_tmux_color WINDOW_STATUS_CURRENT    YELLOW  BASE02
         ;;
 
     light)
-        export TMUX_COLOR_STATUS_BG=$SOLARIZED_BASE2_BG
-        export TMUX_COLOR_STATUS_FG=$SOLARIZED_BASE1_FG
-        export TMUX_COLOR_STATUS_ATTR=$SOLARIZED_BASE1_ATTR
-
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_BG=$SOLARIZED_BASE2_BG
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_FG=$SOLARIZED_YELLOW_FG
-        export TMUX_COLOR_WINDOW_STATUS_CURRENT_ATTR=$SOLARIZED_YELLOW_ATTR
-
+        set_tmux_color STATUS                   BASE1   BASE2
+        set_tmux_color WINDOW_STATUS_CURRENT    YELLOW  BASE2
         ;;
 
     *)
+        # Non-solarized colors
         export TMUX_COLOR_WINDOW_STATUS_CURRENT_ATTR=bold
         export TMUX_COLOR_WINDOW_STATUS_CURRENT_BG=cyan
         export TMUX_COLOR_WINDOW_STATUS_CURRENT_FG=black
