@@ -629,6 +629,18 @@ source_if() {
     fi
 }
 
+cdup() {
+    local n=$1
+    local d=..
+    local i=1
+
+    while [ $i -lt $n ]; do
+        d="$d/.."
+        i=$(( $i + 1 ))
+    done
+    cd $d
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.dotfiles/bashrc.local
 source ~/.dotfiles/tmux_colors.sh
