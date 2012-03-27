@@ -426,7 +426,7 @@ if [[ -n $TMUX ]]; then
 
     reauth() {
         printenv SSH_AUTH_SOCK
-        eval $( tmux show-environment | sed -e s/^SSH_AUTH_SOCK )
+        eval $( tmux show-environment | grep SSH_AUTH_SOCK )
         printenv SSH_AUTH_SOCK
     }
 
