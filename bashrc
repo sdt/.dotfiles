@@ -424,6 +424,12 @@ if [[ -n $TMUX ]]; then
                     -type f -iname '*.pm' | sort -u | fgrep "$@" | uselect )
     }
 
+    reauth() {
+        printenv SSH_AUTH_SOCK
+        eval $( tmux show-environment | sed -e s/^SSH_AUTH_SOCK )
+        printenv SSH_AUTH_SOCK
+    }
+
 else
 
     # Outside TMUX-only
