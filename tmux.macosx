@@ -1,0 +1,4 @@
+# For mac os, copy this file to tmux.local
+
+# Fix pbcopy/pbpaste (available from homebrew)
+set -g default-command "reattach-to-user-namespace -l $SHELL"
