@@ -399,7 +399,7 @@ if [[ -n $TMUX ]]; then
 
         tvim
         for file in "$@"; do
-            local newfile=$( relpath $TDIR "$file" )
+            local newfile=$( relpath "$TDIR" "$file" )
             #echo $TDIR '+' $file '=>' $newfile
             invim :e space "${newfile// /\\ }" enter
         done
