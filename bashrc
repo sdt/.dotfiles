@@ -466,25 +466,34 @@ else
     alias diff="diff -u"
 fi
 
-# Use this to remap git remotes to their rw equivalents in submodules
+# Changes git remotes to be read-only url for fetch and read-write for push
 fixgitremote() {
     local remote=${1:-origin}
-    local new_url=$( \
-        git remote -v show |\
-        grep $remote |
-        grep -m 1 \(push\) |\
-        sed -n -e 's#^.*git://\([^/]*\)/\(.*\) .*$#git@\1:\2#p'
-    )
-    if [ -z "$new_url" ] ; then
-        echo Can\'t find read-only push url for $remote
-        git remote -v show
+    if ! ( git remote | grep -q ^$remote$ ) ; then
+        echo "Remote $remote not found"
+        git remote
         return 1
     fi
 
-    echo git remote set-url --push $remote $new_url
-    git remote set-url --push $remote $new_url
+    remote_url() {
+        git remote -v | grep ^$remote | grep -m 1 \($1\) | awk '{ print $2 }'
+    }
 
-    git remote -v show
+    local push_url=$( \
+        remote_url push |\
+        sed -e 's#^git://\([^/]*\)/\(.*\)$#git@\1:\2#' \
+    )
+    local fetch_url=$(
+        remote_url fetch |
+        sed -e 's#^git@\([^:]*\):\([^/]*\)/\(.*\)#git://\1/\2/\3#'
+    )
+
+    # Can't seem to do set-url --fetch, so set them both to fetch url,
+    # and then switch the push url back again.
+    git remote set-url $remote $fetch_url
+    git remote set-url --push $remote $push_url
+
+    git remote -v show | grep $remote
 }
 
 # Git submodules helpers
