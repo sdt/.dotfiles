@@ -12,3 +12,5 @@ BREW_ROOT=$(brew --prefix)
 
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
+
+pathat /usr/local/bin
