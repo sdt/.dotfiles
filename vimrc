@@ -37,6 +37,7 @@ set tabstop=4 shiftwidth=4 expandtab shiftround smarttab
 set tabpagemax=666
 set confirm
 set errorfile=.vimerrors.err
+set backupskip=/tmp/*,/private/tmp/*
 
 
 " I added these years ago to avoid some unwanted new indenting behaviour
