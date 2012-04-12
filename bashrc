@@ -363,14 +363,14 @@ if [[ -n $TMUX ]]; then
             local scwidth=$(tmux lsc -t $TMUX_PANE |\
                 egrep -o '[0-9]+x[0-9]+' | cut -d x -f 2 )
             if [[ $scwidth -ge 242 ]]; then
-                width=161
+                width=2
             else
-                width=80
+                width=1
             fi
         fi
 
         # Split a new pane, start vim in it, and record the pane index
-        local tvim_pane=$(tmux split-window -P -h -l $width 'exec vim')
+        local tvim_pane=$(tmux split-window -P -h -l $[ 81 * $width - 1 ] 'exec vim')
 
         # Extract just the pane index from session:window.pane
         local tvim_index=$(echo $tvim_pane | cut -d . -f 2)
