@@ -584,8 +584,7 @@ alias debfiles='dpkg-deb -c'
 
 # Reload .bashrc
 rebash() {
-    unalias -a
-    source ~/.bashrc
+    exec $SHELL
 }
 
 # Update dotfiles
