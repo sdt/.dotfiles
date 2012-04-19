@@ -31,6 +31,19 @@ export NETHACKOPTIONS='color, catname:Coco, dogname:Walter the farting dog, fixi
 
 export IGNOREEOF=1
 
+_make_color() {
+    local code
+    for i in $@; do
+        eval "color=\$_$i"
+        if [ -z $color ]; then
+            echoerr Unknown color $i
+            return 1
+        fi
+        code="$code;$color"
+    done
+    echo $code
+}
+
 ansicode() {
 
     local _black=30
@@ -67,19 +80,47 @@ ansicode() {
 
     local _reset=0
 
-    local code
-    for i in $@; do
-        eval "color=\$_$i"
-        if [ -z $color ]; then
-            echoerr Unknown color $i
-            return 1
-        fi
-        code="$code;$color"
-    done
-    echo $code
+    _make_color $@
+}
+
+solarized_code() {
+
+    local _base03='1;30'
+    local _base02='22;30'
+    local _base01='1;32'
+    local _base00='1;33'
+    local _base0='1;34'
+    local _base1='1;36'
+    local _base2='22;37'
+    local _base3='1;37'
+    local _yellow='22;33'
+    local _orange='1;31'
+    local _red='22;31'
+    local _magenta='22;35'
+    local _violet='1;35'
+    local _blue='22;34'
+    local _cyan='22;36'
+    local _green='22;32'
+
+    local _bgbase02=40
+    local _bgbase2=47
+    local _bgyellow=43
+    local _bgred=41
+    local _bgmagenta=45
+    local _bgblue=44
+    local _bgcyan=46
+    local _bggreen=42
+
+    local _underline=4
+    local _nounderline=24
+
+    local _reset=0
+
+    _make_color $@
 }
 
 ansicolor() { printf '\e[%sm' $( ansicode $@ ); }
+solacolor() { printf '\e[%sm' $( solarized_code $@ ); }
 
 PS1="$(ansicolor reset)"
 PS1+="${debian_chroot:+($debian_chroot)}"
