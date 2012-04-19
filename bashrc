@@ -19,6 +19,8 @@ alias http="plackup -MPlack::App::Directory -e'Plack::App::Directory->new->to_ap
 set -o vi
 shopt -s dotglob
 
+echoerr() { echo $* 1>&2; }
+
 ismacos() { [[ "$OSTYPE" =~ darwin ]]; }
 
 # remove ':' from completion word breaks so man Some::Perl doesn't escape
@@ -29,74 +31,76 @@ export NETHACKOPTIONS='color, catname:Coco, dogname:Walter the farting dog, fixi
 
 export IGNOREEOF=1
 
-joinstr() {
-    local sep=$1
-    shift
-    [ $# -gt 0 ] || return
-    local str=$1
-    shift
-    while [ $# -gt 0 ]; do
-        str=$str$sep$1
-        shift
+ansicode() {
+
+    local _black=30
+    local _red=31
+    local _green=32
+    local _yellow=33
+    local _blue=34
+    local _magenta=35
+    local _cyan=36
+    local _white=37
+    local _default=39
+
+    local _bgblack=40
+    local _bgred=41
+    local _bggreen=42
+    local _bgyellow=43
+    local _bgblue=44
+    local _bgmagenta=45
+    local _bgcyan=46
+    local _bgwhite=47
+    local _bgdefault=49
+
+    local _bold=1
+    local _italics=3
+    local _underline=4
+    local _inverse=7
+    local _strikeout=9
+
+    local _nobold=22
+    local _noitalics=23
+    local _nounderline=24
+    local _noinverse=27
+    local _nostrikeout=29
+
+    local _reset=0
+
+    local code
+    for i in $@; do
+        eval "color=\$_$i"
+        if [ -z $color ]; then
+            echoerr Unknown color $i
+            return 1
+        fi
+        code="$code;$color"
     done
-    echo "$str"
+    echo $code
 }
 
-ansicolor() { printf '\e[%sm' $( joinstr ';' $@ ); }
+ansicolor() { printf '\e[%sm' $( ansicode $@ ); }
 
-BLACK=30
-RED=31
-GREEN=32
-YELLOW=33
-BLUE=34
-MAGENTA=35
-CYAN=36
-WHITE=37
-
-BOLD=1
-ITALICS=3
-UNDERLINE=4
-INVERSE=7
-STRIKE=9
-
-NOBOLD=22
-NOITALICS=23
-NOUNDERLINE=24
-NOINVERSE=27
-NOSTRIKE=29
-
-RESET=0
-
-PS1="$(ansicolor $RESET)"
+PS1="$(ansicolor reset)"
 PS1+="${debian_chroot:+($debian_chroot)}"
-PS1+="$(ansicolor $MAGENTA)\$(__git_ps1 '(%s) ')"
-PS1+="$(ansicolor $BLUE)\w"
+PS1+="$(ansicolor magenta)\$(__git_ps1 '(%s) ')"
+PS1+="$(ansicolor blue)\w"
 PS1+="\n"
-PS1+="$(ansicolor $GREEN)\u@\h \t"
-PS1+="$(ansicolor $RESET)\$"
+PS1+="$(ansicolor green)\u@\h \t"
+PS1+="$(ansicolor reset)\$"
 PS1+=" "
 
 # Less Colors for Man Pages
 if true; then
-    export LESS_TERMCAP_mb=$'\E[01;32m'       # begin blinking
-    export LESS_TERMCAP_md=$'\E[01;36m'       # begin bold
-    export LESS_TERMCAP_me=$'\E[0m'           # end mode
-    export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-    export LESS_TERMCAP_so=$'\E[00;44m'       # begin standout-mode – info box
-    export LESS_TERMCAP_ue=$'\E[0m'           # end underlin
-    export LESS_TERMCAP_us=$'\E[04;32m'       # begin underline
-else
-    # Not sure what these ones are for anymore....
-    export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-    export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-    export LESS_TERMCAP_me=$'\E[0m'           # end mode
-    export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-    export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-    export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-    export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+    export LESS_TERMCAP_mb=$(ansicolor red)                 # begin blinking
+    export LESS_TERMCAP_md=$(ansicolor yellow)              # begin bold
+    export LESS_TERMCAP_me=$(ansicolor reset)               # end mode
+    export LESS_TERMCAP_se=$(ansicolor reset)               # end standout-mode
+    export LESS_TERMCAP_so=$(ansicolor magenta)             # begin standout-mode – info box
+    export LESS_TERMCAP_ue=$(ansicolor nounderline)         # end underline
+    export LESS_TERMCAP_us=$(ansicolor underline green)     # begin underline
 fi
 
-echoerr() { echo $* 1>&2; }
 
 _yes_or_no() {
     local default=$1 ; shift
