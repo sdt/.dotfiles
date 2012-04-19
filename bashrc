@@ -29,8 +29,20 @@ export NETHACKOPTIONS='color, catname:Coco, dogname:Walter the farting dog, fixi
 
 export IGNOREEOF=1
 
-setcolor() { echo "\[\033[$1m\]"; }
-resetcolor() { echo "\[\033[2$1m\]"; }
+joinstr() {
+    local sep=$1
+    shift
+    [ $# -gt 0 ] || return
+    local str=$1
+    shift
+    while [ $# -gt 0 ]; do
+        str=$str$sep$1
+        shift
+    done
+    echo "$str"
+}
+
+ansicolor() { printf '\e[%sm' $( joinstr ';' $@ ); }
 
 BLACK=30
 RED=31
@@ -40,41 +52,28 @@ BLUE=34
 MAGENTA=35
 CYAN=36
 WHITE=37
+
 BOLD=1
 ITALICS=3
 UNDERLINE=4
 INVERSE=7
 STRIKE=9
 
-SETBLACK=$(setcolor $BLACK)
-SETRED=$(setcolor $RED)
-SETGREEN=$(setcolor $GREEN)
-SETYELLOW=$(setcolor $YELLOW)
-SETBLUE=$(setcolor $BLUE)
-SETMAGENTA=$(setcolor $MAGENTA)
-SETCYAN=$(setcolor $CYAN)
-SETWHITE=$(setcolor $WHITE)
+NOBOLD=22
+NOITALICS=23
+NOUNDERLINE=24
+NOINVERSE=27
+NOSTRIKE=29
 
-RESETALL=$(setcolor 0)
+RESET=0
 
-SETBOLD=$(setcolor $BOLD)
-SETITALICS=$(setcolor $ITALICS)
-SETUNDERLINE=$(setcolor $UNDERLINE)
-SETINVERSE=$(setcolor $INVERSE)
-SETSTRIKE=$(setcolor $STRIKE)
-
-RESETBOLD=$(resetcolor 2)
-RESETITALICS=$(resetcolor $ITALICS)
-RESETUNDERLINE=$(resetcolor $UNDERLINE)
-RESETINVERSE=$(resetcolor $INVERSE)
-RESETSTRIKE=$(resetcolor $STRIKE)
-
-PS1="${debian_chroot:+($debian_chroot)}"
-PS1+="$SETMAGENTA\$(__git_ps1 '(%s) ')"
-PS1+="$SETBLUE\w"
+PS1="$(ansicolor $RESET)"
+PS1+="${debian_chroot:+($debian_chroot)}"
+PS1+="$(ansicolor $MAGENTA)\$(__git_ps1 '(%s) ')"
+PS1+="$(ansicolor $BLUE)\w"
 PS1+="\n"
-PS1+="$SETGREEN\u@\h \t"
-PS1+="$RESETALL\$"
+PS1+="$(ansicolor $GREEN)\u@\h \t"
+PS1+="$(ansicolor $RESET)\$"
 PS1+=" "
 
 # Less Colors for Man Pages
