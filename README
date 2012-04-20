@@ -1,16 +1,26 @@
-I've added my unix dotfiles to github at https://github.com/sdt/Dotfiles/
+My haphazard collection of dotfiles.
 
-The pattern is that the default ~/.$DOTFILE sources ~/.dotfiles/$DOTFILE, so
-that the customisations are all in ~/.dotfiles/$DOTFILE. Further
-machine-specific customisations are in an optional file
-~/.dotfiles/$DOTFILE.local, which is not committed.
+    http://sdt.github.com/.dotfiles/
 
-Another pattern is for bashrc to set an environment variable pointing to an
-alternative dotfile, eg. DZIL_GLOBAL_CONFIG_ROOT=$HOME/.dotfiles/dzil
+The dotfiles themselves all lives in a .dotfiles subdirectory, to avoid my
+whole home directory tree being a git repo.
+
+There's three basic strategies to get various programs to use a dotfile outside
+the usual place. In order of preference, they are:
+
+  1. ~/.programrc includes ~/.dotfiles/programrc
+
+    This of course requires the dotfile have some kind of include mechanism.
+
+  2. Environment variable: PROGRAM_CONFIG=~/.dotfiles/programrc
+
+  3. Invocation alias: alias program='program --config-file=~/.dotfiles/programrc'
 
 
-There'a an install.sh script which installs/updates various triggers and hooks
-outside the .dotfiles directory. Use at own risk!
+The included install.sh takes care of setting up the first form. It tries to be idempotent,
+but should not be fully trusted.
+
+The other forms are set up in bashrc.
 
 
 Acknowledgements:
