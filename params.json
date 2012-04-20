@@ -1,0 +1,1 @@
+{"name":".dotfiles","body":"Installation:\r\n\r\n    cd $HOME\r\n    git clone git://github.com/sdt/.dotfiles.git\r\n    . .dotfiles/install\r\n\r\nOr just:\r\n\r\n    curl -L sdt.github.com/.dotfiles/install | bash","tagline":"Steve Thirlwall's unix dotfiles","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
