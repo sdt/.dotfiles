@@ -294,6 +294,14 @@ pv() {
                 -type f -iname '*.pm' | sort -u | fgrep "$@" | uselect )
 }
 
+# - XXX: this is repeated in tmux-vim
+fullpath() {
+    if [ -d "$1" ]; then
+        echo $( cd "$1" ; echo "$PWD" )
+    else
+        echo $( cd $( dirname "$1" ); echo $PWD/$( basename "$1" ) )
+    fi
+}
 envvar_contains() {
     local pathsep=${PATHSEP:-:}
     eval "echo \$$1" | egrep -q "(^|$pathsep)$2($pathsep|\$)";
@@ -326,9 +334,7 @@ prepend_envvar() {
 prepend_envvar_here()    { prepend_envvar $1 $(pwd); }
 
 prepend_envvar_at() {
-    cd $2 || return
-    prepend_envvar_here $1
-    cd - >> /dev/null
+    prepend_envvar $1 $( fullpath "$2" )
 }
 
 perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
