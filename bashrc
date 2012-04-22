@@ -211,8 +211,6 @@ if has mvim && ! has gvim; then
     gvim() { mvim "$@"; }
 fi
 
-# If gvim exists set up our gvim-in-tabs system
-
 vs()  { find . -type f -iname '.*.sw?'; }
 vsd() { find . -type f -iname '.*.sw?' -delete -exec echo Deleting {} ... \; ; }
 
