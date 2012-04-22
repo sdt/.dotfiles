@@ -270,6 +270,7 @@ ixargs() {
 }
 
 evi() {
+    [ $# -gt 0 ] || return
     echo vi $@
     vi "$@"
 }
@@ -385,23 +386,23 @@ if [[ -n $TMUX ]]; then
     # Inside TMUX-only stuff
     source ~/.dotfiles/tmux-vim/tmux-vim.bash
 
-    unset -f vi fv gv lv
+    unset -f vi #fv gv lv
     vi() { tvim "$@"; }
 
     fv() {
-        vi $( ff "$@" | uselect )
+        evi $( ff "$@" | uselect )
     }
 
     gv() {
-        vi $( ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' )
+        evi $( ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' )
     }
 
     lv() {
-        vi $( flocate "$@" | uselect )
+        evi $( flocate "$@" | uselect )
     }
 
     pv() {
-        vi $( find $(perl -le 'pop @INC; print for @INC' | sort -u ) \
+        evi $( find $(perl -le 'pop @INC; print for @INC' | sort -u ) \
                     -type f -iname '*.pm' | sort -u | fgrep "$@" | uselect )
     }
 
