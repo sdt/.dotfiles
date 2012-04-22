@@ -192,7 +192,7 @@ fx() {
 }
 
 find_file_upwards() {
-    local dir=`pwd`
+    local dir="$PWD"
 
     until [ -f $dir/$1 ] ; do
         if [ $dir = '/' ]; then
@@ -200,7 +200,7 @@ find_file_upwards() {
         fi
         dir=$(dirname $dir)
     done
-    echo $dir/$1
+    echo "$dir/$1"
 }
 
 has() {
@@ -331,7 +331,7 @@ prepend_envvar() {
     #eval "echo \$envvar=\$$envvar"
 }
 
-prepend_envvar_here()    { prepend_envvar $1 $(pwd); }
+prepend_envvar_here()    { prepend_envvar $1 $PWD; }
 
 prepend_envvar_at() {
     prepend_envvar $1 $( fullpath "$2" )
