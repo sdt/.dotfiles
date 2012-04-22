@@ -17,7 +17,7 @@ alias j=jobs
 alias http="plackup -MPlack::App::Directory -e'Plack::App::Directory->new->to_app'"
 
 set -o vi
-shopt -s dotglob
+shopt -s dotglob histappend
 
 echoerr() { echo $* 1>&2; }
 
