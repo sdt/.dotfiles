@@ -275,27 +275,25 @@ evi() {
     vi "$@"
 }
 
-# Grep-and-Vi
-gv() {
-    ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' | ixargs evi
-}
-
 # Find-and-Vi
 fv() {
-    ff "$@" | uselect | ixargs evi
+    evi $( ff "$@" | uselect )
 }
 
-fvi() { fv -i "$@"; }
+# Grep-and-Vi
+gv() {
+    evi $( ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' )
+}
 
 # Locate-and-Vi
 lv() {
-    flocate "$@" | uselect | ixargs evi
+    evi $( flocate "$@" | uselect )
 }
 
 # find-Perl-module-and-Vi
 pv() {
-    find $(perl -le 'pop @INC; print for @INC' | uniq) -type f -iname '*.pm' |\
-            fgrep "$@" | uselect | ixargs evi;
+    evi $( find $(perl -le 'pop @INC; print for @INC' | sort -u ) \
+                -type f -iname '*.pm' | sort -u | fgrep "$@" | uselect )
 }
 
 envvar_contains() {
@@ -386,25 +384,7 @@ if [[ -n $TMUX ]]; then
     # Inside TMUX-only stuff
     source ~/.dotfiles/tmux-vim/tmux-vim.bash
 
-    unset -f vi #fv gv lv
     vi() { tvim "$@"; }
-
-    fv() {
-        evi $( ff "$@" | uselect )
-    }
-
-    gv() {
-        evi $( ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' )
-    }
-
-    lv() {
-        evi $( flocate "$@" | uselect )
-    }
-
-    pv() {
-        evi $( find $(perl -le 'pop @INC; print for @INC' | sort -u ) \
-                    -type f -iname '*.pm' | sort -u | fgrep "$@" | uselect )
-    }
 
     reauth() {
         printenv SSH_AUTH_SOCK
