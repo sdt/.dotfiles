@@ -385,7 +385,9 @@ if [[ -n $TMUX ]]; then
     # Inside TMUX-only stuff
     source ~/.dotfiles/tmux-vim/tmux-vim.bash
 
-    unset -f fv gv lv
+    unset -f vi fv gv lv
+    vi() { tvim "$@"; }
+
     fv() {
         vi $( ff "$@" | uselect )
     }
