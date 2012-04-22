@@ -41,7 +41,7 @@ _make_color() {
         fi
         code="$code;$color"
     done
-    echo $code
+    echo -n $code
 }
 
 ansicode() {
@@ -119,16 +119,18 @@ solarized_code() {
     _make_color $@
 }
 
-ansicolor() { printf '\e[%sm' $( ansicode $@ ); }
-solacolor() { printf '\e[%sm' $( solarized_code $@ ); }
+ansicolor() { printf '\e[%sm' $( ansicode "$@" ); }
+solacolor() { printf '\e[%sm' $( solarized_code "$@" ); }
+bashcolor() { printf '\[%s\]' $( ansicolor "$@" ); }
 
-PS1="$(ansicolor reset)"
+PS1=""
+PS1+="$(bashcolor reset)"
 PS1+="${debian_chroot:+($debian_chroot)}"
-PS1+="$(ansicolor magenta)\$(__git_ps1 '(%s) ')"
-PS1+="$(ansicolor blue)\w"
+PS1+="$(bashcolor magenta)\$(__git_ps1 '(%s) ')"
+PS1+="$(bashcolor blue)\w"
 PS1+="\n"
-PS1+="$(ansicolor green)\u@\h \t"
-PS1+="$(ansicolor reset)\$"
+PS1+="$(bashcolor green)\u@\h \t"
+PS1+="$(bashcolor reset)\$"
 PS1+=" "
 
 # Less Colors for Man Pages
