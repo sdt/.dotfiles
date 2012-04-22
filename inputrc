@@ -10,5 +10,6 @@ $endif
 
 set editing-mode vi
 set keymap vi
+set completion-ignore-case on
 
 $include /etc/inputrc
