@@ -1,7 +1,7 @@
 # Macos-specific stuff
 #
 alias l='/bin/ls -FG'
-alias ls='/bin/ls -lFG'
+alias ls='l -lh'
 
 # Homebrew stuff
 #
