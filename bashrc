@@ -353,11 +353,12 @@ if [ -e $CPAN_MINI_PATH/authors/01mailrc.txt.gz ]; then
     export PERL_CPANM_OPT="--mirror $CPAN_MINI_PATH --mirror-only"
 fi
 
-export SCR_IW_FG=W
-export SCR_IW_BG=b
-export SCR_AW_FG=k
-export SCR_AW_BG=c
-export SCR_FG=Y
+# Screen colors (solarized)
+export SCR_IW_FG=G
+export SCR_IW_BG=k
+export SCR_AW_FG=y
+export SCR_AW_BG=.
+export SCR_FG=.
 export SCR_BG=.
 
 # Start up screen in an intelligentish fashion
