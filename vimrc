@@ -19,14 +19,13 @@ au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match TrailingWhitespace /\s\+$/
 au BufWinEnter * match TrailingWhitespace /\s\+$/
 
-" Use the dim colorscheme if we have it
-"if filereadable($HOME."/.vim/colors/dim.vim")
-"    colorscheme dim
-"else
-"    colorscheme pablo
-"endif
-" We've always got it now!
-colorscheme dim
+# Auto-detect solarized from the SOLARIZED env var
+if $SOLARIZED == ''
+    colorscheme dim
+else
+    let g:solarized_termtrans=1
+    colorscheme solarized
+endif
 
 set autoindent showmatch
 set noincsearch nobackup nocindent nohlsearch visualbell
