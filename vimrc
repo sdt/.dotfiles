@@ -19,7 +19,7 @@ au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match TrailingWhitespace /\s\+$/
 au BufWinEnter * match TrailingWhitespace /\s\+$/
 
-# Auto-detect solarized from the SOLARIZED env var
+" Auto-detect solarized from the SOLARIZED env var
 if $SOLARIZED == ''
     colorscheme dim
 else
