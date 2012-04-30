@@ -25,6 +25,7 @@ if $SOLARIZED == ''
 else
     let g:solarized_termtrans=1
     colorscheme solarized
+    set background=dark
 endif
 
 set autoindent showmatch
