@@ -38,7 +38,7 @@ set tabpagemax=666
 set confirm
 set errorfile=.vimerrors.err
 set backupskip=/tmp/*,/private/tmp/*
-
+set fillchars+=vert:\ ,fold:-
 
 " I added these years ago to avoid some unwanted new indenting behaviour
 " These make the ftplugin-based stuff not work (like matchit)
