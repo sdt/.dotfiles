@@ -23,6 +23,10 @@ echoerr() { echo $* 1>&2; }
 
 ismacos() { [[ "$OSTYPE" =~ darwin ]]; }
 
+# Solarized is now the default. If non-solarized is required,
+# source unsolarized.sh from bashrc.local
+export SOLARIZED=dark
+
 # remove ':' from completion word breaks so man Some::Perl doesn't escape
 # http://tiswww.case.edu/php/chet/bash/FAQ   /E13
 export COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
