@@ -1,0 +1,3 @@
+[submodule "tmux-vim"]
+	path = tmux-vim
+	url = git://github.com/sdt/tmux-vim.git
