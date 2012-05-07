@@ -559,11 +559,15 @@ rebash() {
     source ~/.bashrc
 }
 
+git_has_changes() {
+    [[ "$( git status --porcelain )" != "" ]]
+}
+
 # Update dotfiles
 redot() {
     local ret=1
     pushd ~/.dotfiles > /dev/null
-    if ! git diff --quiet --exit-code origin/master; then
+    if git_has_changes; then
         echo You have local changes. Sort those out and try again.
     else
         git fetch
@@ -571,6 +575,7 @@ redot() {
             echo Dotfiles up to date.
         else
             git merge origin/master
+            git submodule update --init
             rebash
             source install.sh
             ret=0
