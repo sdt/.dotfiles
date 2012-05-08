@@ -1,7 +1,8 @@
 set nocompatible
 syntax on
 
-set runtimepath+=~/.dotfiles/vim
+set runtimepath+=~/.dotfiles/vim/local
+set runtimepath+=~/.dotfiles/vim/vim-perl
 
 au BufNewFile,BufRead *.tt2 setf tt2html
 au BufNewFile,BufRead *.tt  setf tt2html
