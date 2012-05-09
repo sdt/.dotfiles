@@ -1,3 +1,4 @@
 cd $HOME
 git clone git://github.com/sdt/.dotfiles.git
+git submodule update --init
 source .dotfiles/install.sh
