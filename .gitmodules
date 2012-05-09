@@ -4,3 +4,6 @@
 [submodule "vim/vim-perl"]
 	path = vim/vim-perl
 	url = git://github.com/petdance/vim-perl.git
+[submodule "vim/bufexplorer"]
+	path = vim/bufexplorer
+	url = git://github.com/vim-scripts/bufexplorer.zip.git
