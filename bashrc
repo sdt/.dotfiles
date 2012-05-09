@@ -391,9 +391,9 @@ alias sch='sc title $(hostname)'
 if [[ -n $TMUX ]]; then
 
     # Inside TMUX-only stuff
-    source ~/.dotfiles/tmux-vim/tmux-vim.bash
+    #source ~/.dotfiles/tmux-vim/tmux-vim.bash
 
-    vi() { tvim "$@"; }
+    vi() { ~/.dotfiles/tmux-vim/tmux-vim "$@"; }
 
     reauth() {
         printenv SSH_AUTH_SOCK
