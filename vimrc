@@ -1,7 +1,7 @@
 set nocompatible
 syntax on
 
-set runtimepath+=~/.dotfiles/vim/local
+set runtimepath+=~/.dotfiles/vim/general
 set runtimepath+=~/.dotfiles/vim/bufexplorer
 set runtimepath+=~/.dotfiles/vim/vim-perl
 
