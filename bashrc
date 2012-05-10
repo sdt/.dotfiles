@@ -176,6 +176,8 @@ YES_or_no() { _yes_or_no yes "$@"; }
 yes_or_NO() { _yes_or_no no  "$@"; }
 
 HISTSIZE=2000
+HISTFILESIZE=2000
+HISTCONTROL=erasedups
 export EDITOR=vim
 
 export DBIC_TRACE_PROFILE=console
