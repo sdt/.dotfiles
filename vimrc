@@ -3,6 +3,7 @@ syntax on
 
 set runtimepath+=~/.dotfiles/vim/general
 set runtimepath+=~/.dotfiles/vim/bufexplorer
+set runtimepath+=~/.dotfiles/vim/solarized
 set runtimepath+=~/.dotfiles/vim/vim-perl
 
 au BufNewFile,BufRead *.tt2 setf tt2html
@@ -28,6 +29,15 @@ else
     let g:solarized_termtrans=1
     colorscheme solarized
     set background=dark
+
+    " Solarized colorscheme overrides
+    hi StatusLine    cterm=NONE ctermfg=3
+    hi StatusLineNC  cterm=bold
+    hi VertSplit     cterm=bold ctermfg=2
+
+    " Make long git commit messages more visible
+    hi def link gitcommitOverflow		Error
+
 endif
 
 set autoindent showmatch

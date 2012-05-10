@@ -7,3 +7,6 @@
 [submodule "vim/bufexplorer"]
 	path = vim/bufexplorer
 	url = git://github.com/vim-scripts/bufexplorer.zip.git
+[submodule "vim/solarized"]
+	path = vim/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
