@@ -9,7 +9,13 @@ alias ls='l -lh'
 #
 
 BREW_ROOT=$(brew --prefix)
-gobrew() { brew update && brew outdated && brew upgrade; }
+rebrew() {
+    brew update \
+        && [ -n "$( brew outdated )" ] \
+        && brew outdated \
+        && YES_or_no upgrade \
+        && brew upgrade;
+}
 
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
