@@ -294,12 +294,6 @@ lv() {
     evi $( flocate "$@" | uselect )
 }
 
-# find-Perl-module-and-Vi
-pv() {
-    evi $( find $(perl -le 'pop @INC; print for @INC' | sort -u ) \
-                -type f -iname '*.pm' | sort -u | fgrep "$@" | uselect )
-}
-
 # - XXX: this is repeated in tmux-vim
 fullpath() {
     if [ -d "$1" ]; then
