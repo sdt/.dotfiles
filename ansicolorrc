@@ -1,0 +1,15 @@
+# Term::ANSIColor mapping file for solarized names
+
+base03     = bright_black
+base02     = black
+base01     = bright_green
+base00     = bright_yellow
+base0      = bright_blue
+base1      = bright_cyan
+base2      = white
+base3      = bright_white
+orange     = bright_red
+violet     = bright_magenta
+
+on_base02  = on_black
+on_base2   = on_white

@@ -342,12 +342,11 @@ perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
 export ACKRC="$HOME/.dotfiles/ackrc"
-
 export INPUTRC="$HOME/.dotfiles/inputrc"
-
 export SCREENRC="$HOME/.dotfiles/screenrc"
-
+export TERM_ANSICOLOR_CONFIG="$HOME/.dotfiles/ansicolorrc"
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
+
 export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
 if [ -e $CPAN_MINI_PATH/authors/01mailrc.txt.gz ]; then
     export PERL_CPANM_OPT="--mirror $CPAN_MINI_PATH --mirror-only"
