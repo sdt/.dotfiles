@@ -231,7 +231,7 @@ xmldump() {
 }
 
 update-uselect() {
-    local url=http://users.tpg.com.au/morepats/;
+    local url=http://users.tpg.com.au/morepats/uselect/;
     local file=$(curl -s $url |\
                     egrep -o 'App-USelect-[0-9._]*.tar.gz' |\
                         tail -n 1);
@@ -239,11 +239,13 @@ update-uselect() {
 }
 
 upload-tpg() {
-    curl --user morepats ftp://users.tpg.com.au --upload-file "$@"
+    local dir="$1"
+    local file="$2"
+    curl --user morepats ftp://users.tpg.com.au/"$dir" --upload-file "$file"
 }
 
 upload-uselect() {
-    find . -name 'App-USelect*.tar.gz' | uselect | ixargs upload-tpg
+    find . -name 'App-USelect*.tar.gz' | uselect | ixargs upload-tpg uselect/
 }
 
 # locate variants - only files or only dirs
