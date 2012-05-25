@@ -194,7 +194,7 @@ fx() {
     # eg. fx $command-and-args $ff-search-term
     # "${!#}"              == $ARGV[n-1]
     # "${@:1:$(($# - 1))}" == $ARGV[0..n-2]
-    "${@:1:$(($# - 1))}" $( ff "${!#}" | uselect );
+    "${@:1:$(($# - 1))}" $( ff "${!#}" | uselect -m "$*" );
 }
 
 find_file_upwards() {
@@ -245,7 +245,7 @@ upload-tpg() {
 }
 
 upload-uselect() {
-    find . -name 'App-USelect*.tar.gz' | uselect | ixargs upload-tpg uselect/
+    find . -name 'App-USelect*.tar.gz' | uselect -1 -m 'select file to upload' | ixargs upload-tpg uselect/
 }
 
 # locate variants - only files or only dirs
@@ -283,17 +283,17 @@ evi() {
 
 # Find-and-Vi
 fv() {
-    evi $( ff "$@" | uselect )
+    evi $( ff "$@" | uselect -m "fv $*" )
 }
 
 # Grep-and-Vi
 gv() {
-    evi $( ack --heading --break "$@" | uselect -s '!/^\d+[:-]/' )
+    evi $( ack --heading --break "$@" | uselect -m "gv $*" -s '!/^\d+[:-]/' )
 }
 
 # Locate-and-Vi
 lv() {
-    evi $( flocate "$@" | uselect )
+    evi $( flocate "$@" | uselect -m "lv $*" )
 }
 
 # - XXX: this is repeated in tmux-vim
@@ -419,7 +419,7 @@ else
                 ;;
             *)
                 # More that one detached session - choose one
-                tmux attach-session -t $(unattached-tmux-sessions | uselect | cut -d: -f 1)
+                tmux attach-session -t $(unattached-tmux-sessions | uselect -1 -m 'select session' | cut -d: -f 1)
                 ;;
         esac
     }
@@ -475,7 +475,7 @@ rgit() {
 }
 
 fixgitemail() {
-    uselect sdt@dr.com stephent@strategicdata.com.au |\
+    uselect -1 -m 'select commit email' sdt@dr.com stephent@strategicdata.com.au |\
         xargs git config user.email
 }
 
@@ -522,7 +522,7 @@ gitbranchtotag() {
 # eg. ugit checkout --
 # CAREFUL!
 ugit () {
-    git status -s | uselect | sed -e 's/^...//' | xargs git "$@"
+    git status -s | uselect -m 'git $*' | sed -e 's/^...//' | xargs git "$@"
 }
 
 # Difference between two file trees
