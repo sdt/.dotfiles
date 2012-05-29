@@ -522,7 +522,7 @@ gitbranchtotag() {
 # eg. ugit checkout --
 # CAREFUL!
 ugit () {
-    git status -s | uselect -m 'git $*' | sed -e 's/^...//' | xargs git "$@"
+    git status -s | uselect -m "git $*" | sed -e 's/^...//' | xargs git "$@"
 }
 
 # Difference between two file trees
