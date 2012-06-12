@@ -48,6 +48,11 @@ set fillchars+=vert:\ ,fold:-
 
 let mapleader="="
 
+" http://blogs.perl.org/users/davewood/2012/06/open-module-under-cursor-in-vim.html
+au FileType perl command! -nargs=1 PerlModuleSource :e `perldoc -lm <args>`
+au FileType perl setlocal iskeyword+=:
+au FileType perl noremap <leader>pm :PerlModuleSource <cword><cr>
+
 " =i : add #include guards to .h file
 " map <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
 
