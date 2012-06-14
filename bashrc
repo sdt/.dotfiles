@@ -221,13 +221,18 @@ vs()  { find . -type f -iname '.*.sw?'; }
 vsd() { find . -type f -iname '.*.sw?' -delete -exec echo Deleting {} ... \; ; }
 
 yamldump() {
-    perl -MData::Dumper::Concise -MYAML -e \
-        'print qq("$_" =>\n), Dumper(YAML::LoadFile($_)) for @ARGV' $@
+    perl -MData::Dumper::Concise -MFile::Slurp -MYAML -e \
+        'print Dumper(Load(read_file(\*STDIN)))'
 }
 
 xmldump() {
-    perl -MData::Dumper::Concise -MXML::Simple -e \
-        'local $/;$x=<>; print Dumper(XMLin($x, ForceArray => ["entry"]));'
+    perl -MData::Dumper::Concise -MFile::Slurp -MXML::Simple -e \
+        'print Dumper(XMLin(read_file(\*STDIN), ForceArray => ["entry"]));'
+}
+
+jsondump() {
+    perl -MData::Dumper::Concise -MFile::Slurp -MJSON -e \
+        'print Dumper(decode_json(read_file(\*STDIN)))'
 }
 
 update-uselect() {
