@@ -40,6 +40,7 @@ set confirm
 set errorfile=.vimerrors.err
 set backupskip=/tmp/*,/private/tmp/*
 set fillchars+=vert:\ ,fold:-
+set lcs+=tab:>_
 
 " I added these years ago to avoid some unwanted new indenting behaviour
 " These make the ftplugin-based stuff not work (like matchit)
@@ -103,6 +104,9 @@ map <Leader>t8 :set ts=8 sw=8 noet<CR>
 
 " =md Make directory of current file
 map <Leader>md :!mkdir -p $( dirname % )<CR>
+
+" =<tab> Toggle :set list
+map <Leader><tab> :set list!<CR>
 
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
