@@ -108,6 +108,9 @@ map <Leader>md :!mkdir -p $( dirname % )<CR>
 " =<tab> Toggle :set list
 map <Leader><tab> :set list!<CR>
 
+" =pp Toggle :set paste
+map <Leader>pp :set paste!<CR>
+
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
 endif
