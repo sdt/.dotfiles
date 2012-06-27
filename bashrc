@@ -403,6 +403,13 @@ if [[ -n $TMUX ]]; then
         printenv SSH_AUTH_SOCK
     }
 
+    # tmouse on/off
+    tmouse() {
+        for i in resize-pane select-pane select-window; do
+            tmux set mouse-$i $1
+        done
+    }
+
 else
 
     # Outside TMUX-only
