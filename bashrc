@@ -301,17 +301,12 @@ lv() {
     evi $( flocate "$@" | uselect -m "lv $*" )
 }
 
-# - XXX: this is repeated in tmux-vim
 fullpath() {
     if [ -d "$1" ]; then
         echo $( cd "$1" ; echo "$PWD" )
     else
         echo $( cd $( dirname "$1" ); echo $PWD/$( basename "$1" ) )
     fi
-}
-envvar_contains() {
-    local pathsep=${PATHSEP:-:}
-    eval "echo \$$1" | egrep -q "(^|$pathsep)$2($pathsep|\$)";
 }
 
 strip_envvar() {
