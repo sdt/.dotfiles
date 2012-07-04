@@ -636,6 +636,14 @@ cdup() {
     cd $d
 }
 
+aptinfo() {
+    # aptinfo search-strings...
+    aptitude search -F '%p %d %V %v' "$@" |\
+        uselect -m 'Show package info' |\
+        awk '{ print $1 }' |\
+        xargs aptitude show
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.dotfiles/bashrc.local
 source ~/.dotfiles/tmux_colors.sh
