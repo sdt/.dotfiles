@@ -348,6 +348,7 @@ export INPUTRC="$HOME/.dotfiles/inputrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
 export TERM_ANSICOLOR_CONFIG="$HOME/.dotfiles/ansicolorrc"
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
+export USELECTRC="$HOME/.dotfiles/uselectrc"
 
 export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
 if [ -e $CPAN_MINI_PATH/authors/01mailrc.txt.gz ]; then
