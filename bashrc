@@ -344,10 +344,11 @@ perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
 pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
 
 export ACKRC="$HOME/.dotfiles/ackrc"
+export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
 export INPUTRC="$HOME/.dotfiles/inputrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
 export TERM_ANSICOLOR_CONFIG="$HOME/.dotfiles/ansicolorrc"
-export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
+export TMUX_VIM_CONFIG="$HOME/.dotfiles/tmux-vim"
 export USELECTRC="$HOME/.dotfiles/uselectrc"
 
 export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
