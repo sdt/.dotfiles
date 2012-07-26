@@ -348,7 +348,7 @@ export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
 export INPUTRC="$HOME/.dotfiles/inputrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
 export TERM_ANSICOLOR_CONFIG="$HOME/.dotfiles/ansicolorrc"
-export TMUX_VIM_CONFIG="$HOME/.dotfiles/tmux-vim"
+export TMUX_VIM_CONFIG="$HOME/.dotfiles/tmux-vim.conf"
 export USELECTRC="$HOME/.dotfiles/uselectrc"
 
 export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
