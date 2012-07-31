@@ -111,6 +111,9 @@ map <Leader><tab> :set list!<CR>
 " =pp Toggle :set paste
 map <Leader>pp :set paste!<CR>
 
+" =pod Create initial pod for .pm
+map <Leader>pod Go<CR>__END__<CR><CR>=head1 NAME<CR><CR><ESC>1G0wyt;Gpo<CR>=cut<ESC>
+
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
 endif
