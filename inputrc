@@ -1,8 +1,4 @@
 $if Bash
-    # BSB Ctrl-P for output of previous command
-    # output of previous command (\r to expand !! under histverify)
-    Control-p: " $(!!)"
-
     # Up-down arrow keys do history search on partial line
     "\e[B": history-search-forward
     "\e[A": history-search-backward
@@ -10,6 +6,6 @@ $endif
 
 set editing-mode vi
 set keymap vi
-set completion-ignore-case on
+# set completion-ignore-case on
 
 $include /etc/inputrc
