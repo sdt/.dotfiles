@@ -32,8 +32,6 @@ cmap <C-V> <C-R>+
 " ^-tab rotates through tabs
 map <C-Tab> :tabn<cr>
 
-colorscheme solarized
-
 if filereadable($HOME."/.dotfiles/gvimrc.local")
     source ~/.dotfiles/gvimrc.local
 endif
