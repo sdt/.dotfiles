@@ -14,21 +14,10 @@ the usual place. In order of preference, they are:
 
   2. Environment variable: PROGRAM_CONFIG=~/.dotfiles/programrc
 
-  3. Invocation alias: alias program='program --config-file=~/.dotfiles/programrc'
+  3. Shell alias: alias program='program --config-file=~/.dotfiles/programrc'
 
 
-The included install.sh takes care of setting up the first form. It tries to be idempotent,
-but should not be fully trusted.
+The included install.sh takes care of setting up the first form. It tries to be
+idempotent, but should not be fully trusted.
 
 The other forms are set up in bashrc.
-
-
-Acknowledgements:
-
-    For my own convenience, I've copied some third-party files into my .dotfiles
-    tree. These are listed below. Please contact me if you're not happy about me
-    using these.
-
-        Vim perl files       - git://github.com/petdance/vim-perl.git
-        Vim dim colorscheme  - http://vimcolorschemetest.googlecode.com/
-        Vim solarized plugin - http://ethanschoonover.com/solarized
