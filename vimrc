@@ -117,3 +117,7 @@ map <Leader>pod Go<CR>__END__<CR><CR>=head1 NAME<CR><CR><ESC>1G0wyt;Gpo<CR>=cut<
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
 endif
+
+if filereadable("./.vimrc.local")
+    sandbox source ./.vimrc.local
+endif
