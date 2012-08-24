@@ -646,6 +646,26 @@ aptinfo() {
         xargs aptitude show
 }
 
+resize_images() {
+    isnum() { [[ -n $1 && -z ${1//[0-9]/} ]]; }
+
+    if [[ $# -lt 3 ]] || ! isnum $1 || ! isnum $2 ; then
+        echo usage: resize_images max-width max-height files...
+        return 1
+    fi
+
+    local w=$1; shift
+    local h=$1; shift
+
+    # Gamma-correct resizing
+
+    mogrify -verbose \
+            -gamma .454545 \
+            -resize "${w}x${h}>" \
+            -gamma 2.2 \
+                "$@" 2>&1 | grep '=>'
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.dotfiles/bashrc.local
 source ~/.dotfiles/tmux_colors.sh
