@@ -660,6 +660,7 @@ resize_images() {
     # Gamma-correct resizing
 
     mogrify -verbose \
+            -auto-orient \
             -gamma .454545 \
             -resize "${w}x${h}>" \
             -gamma 2.2 \
