@@ -29,6 +29,9 @@ else
     colorscheme sdt_solarized
 endif
 
+" BufExplorer settings
+let g:bufExplorerShowRelativePath=1
+
 set autoindent showmatch
 set noincsearch nobackup nocindent nohlsearch visualbell
 set indentexpr=""
