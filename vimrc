@@ -81,7 +81,10 @@ map <Leader>tt :set syntax=tt2<CR>
 map <Leader>dc 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
 
 " =dd : insert Data::Dumper line
-map <Leader>dd Ouse Data::Dumper::Concise;<CR>print STDERR Dumper(
+map <Leader>dd ouse Data::Dumper::Concise; print STDERR Dumper(
+
+" =dp : insert Data::Printer line
+map <Leader>dp ouse Data::Printer; p<SPACE>
 
 " =pa/A insert perl AUTHOR line
 map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
