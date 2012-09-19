@@ -667,6 +667,12 @@ resize_images() {
                 "$@" 2>&1 | grep '=>'
 }
 
+# Print working directory of a given process id
+procwd() {
+    local pid=$1;
+    lsof -p $pid -a -d cwd -Fn | grep ^n | cut -c 2-;
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.dotfiles/bashrc.local
 source ~/.dotfiles/tmux_colors.sh
