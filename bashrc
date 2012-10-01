@@ -674,6 +674,7 @@ procwd() {
 }
 
 source_if ~/perl5/perlbrew/etc/bashrc
+source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.dotfiles/bashrc.local
 source ~/.dotfiles/tmux_colors.sh
 
