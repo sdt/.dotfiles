@@ -36,7 +36,7 @@ command -nargs=1 GV call s:doGV('<args>')
 
 function! s:doGV(pattern)
     let cmd='ack --heading --break ' . a:pattern
-    let cmd.= " | uselect -s '!/^\\d+[:-]/'"
+    let cmd.= " | uselect -i -s '^\\d+[:-]'"
     call s:LoadFilesFromCommand(cmd)
 endfunction
 

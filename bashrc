@@ -182,6 +182,10 @@ export EDITOR=vim
 
 export DBIC_TRACE_PROFILE=console
 
+uselect() {
+	$HOME/.dotfiles/uselect/uselect "$@"
+}
+
 ff() {
     ack -a -f | fgrep "$@" ;
 }
@@ -293,7 +297,7 @@ fv() {
 
 # Grep-and-Vi
 gv() {
-    evi $( ack --heading --break "$@" | uselect -m "gv $*" -s '!/^\d+[:-]/' )
+    evi $( ack --heading --break "$@" | uselect -m "gv $*" -i -s '^\d+[:-]' )
 }
 
 # Locate-and-Vi
@@ -680,15 +684,4 @@ source ~/.dotfiles/tmux_colors.sh
 
 if ismacos ; then
     source_if ~/.dotfiles/bashrc.macosx
-fi
-
-if ! ( has uselect ) ; then
-    uselect() {
-        if tty -s; then
-            echoerr -n 'uselect not installed - '
-            yes_or_NO 'install uselect' && update-uselect
-        else
-            echoerr 'uselect not installed - use update-uselect'
-        fi
-    }
 fi
