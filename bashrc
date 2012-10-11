@@ -353,6 +353,7 @@ export INPUTRC="$HOME/.dotfiles/inputrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
 export TERM_ANSICOLOR_CONFIG="$HOME/.dotfiles/ansicolorrc"
 export TMUX_VIM_CONFIG="$HOME/.dotfiles/tmux-vim.conf"
+export TMUX_VIM_INI="$HOME/.dotfiles/tmux-vim.ini"
 export USELECTRC="$HOME/.dotfiles/uselectrc"
 
 export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
@@ -393,10 +394,7 @@ alias sch='sc title $(hostname)'
 
 if [[ -n $TMUX ]]; then
 
-    # Inside TMUX-only stuff
-    #source ~/.dotfiles/tmux-vim/tmux-vim.bash
-
-    vi() { ~/.dotfiles/tmux-vim/tmux-vim "$@"; }
+    vi() { ~/.dotfiles/tmux-vim/tmux-vim.py "$@"; }
 
     reauth() {
         printenv SSH_AUTH_SOCK
