@@ -214,8 +214,8 @@ find_file_upwards() {
 }
 
 has() {
-    type -t "$@" > /dev/null
-}
+    type -t "$@"
+} >&-
 
 if has mvim && ! has gvim; then
     gvim() { mvim "$@"; }
