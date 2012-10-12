@@ -268,11 +268,11 @@ dirlocate() {   # dlocate already exists
 
 # ixargs is used similar to xargs, but works with interactive programs
 ixargs() {
-    # Read files from stdin into the $files array
+    # Read args from stdin into the $args array
     IFS=$'\n';
     set -f ;
     trap 'echo Or maybe not...' INT
-    local files=( $(cat) )   # read files from stdin
+    local args=( $(cat) )   # read args from stdin
     trap INT
     set +f ;
     IFS=$' \t\n'
@@ -280,8 +280,8 @@ ixargs() {
     # Reopen stdin to /dev/tty so that interactive programs work properly
     exec 0</dev/tty
 
-    # Run specified command with the files from stdin
-    [ -n "$files" ] && $@ "${files[@]}"
+    # Run specified command with the args from stdin
+    [ -n "$args" ] && "$@" "${args[@]}"
 }
 
 evi() {
