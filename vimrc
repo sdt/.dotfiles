@@ -103,17 +103,11 @@ nnoremap <Leader>dp ouse Data::Printer; p<SPACE>
 nnoremap <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
 nnoremap <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
 
-" =v buffer list
-nnoremap <Leader>v :ls<CR>:b
-
 " =- last buffer
 nnoremap <Leader>- :n#<CR>
 
 " ==
 nnoremap <Leader>= :BufExplorer<CR>
-
-" =v buffer list
-nnoremap <Leader>n :call ListBuffers()<CR>:b
 
 " =2 pairing mode
 nnoremap <Leader>2 :set invcursorline invcursorcolumn invnumber<CR>
