@@ -32,6 +32,9 @@ endif
 " BufExplorer settings
 let g:bufExplorerShowRelativePath=1
 
+" uselect settings
+let g:uselect_bin = "~/.dotfiles/uselect/uselect"
+
 set autoindent showmatch
 set noincsearch nobackup nocindent nohlsearch visualbell
 set indentexpr=""

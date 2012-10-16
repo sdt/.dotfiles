@@ -13,6 +13,15 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 "-----------------------------------------------------------------------------
+" Configuration variables
+"
+" g:uselect_bin - path to uselect binary (default "uselect")
+"
+if !exists("g:uselect_bin")
+    let g:uselect_bin = "uselect"
+endif
+
+"-----------------------------------------------------------------------------
 " :FV <pattern>
 "
 " Loads file selector for files with filename matching pattern.
@@ -22,7 +31,7 @@ command -nargs=1 FV call s:doFV('<args>')
 "cabbrev fv FV
 
 function! s:doFV(pattern)
-    let cmd='ack -a -f | fgrep -i ' . a:pattern . ' | sort | uselect'
+    let cmd='ack -a -f | fgrep -i ' . a:pattern . ' | sort | '. g:uselect_bin
     call s:LoadFilesFromCommand(cmd)
 endfunction
 
@@ -36,7 +45,7 @@ command -nargs=1 GV call s:doGV('<args>')
 
 function! s:doGV(pattern)
     let cmd='ack --heading --break ' . a:pattern
-    let cmd.= " | uselect -i -m '^\\d+[:-]'"
+    let cmd.= " | " . g:uselect_bin . " -i -m '^\\d+[:-]'"
     call s:LoadFilesFromCommand(cmd)
 endfunction
 
@@ -49,7 +58,7 @@ command -nargs=1 LV call s:doLV('<args>')
 "cabbrev lv LV
 
 function! s:doLV(pattern)
-    let cmd='locate ' . a:pattern . " | perl -nlE 'say if -f' | uselect"
+    let cmd='locate ' . a:pattern . " | perl -nlE 'say if -f' | " . g:uselect_bin
     call s:LoadFilesFromCommand(cmd)
 endfunction
 
