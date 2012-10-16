@@ -67,80 +67,80 @@ augroup perl_module_source
 	autocmd!
 	autocmd FileType perl command! -nargs=1 PMSource :e `perldoc -lm <args>`
 	autocmd FileType perl setlocal isfname+=:
-	autocmd FileType perl noremap <buffer> <leader>pm :PMSource <cfile><cr>
+	autocmd FileType perl nnoremap <buffer> <leader>pm :PMSource <cfile><cr>
 augroup END
 
 " =i : add #include guards to .h file
-" map <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
+" nnoremap <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
 
 " =c : check perl syntax
 " =x : run perl script
-" map <Leader>c :%w !perl -c<CR>
-map <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
-map <Leader>x :%w !perl<CR>
+" nnoremap <Leader>c :%w !perl -c<CR>
+nnoremap <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
+nnoremap <Leader>x :%w !perl<CR>
 
 " =d : insert date line into debian changelog
-map <Leader>d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<ESC>kO//<ESC>78A=<ESC>
+nnoremap <Leader>d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<ESC>kO//<ESC>78A=<ESC>
 
 " =s : search for trailing whitespace
-map <Leader>s /\s\+$<CR>
+nnoremap <Leader>s /\s\+$<CR>
 " =S : delete all trailing whitespace
-map <Leader>S :%s/\s\+$//<CR>
+nnoremap <Leader>S :%s/\s\+$//<CR>
 
 " =tt : switch to tt2 syntax
-map <Leader>tt :set syntax=tt2<CR>
+nnoremap <Leader>tt :set syntax=tt2<CR>
 
 " =dc : insert date line into debian changelog
-map <Leader>dc 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
+nnoremap <Leader>dc 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
 
 " =dd : insert Data::Dumper line
-map <Leader>dd ouse Data::Dumper::Concise; print STDERR Dumper(
+nnoremap <Leader>dd ouse Data::Dumper::Concise; print STDERR Dumper(
 
 " =dp : insert Data::Printer line
-map <Leader>dp ouse Data::Printer; p<SPACE>
+nnoremap <Leader>dp ouse Data::Printer; p<SPACE>
 
 " =pa/A insert perl AUTHOR line
-map <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
-map <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
+nnoremap <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
+nnoremap <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
 
 " =v buffer list
-map <Leader>v :ls<CR>:b
+nnoremap <Leader>v :ls<CR>:b
 
 " =- last buffer
-map <Leader>- :n#<CR>
+nnoremap <Leader>- :n#<CR>
 
 " ==
-map <Leader>= :BufExplorer<CR>
+nnoremap <Leader>= :BufExplorer<CR>
 
 " =v buffer list
-map <Leader>n :call ListBuffers()<CR>:b
+nnoremap <Leader>n :call ListBuffers()<CR>:b
 
 " =2 pairing mode
-map <Leader>2 :set invcursorline invcursorcolumn invnumber<CR>
+nnoremap <Leader>2 :set invcursorline invcursorcolumn invnumber<CR>
 
 " =t8 8-space tabs
-map <Leader>t8 :set ts=8 sw=8 noet<CR>
+nnoremap <Leader>t8 :set ts=8 sw=8 noet<CR>
 
 " =md Make directory of current file
-map <Leader>md :!mkdir -p $( dirname % )<CR>
+nnoremap <Leader>md :!mkdir -p $( dirname % )<CR>
 
-" =<tab> Toggle :set list
-map <Leader><tab> :set list!<CR>
+" =<tab> Toggle visible whitespace
+nnoremap <Leader><tab> :set list!<CR>
 
 " =pp Toggle :set paste
-map <Leader>pp :set paste!<CR>
+nnoremap <Leader>pp :set paste!<CR>
 
 " =pod Create initial pod for .pm
-map <Leader>pod Go<CR>__END__<CR><CR>=head1 NAME<CR><CR><ESC>1G0wyt;Gpo<CR>=cut<ESC>
+nnoremap <Leader>pod Go<CR>__END__<CR><CR>=head1 NAME<CR><CR><ESC>1G0wyt;Gpo<CR>=cut<ESC>
 
 " =fv fv word under cursor
-map <Leader>fv :FC<CR>
+nnoremap <Leader>fv :FC<CR>
 
 " =gv gv word under cursor
-map <Leader>gv :GC<CR>
+nnoremap <Leader>gv :GC<CR>
 
 " =lv lv word under cursor
-map <Leader>lv :LC<CR>
+nnoremap <Leader>lv :LC<CR>
 
 if filereadable($HOME."/.dotfiles/vimrc.local")
     source ~/.dotfiles/vimrc.local
