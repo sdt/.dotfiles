@@ -6,8 +6,12 @@ set runtimepath+=~/.dotfiles/vim/bufexplorer
 set runtimepath+=~/.dotfiles/vim/solarized
 set runtimepath+=~/.dotfiles/vim/vim-perl
 
-au BufNewFile,BufRead *.tt2 setf tt2html
-au BufNewFile,BufRead *.tt  setf tt2html
+" Force template toolkit filetypes
+augroup template_toolkit
+	autocmd!
+	autocmd BufNewFile,BufRead *.tt2 setf tt2html
+	autocmd BufNewFile,BufRead *.tt  setf tt2html
+augroup END
 
 filetype plugin on
 runtime macros/matchit.vim
@@ -17,10 +21,13 @@ let loaded_matchparen=1
 
 " Highlight trailing whitespace - http://vim.wikia.com/wiki/VimTip396
 " Make sure this is done before the colorscheme loads
-autocmd ColorScheme * highlight TrailingWhitespace ctermbg=red guibg=red
-au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match TrailingWhitespace /\s\+$/
-au BufWinEnter * match TrailingWhitespace /\s\+$/
+augroup trailing_whitespace
+	autocmd!
+	autocmd ColorScheme * highlight TrailingWhitespace ctermbg=red guibg=red
+	autocmd InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+	autocmd InsertLeave * match TrailingWhitespace /\s\+$/
+	autocmd BufWinEnter * match TrailingWhitespace /\s\+$/
+augroup END
 
 " Auto-detect solarized from the SOLARIZED env var
 if $SOLARIZED == ''
@@ -56,9 +63,12 @@ set lcs+=tab:>_
 let mapleader="="
 
 " http://blogs.perl.org/users/davewood/2012/06/open-module-under-cursor-in-vim.html
-au FileType perl command! -nargs=1 PerlModuleSource :e `perldoc -lm <args>`
-au FileType perl setlocal isfname+=:
-au FileType perl noremap <leader>pm :PerlModuleSource <cfile><cr>
+augroup perl_module_source
+	autocmd!
+	autocmd FileType perl command! -nargs=1 PMSource :e `perldoc -lm <args>`
+	autocmd FileType perl setlocal isfname+=:
+	autocmd FileType perl noremap <buffer> <leader>pm :PMSource <cfile><cr>
+augroup END
 
 " =i : add #include guards to .h file
 " map <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
