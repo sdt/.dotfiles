@@ -675,6 +675,11 @@ procwd() {
     lsof -p $pid -a -d cwd -Fn | grep ^n | cut -c 2-;
 }
 
+# tt 'some [% template %] stuff'
+tt() {
+    perl -MTemplate -E "Template->new->process(\'$@', {}, sub { say @_ })"
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
