@@ -210,9 +210,19 @@ runv() {
 
 fx() {
     # eg. fx $command-and-args $ff-search-term
-    # "${!#}"              == $ARGV[n-1]
-    # "${@:1:$(($# - 1))}" == $ARGV[0..n-2]
-    "${@:1:$(($# - 1))}" $( ff "${!#}" | uselect -s "$*" );
+    local cmd="${@:1:$(($# - 1))}"      # ARGV[0 .. N-2]
+    local pat="${!#}"                   # ARGV[N-1]
+
+    # This whole hoo-har is so we split on newlines and not spaces, so that
+    # if we get [ 'file1', 'file 2' ] from uselect, then the files array
+    # contains two elements, not three.
+    local _IFS="$IFS"
+    local out=$( ff "$pat" | uselect -s "$*" )
+    IFS=$'\n'
+    local files=( $out )
+    IFS="$_IFS"
+
+    runv $cmd "${files[@]}"
 }
 
 find_file_upwards() {
@@ -300,8 +310,7 @@ ixargs() {
 
 evi() {
     [ $# -gt 0 ] || return
-    echo vi $@
-    vi "$@"
+    runv vi "$@"
 }
 
 # Find-and-Vi
