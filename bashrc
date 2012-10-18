@@ -194,6 +194,20 @@ ffu() {
     ff "$@" | uselect;
 }
 
+# Echo-quoted
+# Shell-escapes the arguments before printing
+echoq() {
+    printf '%q ' "$@"
+    printf "\n"
+}
+
+# Echo the command to stderr with quoting, and then run it
+# run-verbose
+runv() {
+    echoq "$@" 1>&2
+    "$@"
+}
+
 fx() {
     # eg. fx $command-and-args $ff-search-term
     # "${!#}"              == $ARGV[n-1]
