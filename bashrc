@@ -305,7 +305,7 @@ ixargs() {
     exec 0</dev/tty
 
     # Run specified command with the args from stdin
-    [ -n "$args" ] && "$@" "${args[@]}"
+    [ -n "$args" ] && runv "$@" "${args[@]}"
 }
 
 evi() {
