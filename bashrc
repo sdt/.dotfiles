@@ -430,6 +430,13 @@ if [[ -n $TMUX ]]; then
         for i in resize-pane select-pane select-window; do
             tmux set mouse-$i $1
         done
+        if [[ -n "$1" ]]; then
+            tmux set mode-mouse $1
+        else
+            local onoff=\
+                $( tmux show-options | grep resize-pane | cut -d' ' -f2 )
+            tmux set mode-mouse ${onoff:-off}
+        fi
     }
 
 else
