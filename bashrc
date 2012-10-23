@@ -436,8 +436,8 @@ if [[ -n $TMUX ]]; then
         if [[ -n "$1" ]]; then
             tmux set mode-mouse $1
         else
-            local onoff=\
-                $( tmux show-options | grep resize-pane | cut -d' ' -f2 )
+            local onoff=$( \
+                tmux show-options | grep resize-pane | cut -d' ' -f2 )
             tmux set mode-mouse ${onoff:-off}
         fi
     }
