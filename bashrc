@@ -415,6 +415,9 @@ start_screen() {
 alias sc='screen -X'
 alias sch='sc title $(hostname)'
 
+# Leaky pipes! (with output prefix)
+leak() { perl -ple "print STDERR '$*', \$_"; }
+
 if [[ -n $TMUX ]]; then
 
     vi() { ~/.dotfiles/tmux-vim/tmux-vim.py "$@"; }
