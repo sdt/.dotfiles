@@ -225,6 +225,14 @@ fx() {
     runv $cmd "${files[@]}"
 }
 
+hx() {
+    # hx [fgrep args] - select fron History and eXecute
+    # eg. hx mount
+    #     hx -i pm
+    local cmd=$( fc -l -1 1 | fgrep "${@:- }" | uselect -1 | awk '{print $1}' )
+    [[ -n "$cmd" ]] && fc -s $cmd
+}
+
 find_file_upwards() {
     local dir="$PWD"
 
