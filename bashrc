@@ -19,6 +19,8 @@ alias http="plackup -MPlack::App::Directory -e'Plack::App::Directory->new->to_ap
 set -o vi
 shopt -s dotglob histappend
 
+has() { type -t "$@" > /dev/null; }
+
 echoerr() { echo $* 1>&2; }
 
 ismacos() { [[ "$OSTYPE" =~ darwin ]]; }
@@ -225,11 +227,15 @@ fx() {
     runv $cmd "${files[@]}"
 }
 
+if ! has tac; then
+    tac() { tail -r "$@"; }
+fi
+
 hx() {
     # hx [fgrep args] - select fron History and eXecute
     # eg. hx mount
     #     hx -i pm
-    local cmd=$( fc -l -1 1 | fgrep "${@:- }" | uselect -1 | awk '{print $1}' )
+    local cmd=$( history | tac | fgrep "${@:- }" | uselect -1 | awk '{print $1}' )
     [[ -n "$cmd" ]] && fc -s $cmd
 }
 
@@ -243,10 +249,6 @@ find_file_upwards() {
         dir=$(dirname $dir)
     done
     echo "$dir/$1"
-}
-
-has() {
-    type -t "$@" > /dev/null
 }
 
 if has mvim && ! has gvim; then
