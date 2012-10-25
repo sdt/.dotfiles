@@ -187,57 +187,8 @@ export DBIC_TRACE_PROFILE=console
 uselect() {
 	$HOME/.dotfiles/uselect/uselect "$@"
 }
-
-ff() {
-    ack -a -f | fgrep "$@" ;
-}
-
-ffu() {
-    ff "$@" | uselect;
-}
-
-# Echo-quoted
-# Shell-escapes the arguments before printing
-echoq() {
-    printf '%q ' "$@"
-    printf "\n"
-}
-
-# Echo the command to stderr with quoting, and then run it
-# run-verbose
-runv() {
-    echoq "$@" 1>&2
-    "$@"
-}
-
-fx() {
-    # eg. fx $command-and-args $ff-search-term
-    local cmd="${@:1:$(($# - 1))}"      # ARGV[0 .. N-2]
-    local pat="${!#}"                   # ARGV[N-1]
-
-    # This whole hoo-har is so we split on newlines and not spaces, so that
-    # if we get [ 'file1', 'file 2' ] from uselect, then the files array
-    # contains two elements, not three.
-    local _IFS="$IFS"
-    local out=$( ff "$pat" | uselect -s "$*" )
-    IFS=$'\n'
-    local files=( $out )
-    IFS="$_IFS"
-
-    runv $cmd "${files[@]}"
-}
-
-if ! has tac; then
-    tac() { tail -r "$@"; }
-fi
-
-hx() {
-    # hx [fgrep args] - select fron History and eXecute
-    # eg. hx mount
-    #     hx -i pm
-    local cmd=$( history | tac | fgrep "${@:- }" | uselect -1 | awk '{print $1}' )
-    [[ -n "$cmd" ]] && fc -s $cmd
-}
+UEDITOR=vi
+source $HOME/.dotfiles/uselect/example.bashrc
 
 find_file_upwards() {
     local dir="$PWD"
@@ -300,43 +251,15 @@ dirlocate() {   # dlocate already exists
     locate "$@" | perl -nlE 'say if -d'
 }
 
-# ixargs is used similar to xargs, but works with interactive programs
-ixargs() {
-    # Read args from stdin into the $args array
-    IFS=$'\n';
-    set -f ;
-    trap 'echo Or maybe not...' INT
-    local args=( $(cat) )   # read args from stdin
-    trap INT
-    set +f ;
-    IFS=$' \t\n'
-
-    # Reopen stdin to /dev/tty so that interactive programs work properly
-    exec 0</dev/tty
-
-    # Run specified command with the args from stdin
-    [ -n "$args" ] && runv "$@" "${args[@]}"
-}
-
 evi() {
     [ $# -gt 0 ] || return
     runv vi "$@"
 }
 
-# Find-and-Vi
-fv() {
-    evi $( ff "$@" | uselect -s "fv $*" )
-}
-
-# Grep-and-Vi
-gv() {
-    evi $( ack --heading --break "$@" | uselect -s "gv $*" -i -m '^\d+[:-]' )
-}
-
-# Locate-and-Vi
-lv() {
-    evi $( flocate "$@" | uselect -s "lv $*" )
-}
+# Rename some commands from uselect/example.bashrc
+alias fv=fe
+alias gv=ge
+alias lv=le
 
 fullpath() {
     if [ -d "$1" ]; then
@@ -570,15 +493,6 @@ gitbranchtotag() {
     do_or_dry git push origin :$lbr $tag   # update origin with new tag / deleted branch
 }
 
-# somewhat clunky attempt at using git with uselect
-# eg. ugit diff
-# eg. ugit add
-# eg. ugit checkout --
-# CAREFUL!
-ugit () {
-    git status -s | uselect -s "git $*" | sed -e 's/^...//' | ixargs git "$@"
-}
-
 # Difference between two file trees
 #  difftree -q to show only the filenames
 alias difftree="diff -x .git -r"
@@ -681,14 +595,6 @@ cdup() {
         i=$(( $i + 1 ))
     done
     cd $d
-}
-
-aptinfo() {
-    # aptinfo search-strings...
-    aptitude search -F '%p %d %V %v' "$@" |\
-        uselect -s 'Show package info' |\
-        awk '{ print $1 }' |\
-        xargs aptitude show
 }
 
 resize_images() {
