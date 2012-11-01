@@ -540,6 +540,7 @@ redot() {
             echo Dotfiles up to date.
         else
             git merge origin/master
+            git submodule sync
             git submodule update --init
             rebash
             source install.sh
