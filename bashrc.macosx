@@ -3,6 +3,8 @@
 alias l='/bin/ls -FG'
 alias ls='l -lh'
 
+dnsflush() { sudo killall -HUP mDNSResponder; }
+
 # Homebrew stuff
 #
 # Assuming brew is already in PATH. Set this up in bashrc.local if necessary.
