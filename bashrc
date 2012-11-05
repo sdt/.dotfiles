@@ -630,6 +630,22 @@ tt() {
     perl -MTemplate -E "Template->new->process(\'$@', {}, sub { say @_ })"
 }
 
+# jn delimiter args - like perl join ("join" was taken)
+jn() {
+    local _IFS="$IFS"
+    IFS="$1"
+    shift
+    echo "$*"
+    IFS="$_IFS"
+}
+
+# filter patt1 patt2 ...
+# - wrapper around grep -v
+# - filters out lines matching any of the given patterns
+filter() {
+    runv egrep -v "$( jn '|' "$@" )" ;
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
