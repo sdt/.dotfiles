@@ -646,6 +646,16 @@ filter() {
     runv egrep -v "$( jn '|' "$@" )" ;
 }
 
+# metacpan_favourites username
+# - list perl distributions marked as favourites on metacpan
+metacpan_favourites() {
+    if [[ -z $1 ]]; then
+        echo usage: metacpan_favourites username
+        return 1
+    fi
+    perl -Mojo -E "g('https://metacpan.org/author/$1')->dom('td.release a')->pluck('text')->each(sub{s/-/::/g;say})"
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
