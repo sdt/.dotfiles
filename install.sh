@@ -22,7 +22,7 @@ do_install bashrc
 do_install vimrc
 do_install gvimrc
 do_install tmux.conf
-do_install sqliterc "source $HOME/.dotfiles/sqliterc"
+do_install sqliterc ".read $HOME/.dotfiles/sqliterc"
 
 echo "Installing ~/.dotfiles/gitignore to ~/.gitconfig ... ok."
 git config --global core.excludesfile ~/.dotfiles/gitignore
