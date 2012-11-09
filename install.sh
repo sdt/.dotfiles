@@ -1,10 +1,10 @@
 #!/bin/bash
 
 do_install() {
-    local basefile=$1
-    local rccmd=$2
+    local basefile="$1"
+    local rccmd="$2"
 
-    [ -z $rccmd ] && rccmd="source ~/.dotfiles/$basefile"
+    [ -z "$rccmd" ] && rccmd="source ~/.dotfiles/$basefile"
 
     local sysfile=~/.${basefile}
     local dotfile="~/.dotfiles/${basefile}"
@@ -22,6 +22,7 @@ do_install bashrc
 do_install vimrc
 do_install gvimrc
 do_install tmux.conf
+do_install sqliterc "source $HOME/.dotfiles/sqliterc"
 
 echo "Installing ~/.dotfiles/gitignore to ~/.gitconfig ... ok."
 git config --global core.excludesfile ~/.dotfiles/gitignore
