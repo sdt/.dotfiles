@@ -10,7 +10,7 @@ do_install() {
     local dotfile="~/.dotfiles/${basefile}"
 
     echo -n "Installing ${dotfile} to ${sysfile} ... "
-    if [ -e $sysfile ] && grep -F -q $dotfile $sysfile; then
+    if [ -e $sysfile ] && grep -F -q "$rccmd" $sysfile; then
         echo already installed.
     else
         echo ${rccmd} >> ${sysfile}
@@ -24,7 +24,7 @@ do_install gvimrc
 do_install tmux.conf
 do_install sqliterc ".read $HOME/.dotfiles/sqliterc"
 
-echo "Installing ~/.dotfiles/gitignore to ~/.gitconfig ... ok."
+echo -n "Updating git config ... "
 git config --global core.excludesfile ~/.dotfiles/gitignore
 git config --global color.ui true
 git config --global alias.llog 'log --date=local'
@@ -38,3 +38,4 @@ git config --global alias.wup 'log -p origin..@{0} --'
 git config --global alias.w 'whatchanged -M -C -B'
 git config --global alias.cv 'commit -v'
 git config --global alias.st 'status'
+echo ok.
