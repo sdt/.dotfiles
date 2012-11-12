@@ -661,7 +661,7 @@ mfav() {
 }
 
 refav() {
-    cpanm ojo IO::Socket::SSL
+    cpanm Mojolicious IO::Socket::SSL
     mfav | cpanm
 }
 
