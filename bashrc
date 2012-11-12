@@ -656,6 +656,15 @@ metacpan_favourites() {
     perl -Mojo -E "g('https://metacpan.org/author/$1')->dom('td.release a')->pluck('text')->each(sub{s/-/::/g;say})"
 }
 
+mfav() {
+    metacpan_favourites SDT
+}
+
+refav() {
+    cpanm ojo IO::Socket::SSL
+    mfav | cpanm
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
