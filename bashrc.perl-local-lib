@@ -1,0 +1,11 @@
+# Automatically setup perl local::lib
+# This file should be sourced from bashrc.local
+
+export PERL_LOCAL_LIB_ROOT="$HOME/perl5"
+export PERL_MB_OPT="--install_base $PERL_LOCAL_LIB_ROOT"
+export PERL_MM_OPT="INSTALL_BASE=$PERL_LOCAL_LIB_ROOT"
+
+ARCH=$( perl -MConfig -e 'print $Config{archname}' )
+perlat "$PERL_LOCAL_LIB_ROOT/lib/perl5" "$PERL_LOCAL_LIB_ROOT/lib/perl5/$ARCH"
+
+pathat "$PERL_LOCAL_LIB_ROOT/bin"
