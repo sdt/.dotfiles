@@ -665,6 +665,13 @@ refav() {
     mfav | cpanm
 }
 
+any_exists() {
+    for i in "$@"; do
+        [ -e "$i" ] && return 0
+    done
+    return 1
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
