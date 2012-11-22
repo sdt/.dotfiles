@@ -275,10 +275,10 @@ strip_envvar() {
     local pathsep=${PATHSEP:-:}
     local haystack=$1
     local needle=$2
-    echo $haystack | sed -e "s%^${needle}\$%%"  \
-                   | sed -e "s%^${needle}${pathsep}%%"   \
-                   | sed -e "s%${pathsep}${needle}\$%%"  \
-                   | sed -e "s%${pathsep}${needle}${pathsep}%${pathsep}%"
+    echo $haystack | sed -e "s%^${needle}\$%%g"  \
+                   | sed -e "s%^${needle}${pathsep}%%g"   \
+                   | sed -e "s%${pathsep}${needle}\$%%g"  \
+                   | sed -e "s%${pathsep}${needle}${pathsep}%${pathsep}%g"
 }
 
 prepend_envvar() {
