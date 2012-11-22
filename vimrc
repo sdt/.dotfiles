@@ -136,8 +136,8 @@ nnoremap <Leader>gv :GC<CR>
 " =lv lv word under cursor
 nnoremap <Leader>lv :LC<CR>
 
-if filereadable($HOME."/.dotfiles/vimrc.local")
-    source ~/.dotfiles/vimrc.local
+if filereadable($HOME."/.dotfiles/local/vimrc")
+    source ~/.dotfiles/local/vimrc
 endif
 
 if filereadable("./.vimrc.local")

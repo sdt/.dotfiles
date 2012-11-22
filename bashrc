@@ -675,9 +675,15 @@ any_exists() {
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
-source_if ~/.dotfiles/bashrc.local
+source_if ~/.dotfiles/local/bashrc
 source ~/.dotfiles/tmux_colors.sh
 
 if ismacos ; then
     source_if ~/.dotfiles/bashrc.macosx
 fi
+
+if any_exists ~/.dotfiles/*.local; then
+    echo WARNING: these files should be transferred to ~/.dotfiles/local
+    ls ~/.dotfiles/*.local
+fi
+

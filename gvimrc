@@ -32,6 +32,6 @@ cmap <C-V> <C-R>+
 " ^-tab rotates through tabs
 map <C-Tab> :tabn<cr>
 
-if filereadable($HOME."/.dotfiles/gvimrc.local")
-    source ~/.dotfiles/gvimrc.local
+if filereadable($HOME."/.dotfiles/local/gvimrc")
+    source ~/.dotfiles/local/gvimrc
 endif
