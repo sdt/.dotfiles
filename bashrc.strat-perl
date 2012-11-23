@@ -1,0 +1,6 @@
+# Set up paths to use strategic perl
+perlat /usr/local/strategic-testing/lib
+pathat /usr/local/strategic/perl/bin /usr/local/strategic-testing/bin
+
+# Include the perl local lib automaticlly (b/c you'll want it)
+source "$HOME/.dotfiles/bashrc.perl-local-lib"
