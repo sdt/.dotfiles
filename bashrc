@@ -273,12 +273,20 @@ strip_envvar() {
     [ $# -gt 1 ] || return;
 
     local pathsep=${PATHSEP:-:}
-    local haystack=$1
-    local needle=$2
-    echo $haystack | sed -e "s%^${needle}\$%%g"  \
-                   | sed -e "s%^${needle}${pathsep}%%g"   \
-                   | sed -e "s%${pathsep}${needle}\$%%g"  \
-                   | sed -e "s%${pathsep}${needle}${pathsep}%${pathsep}%g"
+
+    # Add an extra pathsep to each end to avoid special cases
+    local haystack=$pathsep$1$pathsep
+    local needle=$pathsep$2$pathsep
+
+    # This needs to be in a loop, multiples don't work properly if we use the
+    # 'replace all' mode.
+    while true; do
+        local h2=${haystack/$needle/$pathsep}
+        [ $h2 == $haystack ] && break
+        haystack=$h2
+    done
+    h2=${h2#$pathsep}     # strip the initial pathsep
+    echo ${h2%$pathsep}   # strip the final pathsep
 }
 
 prepend_envvar() {
