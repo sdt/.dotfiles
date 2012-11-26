@@ -261,13 +261,20 @@ alias fv=fe
 alias gv=ge
 alias lv=le
 
-fullpath() {
-    if [ -d "$1" ]; then
-        echo $( cd "$1" ; echo "$PWD" )
-    else
-        echo $( cd $( dirname "$1" ); echo $PWD/$( basename "$1" ) )
-    fi
-}
+TEST=/a/test/path/../dir
+EXPECTED=/a/test/dir
+if GOT=$( readlink -m $TEST 2> /dev/null ) && [ "$GOT" == "$EXPECTED" ]; then
+    # Use readlink if we have the gnu version
+    fullpath() { readlink -m "$@"; }
+elif GOT=$( greadlink -m $TEST 2> /dev/null ) && [ "$GOT" == "$EXPECTED" ]; then
+    # Use greadlink if we installed that with homebrew
+    fullpath() { greadlink -m "$@"; }
+else
+    # Fall back to python
+    fullpath() { python -c \
+        'import os.path; import sys; print os.path.abspath(sys.argv[1])' "$@"; }
+fi
+unset TEST EXPECTED GOT
 
 strip_envvar() {
     [ $# -gt 1 ] || return;
