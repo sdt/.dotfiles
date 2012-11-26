@@ -311,7 +311,10 @@ prepend_envvar() {
 prepend_envvar_here()    { prepend_envvar $1 $PWD; }
 
 prepend_envvar_at() {
-    prepend_envvar $1 $( fullpath "$2" )
+    local path=$( fullpath "$2" )
+    if [ -d $path ]; then
+        prepend_envvar $1 $path
+    fi
 }
 
 perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
