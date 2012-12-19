@@ -371,7 +371,7 @@ leak() { perl -ple "print STDERR '$*', \$_"; }
 
 if [[ -n $TMUX ]]; then
 
-    vi() { ~/.dotfiles/tmux-vim/tmux-vim.py "$@"; }
+    vi() { ~/.dotfiles/tmux-vim/tmux-vim "$@"; }
 
     reauth() {
         printenv SSH_AUTH_SOCK
