@@ -690,6 +690,10 @@ any_exists() {
     return 1
 }
 
+rsyslog() {
+    ssh -AY "$@" tail -f /var/log/syslog
+}
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
