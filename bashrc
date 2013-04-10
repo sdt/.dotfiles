@@ -224,22 +224,10 @@ jsondump() {
     p 'dd jl r \*STDIN'
 }
 
-update-uselect() {
-    local url=http://users.tpg.com.au/morepats/uselect/;
-    local file=$(curl -s $url |\
-                    egrep -o 'App-USelect-[0-9._]*.tar.gz' |\
-                        tail -n 1);
-    PERL_CPANM_OPT='' cpanm $url$file && unset -f uselect;
-}
-
 upload-tpg() {
     local dir="$1"
     local file="$2"
     curl --user morepats ftp://users.tpg.com.au/"$dir" --upload-file "$file"
-}
-
-upload-uselect() {
-    find . -name 'App-USelect*.tar.gz' | uselect -1 -s 'select file to upload' | ixargs upload-tpg uselect/
 }
 
 # locate variants - only files or only dirs
