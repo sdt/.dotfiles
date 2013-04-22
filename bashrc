@@ -396,17 +396,18 @@ else
         case $(unattached-tmux-sessions -c) in
             0)
                 # No detached sessions - start a new session
-                exec tmux
+                tmux
                 ;;
             1)
                 # One detached session - connect to it
-                exec tmux attach-session -t $(unattached-tmux-sessions | cut -d: -f 1)
+                tmux attach-session -t $(unattached-tmux-sessions | cut -d: -f 1)
                 ;;
             *)
                 # More that one detached session - choose one
-                exec tmux attach-session -t $(unattached-tmux-sessions | uselect -1 -s 'select session' | cut -d: -f 1)
+                tmux attach-session -t $(unattached-tmux-sessions | uselect -1 -s 'select session' | cut -d: -f 1)
                 ;;
         esac
+        [ $? = 0 ] && logout # logout if all is well
     }
 
 fi
