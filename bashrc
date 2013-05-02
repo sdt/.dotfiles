@@ -15,6 +15,9 @@ alias ef='printenv|grep -i'
 alias rm='rm -i'
 alias j=jobs
 
+alias apd='sudo aptitude update'
+alias apg='sudo aptitude safe-upgrade'
+
 alias http="plackup -MPlack::App::Directory -e'Plack::App::Directory->new->to_app'"
 
 set -o vi
