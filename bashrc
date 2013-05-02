@@ -18,7 +18,7 @@ alias j=jobs
 alias apd='sudo aptitude update'
 alias apg='sudo aptitude safe-upgrade'
 
-alias http="plackup -MPlack::App::Directory -e'Plack::App::Directory->new->to_app'"
+alias http="python -m SimpleHTTPServer"
 
 set -o vi
 shopt -s dotglob histappend
