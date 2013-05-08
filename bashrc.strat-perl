@@ -4,3 +4,7 @@ perlat /usr/share/strategic/lib
 
 # Include the perl local lib automaticlly (b/c you'll want it)
 source "$HOME/.dotfiles/bashrc.perl-local-lib"
+
+sdput() {
+    dput sdrepo $( /bin/ls *.changes | sort -nr | uselect -1 )
+}
