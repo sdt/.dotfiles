@@ -689,6 +689,8 @@ rsyslog() {
     ssh -AY "$@" tail -f /var/log/syslog
 }
 
+pathat ~/.dotfiles/bin
+
 source_if ~/perl5/perlbrew/etc/bashrc
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
