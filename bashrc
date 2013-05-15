@@ -424,36 +424,6 @@ else
     alias diff="diff -u"
 fi
 
-# Changes git remotes to be read-only url for fetch and read-write for push
-fixgitremote() {
-    local remote=${1:-origin}
-    if ! ( git remote | grep -q ^$remote$ ) ; then
-        echo "Remote $remote not found"
-        git remote
-        return 1
-    fi
-
-    remote_url() {
-        git remote -v | grep ^$remote | grep -m 1 \($1\) | awk '{ print $2 }'
-    }
-
-    local push_url=$( \
-        remote_url push |\
-        sed -e 's#^git://\([^/]*\)/\(.*\)$#git@\1:\2#' \
-    )
-    local fetch_url=$(
-        remote_url fetch |
-        sed -e 's#^git@\([^:]*\):\([^/]*\)/\(.*\)#git://\1/\2/\3#'
-    )
-
-    # Can't seem to do set-url --fetch, so set them both to fetch url,
-    # and then switch the push url back again.
-    git remote set-url $remote $fetch_url
-    git remote set-url --push $remote $push_url
-
-    git remote -v show | grep $remote
-}
-
 # Git submodules helpers
 crgit() {
     "$@"
