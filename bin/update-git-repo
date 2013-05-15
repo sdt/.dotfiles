@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Change into directory if supplied
+[[ -n "$1" ]] && cd "$1";
+
+# Check if the directory has local changes
+if [[ "$( git status --porcelain )" != "" ]]; then
+    echo You have local changes. Sort those out and try again.
+    exit 1
+fi
+
+# Fetch from remote and check for updates
+git fetch
+if git diff --quiet --exit-code origin/master; then
+    echo Up to date.
+    exit 1
+fi
+
+git merge origin/master
+git submodule sync
+git submodule update --init
+exit 0

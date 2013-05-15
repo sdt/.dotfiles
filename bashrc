@@ -537,31 +537,14 @@ rebash() {
     source ~/.bashrc
 }
 
-git_has_changes() {
-    [[ "$( git status --porcelain )" != "" ]]
-}
-
 # Update dotfiles
 redot() {
-    local ret=1
-    pushd ~/.dotfiles > /dev/null
-    if git_has_changes; then
-        echo You have local changes. Sort those out and try again.
-    else
-        git fetch
-        if git diff --quiet --exit-code origin/master; then
-            echo Dotfiles up to date.
-        else
-            git merge origin/master
-            git submodule sync
-            git submodule update --init
-            rebash
-            source install.sh
-            ret=0
-        fi
+    if update-git-repo ~/.dotfiles; then
+        rebash
+        source ~/.dotfiles/install.sh
+        return 0
     fi
-    popd > /dev/null
-    return $ret
+    return 1
 }
 
 pod() {
