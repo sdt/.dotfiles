@@ -480,9 +480,11 @@ gitbranchtotag() {
 #  difftree -q to show only the filenames
 alias difftree="diff -x .git -r"
 
-if has lesspipe; then
-    eval $(lesspipe)
-fi
+for lp in lesspipe lesspipe.sh; do
+    if has $lp; then
+        eval $( $lp )
+    fi
+done
 
 # Dist::Zilla config lives in ~/.dotfiles/dzil
 export DZIL_GLOBAL_CONFIG_ROOT=${HOME}/.dotfiles/dzil
