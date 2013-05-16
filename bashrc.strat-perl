@@ -6,5 +6,5 @@ perlat /usr/share/strategic/lib
 source "$HOME/.dotfiles/bashrc.perl-local-lib"
 
 sdput() {
-    dput sdrepo $( /bin/ls *.changes | sort -nr | uselect -1 )
+    dput sdrepo $( /bin/ls -c *.changes | uselect -1 )
 }
