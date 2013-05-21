@@ -16,7 +16,7 @@ alias rm='rm -i'
 alias j=jobs
 
 alias apd='sudo aptitude update'
-alias apg='sudo aptitude safe-upgrade -y'
+alias apg='sudo aptitude safe-upgrade'
 
 alias http="python -m SimpleHTTPServer"
 
