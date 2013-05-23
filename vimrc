@@ -6,8 +6,8 @@ syntax on
 set runtimepath=
 set runtimepath+=~/.dotfiles/vim/general
 set runtimepath+=~/.dotfiles/vim/bufexplorer
+set runtimepath+=~/.dotfiles/vim/perl-vim-mxd
 set runtimepath+=~/.dotfiles/vim/solarized
-set runtimepath+=~/.dotfiles/vim/vim-perl
 set runtimepath+=$VIMRUNTIME
 
 " Force template toolkit filetypes

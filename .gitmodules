@@ -1,9 +1,6 @@
 [submodule "tmux-vim"]
 	path = tmux-vim
 	url = git://github.com/sdt/tmux-vim.git
-[submodule "vim/vim-perl"]
-	path = vim/vim-perl
-	url = git://github.com/vim-perl/vim-perl.git
 [submodule "vim/bufexplorer"]
 	path = vim/bufexplorer
 	url = git://github.com/vim-scripts/bufexplorer.zip.git
@@ -13,3 +10,6 @@
 [submodule "uselect"]
 	path = uselect
 	url = git://github.com/sdt/uselect.git
+[submodule "vim/perl-vim-mxd"]
+	path = vim/perl-vim-mxd
+	url = git://github.com/rkitover/perl-vim-mxd.git
