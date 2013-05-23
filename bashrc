@@ -303,15 +303,19 @@ prepend_envvar() {
 prepend_envvar_here()    { prepend_envvar $1 $PWD; }
 
 prepend_envvar_at() {
-    local path=$( fullpath "$2" )
-    if [ -d $path ]; then
-        prepend_envvar $1 $path
-    fi
+    local var=$1
+    shift
+    for i in $@; do
+        local path=$( fullpath "$i" )
+        if [ -d $path ]; then
+            prepend_envvar $var $path
+        fi
+    done
 }
 
 perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
-perlat()   { for i in $@; do PATHSEP=: prepend_envvar_at PERL5LIB $i; done; }
-pathat()   { for i in $@; do PATHSEP=: prepend_envvar_at PATH $i; done; }
+perlat()   { prepend_envvar_at PERL5LIB   "$@"; }
+pathat()   { prepend_envvar_at PATH       "$@"; }
 
 export ACKRC="$HOME/.dotfiles/ackrc"
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
