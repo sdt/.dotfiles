@@ -1,10 +1,14 @@
 set nocompatible
 syntax on
 
+
+" Prepend our runtime paths so we override the defaults
+set runtimepath=
 set runtimepath+=~/.dotfiles/vim/general
 set runtimepath+=~/.dotfiles/vim/bufexplorer
 set runtimepath+=~/.dotfiles/vim/solarized
 set runtimepath+=~/.dotfiles/vim/vim-perl
+set runtimepath+=$VIMRUNTIME
 
 " Force template toolkit filetypes
 augroup template_toolkit
