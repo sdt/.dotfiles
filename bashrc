@@ -316,6 +316,7 @@ prepend_envvar_at() {
 perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
 perlat()   { prepend_envvar_at PERL5LIB   "$@"; }
 pathat()   { prepend_envvar_at PATH       "$@"; }
+pythat()   { prepend_envvar_at PYTHONPATH "$@"; }
 
 export ACKRC="$HOME/.dotfiles/ackrc"
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
