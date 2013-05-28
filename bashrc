@@ -550,6 +550,13 @@ start_ssh_agent() {
     fi
 }
 
+socks_proxy() {
+    local host=$1
+    local port=${2:-1080}
+
+    ssh -f -N -D 0:$port $host
+}
+
 # Local bash completion overrides
 complete -f -X '!*.db' sqlite3
 
