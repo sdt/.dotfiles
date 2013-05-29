@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit on any errors
+set -e
+
 # Change into directory if supplied
 [[ -n "$1" ]] && cd "$1";
 
@@ -16,7 +19,7 @@ if git diff --quiet --exit-code origin/master; then
     exit 1
 fi
 
-git merge origin/master
+git merge --ff-only origin/master
 git submodule sync
 git submodule update --init
 exit 0
