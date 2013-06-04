@@ -15,6 +15,7 @@ alias ef='printenv|grep -i'
 alias rm='rm -i'
 alias j=jobs
 
+alias apc='sudo aptitude clean'
 alias apd='sudo aptitude update'
 alias apg='sudo aptitude safe-upgrade'
 
