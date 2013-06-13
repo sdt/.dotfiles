@@ -18,11 +18,25 @@ do_install() {
     fi
 }
 
+install_link() {
+    local src="$1"
+    local dest="$2"
+
+    if [ ! -e "$dest" ]; then
+        ln -v -s "$src" "$dest"
+    elif [ -L "$dest" ]; then
+        ln -f -v -s "$src" "$dest"
+    else
+        echo $dest already exists, but is not a symbolic link
+    fi
+}
+
 do_install bashrc
 do_install vimrc
 do_install gvimrc
 do_install tmux.conf
 do_install sqliterc ".read $HOME/.dotfiles/sqliterc"
+install_link ~/dotfiles/colordiffrc ~/.colordiffrc
 
 echo -n "Updating git config ... "
 git config --global core.excludesfile ~/.dotfiles/gitignore
