@@ -1,0 +1,15 @@
+#!/bin/bash
+
+usage() {
+    echo usage: $0 t\|x archive.tar.7z [files] 1>&2
+    exit 1
+}
+
+[ $# -ge 2 ] || usage
+
+OP=$1 ; shift
+[[ $OP =~ ^[tx]$ ]] || usage
+
+ARCHIVE=$1 ; shift
+
+7z e -so "$ARCHIVE"  | tar -$OP -f - "$@"
