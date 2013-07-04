@@ -90,9 +90,7 @@ function! s:LoadFilesFromCommand(command)
     let files=system(a:command)
     let filelist=split(files, '\n')
     for filename in filelist
-        if ! bufloaded(filename)
-            execute ':e ' . filename
-        endif
+        execute ':e ' . filename
     endfor
     " HACK: The command-line history is broken after executing uselect - the
     " up/down arrow keys don't work. This seems to fix it.
