@@ -612,13 +612,11 @@ tt() {
 }
 
 # jn delimiter args - like perl join ("join" was taken)
-jn() {
-    local _IFS="$IFS"
+jn() (
     IFS="$1"
     shift
     echo "$*"
-    IFS="$_IFS"
-}
+)
 
 # filter patt1 patt2 ...
 # - wrapper around grep -v
