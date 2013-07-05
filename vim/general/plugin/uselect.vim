@@ -37,7 +37,7 @@ command -nargs=1 FV call s:doFV('<args>')
 command -nargs=0 FC call s:doFV(expand('<cword>'))  " maybe want <cfile> ?
 
 function! s:doFV(pattern)
-    let cmd='ack -f | fgrep -i ' . shellescape(a:pattern) . ' | sort | ' . g:uselect_bin . ' -s ' . shellescape('fv ' . a:pattern)
+    let cmd='ack -f | fgrep ' . shellescape(a:pattern) . ' | sort | ' . g:uselect_bin . ' -s ' . shellescape('fv ' . a:pattern)
     call s:LoadFilesFromCommand(cmd)
 endfunction
 
