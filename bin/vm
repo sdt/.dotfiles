@@ -1,0 +1,38 @@
+#!/bin/bash
+
+usage() {
+    echo usage: $0 up\|down
+    exit 1
+}
+
+if [ $# != 1 ]; then
+    usage
+fi
+
+stopped-vms() {
+    sort <( VBoxManage list vms ) <( VBoxManage list runningvms ) | uniq -u
+}
+
+running-vms() {
+    VBoxManage list runningvms | sort
+}
+
+select-vm() {
+    uselect -1 | cut -d '{' -f 1
+}
+
+go-vm() {
+    xargs -I % VBoxManage "$@"
+}
+
+case $1 in
+    up)
+        stopped-vms | select-vm | go-vm startvm % --type headless
+        ;;
+    dn|down)
+        running-vms | select-vm | go-vm controlvm % acpipowerbutton
+        ;;
+    *)
+        usage
+        ;;
+esac
