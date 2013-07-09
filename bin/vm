@@ -18,11 +18,11 @@ running-vms() {
 }
 
 select-vm() {
-    uselect -1 | cut -d '{' -f 1
+    uselect | cut -d '{' -f 1
 }
 
 go-vm() {
-    xargs -I % VBoxManage "$@"
+    xargs -n 1 -I % VBoxManage "$@"
 }
 
 case $1 in
