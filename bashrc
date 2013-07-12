@@ -555,6 +555,8 @@ socks_proxy() {
     local host=$1
     local port=${2:-1080}
 
+    # ssh -f -N -p $remote-ssh-port -D [$local-address]:$local-port [$user@]$remote-host
+
     ssh -f -N -D 0:$port $host
 }
 
