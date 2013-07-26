@@ -16,7 +16,8 @@ rebrew() {
         && [ -n "$( brew outdated )" ] \
         && brew outdated \
         && YES_or_no upgrade \
-        && brew upgrade;
+        && brew upgrade \
+        && brew cleanup
 }
 
 source_if ${BREW_ROOT}/etc/bash_completion
