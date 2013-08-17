@@ -1,3 +1,4 @@
 *.local
 local/
 vim/general/.netrwhist
+.AppleDouble/
