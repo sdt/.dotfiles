@@ -189,9 +189,6 @@ export EDITOR=vim
 
 export DBIC_TRACE_PROFILE=console
 
-uselect() {
-	$HOME/.dotfiles/uselect/uselect "$@"
-}
 UEDITOR=vi
 source $HOME/.dotfiles/uselect/example.bashrc
 
