@@ -13,3 +13,6 @@
 [submodule "vim/perl-vim-mxd"]
 	path = vim/perl-vim-mxd
 	url = git://github.com/rkitover/perl-vim-mxd.git
+[submodule "vim/vim-scala"]
+	path = vim/vim-scala
+	url = git@github.com:derekwyatt/vim-scala.git
