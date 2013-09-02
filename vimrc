@@ -1,6 +1,4 @@
 set nocompatible
-syntax on
-
 
 " Prepend our runtime paths so we override the defaults
 set runtimepath=
@@ -20,6 +18,7 @@ augroup END
 
 filetype plugin on
 runtime macros/matchit.vim
+syntax on
 
 " Turn off the annoying continual highlight of matching parens
 let loaded_matchparen=1
