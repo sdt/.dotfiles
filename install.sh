@@ -54,4 +54,5 @@ git config --global alias.cv 'commit -v'
 git config --global alias.co 'checkout'
 git config --global alias.unstage 'reset HEAD'
 git config --global alias.st 'status'
+git config --global alias.chp 'cherry-pick -n -x'
 echo ok.
