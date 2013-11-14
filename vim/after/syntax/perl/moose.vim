@@ -1,0 +1,1 @@
+../../../vim-perl/contrib/moose.vim

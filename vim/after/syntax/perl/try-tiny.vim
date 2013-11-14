@@ -1,1 +1,1 @@
-/Users/stephent/.dotfiles/vim/vim-perl/contrib/try-tiny.vim
+../../../vim-perl/contrib/try-tiny.vim

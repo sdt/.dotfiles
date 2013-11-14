@@ -1,1 +1,1 @@
-/Users/stephent/.dotfiles/vim/vim-perl/contrib/test-more.vim
+../../../vim-perl/contrib/test-more.vim
