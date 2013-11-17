@@ -8,6 +8,7 @@ set -e
 
 # Check if the directory has local changes
 if [[ "$( git status --porcelain )" != "" ]]; then
+    git status -s
     echo You have local changes. Sort those out and try again.
     exit 1
 fi
