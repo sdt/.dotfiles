@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Lists top-level homebrew formula - these can be deleted without affecting
+# other formula.
+#
+# Usage: brew toplevel
+
+for i in $( brew list ); do
+    if [ -z "$( brew uses --installed $i )" ]; then
+        echo $i
+    fi
+done
