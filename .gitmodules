@@ -12,7 +12,7 @@
 	url = git://github.com/sdt/uselect.git
 [submodule "vim/vim-scala"]
 	path = vim/vim-scala
-	url = git://github.com/derekwyatt/vim-scala.git
+    url = git://github.com/sdt/vim-scala.git
 [submodule "vim/vim-perl"]
 	path = vim/vim-perl
 	url = git://github.com/vim-perl/vim-perl.git
