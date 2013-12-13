@@ -21,7 +21,7 @@ FETCH_URL=$( remote_url fetch |\
 
 # Can't seem to do set-url --fetch, so set them both to fetch url,
 # and then switch the push url back again.
-git remote set-url $REMOTE $PUSH_URL
-git remote set-url --push $REMOTE $FETCH_URL
+git remote set-url $REMOTE $FETCH_URL
+git remote set-url --push $REMOTE $PUSH_URL
 
 git remote -v show | grep $REMOTE
