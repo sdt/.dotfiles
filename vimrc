@@ -89,7 +89,7 @@ augroup eXex_and_Check_macros
     " different buffers in the same session.
     " http://learnvimscriptthehardway.stevelosh.com/chapters/11.html
 
-    " Perl versions
+    " Perl versions - requires Vi::QuickFix module
     autocmd FileType perl nnoremap <buffer> <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
     autocmd FileType perl nnoremap <buffer> <Leader>x :%w !perl<CR>
 
