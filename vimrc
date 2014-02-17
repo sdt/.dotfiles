@@ -98,6 +98,8 @@ augroup eXex_and_Check_macros
     autocmd FileType scheme nnoremap <buffer> <Leader>x :w !mit-scheme --quiet<CR>
     autocmd FileType scheme set ts=2
     autocmd FileType scheme set sw=2
+
+    autocmd FileType html set ts=2 sw=2
 augroup END
 
 " =d : insert date line into debian changelog
