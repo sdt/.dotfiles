@@ -45,12 +45,14 @@ case $SOLARIZED in
     dark)
         set_tmux_color STATUS                   BASE01  BASE02
         set_tmux_color WINDOW_STATUS_CURRENT    YELLOW  BASE02
+        set_tmux_color WINDOW_STATUS_BELL       ORANGE  BASE02
         ;;
 
     # This is unused now (we have an inverted dark scheme for light)
     light)
         set_tmux_color STATUS                   BASE1   BASE2
         set_tmux_color WINDOW_STATUS_CURRENT    YELLOW  BASE2
+        set_tmux_color WINDOW_STATUS_BELL       ORANGE  BASE2
         ;;
 
     *)
