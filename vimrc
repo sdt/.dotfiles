@@ -1,4 +1,5 @@
 set nocompatible
+let mapleader="="
 
 " Prepend our runtime paths so we override the defaults
 set runtimepath=
@@ -66,16 +67,6 @@ set modelines=5
 " let b:did_ftplugin = 1
 " filetype indent off
 
-let mapleader="="
-
-" http://blogs.perl.org/users/davewood/2012/06/open-module-under-cursor-in-vim.html
-augroup perl_module_source
-	autocmd!
-	autocmd FileType perl command! -nargs=1 PMSource :e `perldoc -lm <args>`
-	autocmd FileType perl setlocal isfname+=:
-	autocmd FileType perl nnoremap <buffer> <leader>pm :PMSource <cfile><cr>
-augroup END
-
 " =i : add #include guards to .h file
 " nnoremap <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
 
@@ -84,22 +75,12 @@ augroup END
 augroup eXex_and_Check_macros
 	autocmd!
 
-    " The <buffer> below makes the macros local to the buffer in which they
-    " were defined, which is want we want if we have different filetypes in
-    " different buffers in the same session.
-    " http://learnvimscriptthehardway.stevelosh.com/chapters/11.html
-
-    " Perl versions - requires Vi::QuickFix module
-    autocmd FileType perl nnoremap <buffer> <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
-    autocmd FileType perl nnoremap <buffer> <Leader>x :%w !perl<CR>
-
     " Scheme versions
     autocmd FileType scheme nnoremap <buffer> <Leader>c :w !mit-scheme<CR>
     autocmd FileType scheme nnoremap <buffer> <Leader>x :w !mit-scheme --quiet<CR>
-    autocmd FileType scheme set ts=2
-    autocmd FileType scheme set sw=2
-
-    autocmd FileType html set ts=2 sw=2
+    autocmd FileType scheme     set ts=2 sw=2
+    autocmd FileType html       set ts=2 sw=2
+    autocmd FileType javascript set ts=4 sw=4
 augroup END
 
 " =d : insert date line into debian changelog
@@ -116,20 +97,10 @@ nnoremap <Leader>tt :set syntax=tt2<CR>
 " =dc : insert date line into debian changelog
 nnoremap <Leader>dc 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
 
-" =dd : insert Data::Dumper line
-nnoremap <Leader>dd ouse Data::Dumper::Concise; print STDERR Dumper(
-
-" =dp : insert Data::Printer line
-nnoremap <Leader>dp ouse Data::Printer; p<SPACE>
-
-" =pa/A insert perl AUTHOR line
-nnoremap <Leader>pa 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au><CR><ESC>
-nnoremap <Leader>pA 0I=head1 AUTHOR<CR><CR>Stephen Thirlwall <sdt@dr.com><CR><ESC>
-
 " =- last buffer
 nnoremap <Leader>- :n#<CR>
 
-" ==
+" == open bufexplorer menu
 nnoremap <Leader>= :BufExplorer<CR>
 
 " =2 pairing mode
@@ -146,9 +117,6 @@ nnoremap <Leader><tab> :set list!<CR>
 
 " =pp Toggle :set paste
 nnoremap <Leader>pp :set paste!<CR>
-
-" =pod Create initial pod for .pm
-nnoremap <Leader>pod Go<CR>__END__<CR><CR>=head1 NAME<CR><CR><ESC>1G0wyt;Gpo<CR>=cut<ESC>
 
 " =fv fv word under cursor
 nnoremap <Leader>fv :FC<CR>
