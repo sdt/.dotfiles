@@ -75,10 +75,6 @@ set modelines=5
 augroup eXex_and_Check_macros
 	autocmd!
 
-    " Scheme versions
-    autocmd FileType scheme nnoremap <buffer> <Leader>c :w !mit-scheme<CR>
-    autocmd FileType scheme nnoremap <buffer> <Leader>x :w !mit-scheme --quiet<CR>
-    autocmd FileType scheme     set ts=2 sw=2
     autocmd FileType html       set ts=2 sw=2
     autocmd FileType javascript set ts=4 sw=4
 augroup END
