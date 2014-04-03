@@ -76,7 +76,6 @@ augroup eXex_and_Check_macros
 	autocmd!
 
     autocmd FileType html       set ts=2 sw=2
-    autocmd FileType javascript set ts=4 sw=4
 augroup END
 
 " =d : insert date line into debian changelog
