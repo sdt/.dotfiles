@@ -70,14 +70,6 @@ set modelines=5
 " =i : add #include guards to .h file
 " nnoremap <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
 
-" =c : check syntax
-" =x : run script
-augroup eXex_and_Check_macros
-	autocmd!
-
-    autocmd FileType html       set ts=2 sw=2
-augroup END
-
 " =d : insert date line into debian changelog
 nnoremap <Leader>d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<ESC>kO//<ESC>78A=<ESC>
 
