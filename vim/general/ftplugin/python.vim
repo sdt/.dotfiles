@@ -1,4 +1,16 @@
-" Python specific settings
+" Python-specific plugin file
 
-" Turns out this isn't the usual way of python folk
-" set noexpandtab
+"-- Begin common header --------------------------------------------------------
+if exists("b:did_ftplugin") | finish | endif
+let b:did_ftplugin = 1
+let s:save_cpo = &cpo
+set cpo-=C
+"-- End common header ----------------------------------------------------------
+
+
+
+
+"-- Begin common footer --------------------------------------------------------
+let &cpo = s:save_cpo
+unlet s:save_cpo
+"-- End common footer ----------------------------------------------------------
