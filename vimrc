@@ -35,6 +35,16 @@ augroup trailing_whitespace
 	autocmd BufWinEnter * match TrailingWhitespace /\s\+$/
 augroup END
 
+
+" syn bindings
+augroup filetype
+  autocmd BufNewFile,BufRead *.psgi set filetype=perl
+  autocmd BufNewFile,BufRead *.json set syntax=javascript
+"TODO: check if we need these - these may replace the ones in general/ftplugin
+"  autocmd BufNewFile,BufRead *.tt2 set syntax=tt2html
+"  autocmd BufNewFile,BufRead *.tt set syntax=tt2html
+augroup END
+
 " Auto-detect solarized from the SOLARIZED env var
 if $SOLARIZED == ''
     colorscheme dim
