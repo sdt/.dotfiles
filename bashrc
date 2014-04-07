@@ -155,8 +155,11 @@ if true; then
     export LESS_TERMCAP_us=$(ansicolor underline green)     # begin underline
 fi
 
-# Handle ANSI colors in less
-export LESS="-R"
+# Handle ANSI colors in less. Quit if less than one screen.
+export LESS="-FRX"
+
+# ... but keep the git pager as it should be
+export GIT_PAGER="less -FRSX"
 
 _yes_or_no() {
     local default=$1 ; shift
