@@ -155,6 +155,8 @@ if true; then
     export LESS_TERMCAP_us=$(ansicolor underline green)     # begin underline
 fi
 
+# Handle ANSI colors in less
+export LESS="-R"
 
 _yes_or_no() {
     local default=$1 ; shift
