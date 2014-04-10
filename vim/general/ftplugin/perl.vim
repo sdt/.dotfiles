@@ -33,6 +33,9 @@ nnoremap <Leader>dd ouse Data::Dumper::Concise; print STDERR Dumper(
 " =dp : insert Data::Printer line
 nnoremap <Leader>dp ouse Data::Printer; p<SPACE>
 
+" =pa : create package line from filename
+nnoremap <Leader>pa 1GO<ESC>"%P:s/^\(.*\/\)\?lib\///<CR>:s/\.pm$//<CR>:s/\//::/g<CR>Ipackage <ESC>A;<ESC>
+
 "-- Begin common footer --------------------------------------------------------
 let &cpo = s:save_cpo
 unlet s:save_cpo
