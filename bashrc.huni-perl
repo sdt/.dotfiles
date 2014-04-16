@@ -1,0 +1,6 @@
+if [ -d /usr/local/huni-perl ]; then
+
+    # Set up paths to use strategic perl and strategic testing
+    pathat /usr/local/huni-perl/bin
+
+fi

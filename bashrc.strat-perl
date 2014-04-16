@@ -1,10 +1,11 @@
-# Set up paths to use strategic perl and strategic testing
-pathat /usr/local/strategic/perl/bin /usr/share/strategic/bin
-perlat /usr/share/strategic/lib
+if [ -d /usr/local/strategic ]; then
 
-# Include the perl local lib automaticlly (b/c you'll want it)
-source "$HOME/.dotfiles/bashrc.perl-local-lib"
+    # Set up paths to use strategic perl and strategic testing
+    pathat /usr/local/strategic/perl/bin /usr/share/strategic/bin
+    perlat /usr/share/strategic/lib
 
-sdput() {
-    dput sdrepo $( /bin/ls -c *.changes | uselect -1 )
-}
+    sdput() {
+        dput sdrepo $( /bin/ls -c *.changes | uselect -1 )
+    }
+
+fi

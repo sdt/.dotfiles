@@ -667,9 +667,9 @@ source_if ~/.pythonz/etc/bashrc
 source_if ~/.dotfiles/local/bashrc
 source ~/.dotfiles/tmux_colors.sh
 
-if [ -d /usr/local/strategic/perl ]; then
-    source ~/.dotfiles/bashrc.strat-perl
-fi
+source ~/.dotfiles/bashrc.strat-perl
+source ~/.dotfiles/bashrc.huni-perl
+source ~/.dotfiles/bashrc.perl-local-lib
 
 if ismacos ; then
     source_if ~/.dotfiles/bashrc.macosx
