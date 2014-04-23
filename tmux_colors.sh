@@ -1,35 +1,35 @@
-# Foreground colour,attr pair
-export SOLARIZED_BASE03_FG=black,bright
-export SOLARIZED_BASE02_FG=black,dim
-export SOLARIZED_BASE01_FG=green,bright
-export SOLARIZED_BASE00_FG=yellow,bright
-export SOLARIZED_BASE0_FG=blue,bright
-export SOLARIZED_BASE1_FG=cyan,bright
-export SOLARIZED_BASE2_FG=white,dim
-export SOLARIZED_BASE3_FG=white,bright
-export SOLARIZED_YELLOW_FG=yellow,dim
-export SOLARIZED_ORANGE_FG=red,bright
-export SOLARIZED_RED_FG=red,dim
-export SOLARIZED_MAGENTA_FG=magenta,dim
-export SOLARIZED_VIOLET_FG=magenta,bright
-export SOLARIZED_BLUE_FG=blue,dim
-export SOLARIZED_CYAN_FG=cyan,dim
-export SOLARIZED_GREEN_FG=green,dim
-
-# Background colors don't have attributes in curses (do they?)
-export SOLARIZED_BASE02_BG=black
-export SOLARIZED_BASE2_BG=white
-export SOLARIZED_YELLOW_BG=yellow
-export SOLARIZED_RED_BG=red
-export SOLARIZED_MAGENTA_BG=magenta
-export SOLARIZED_BLUE_BG=blue
-export SOLARIZED_CYAN_BG=cyan
-export SOLARIZED_GREEN_BG=green
-
 set_tmux_color() {
     local var_base=$1
     local fg_color=$2
     local bg_color=$3
+
+    # Foreground colour,attr pair
+    local SOLARIZED_BASE03_FG=black,bright
+    local SOLARIZED_BASE02_FG=black,dim
+    local SOLARIZED_BASE01_FG=green,bright
+    local SOLARIZED_BASE00_FG=yellow,bright
+    local SOLARIZED_BASE0_FG=blue,bright
+    local SOLARIZED_BASE1_FG=cyan,bright
+    local SOLARIZED_BASE2_FG=white,dim
+    local SOLARIZED_BASE3_FG=white,bright
+    local SOLARIZED_YELLOW_FG=yellow,dim
+    local SOLARIZED_ORANGE_FG=red,bright
+    local SOLARIZED_RED_FG=red,dim
+    local SOLARIZED_MAGENTA_FG=magenta,dim
+    local SOLARIZED_VIOLET_FG=magenta,bright
+    local SOLARIZED_BLUE_FG=blue,dim
+    local SOLARIZED_CYAN_FG=cyan,dim
+    local SOLARIZED_GREEN_FG=green,dim
+
+    # Background colors don't have attributes in curses (do they?)
+    local SOLARIZED_BASE02_BG=black
+    local SOLARIZED_BASE2_BG=white
+    local SOLARIZED_YELLOW_BG=yellow
+    local SOLARIZED_RED_BG=red
+    local SOLARIZED_MAGENTA_BG=magenta
+    local SOLARIZED_BLUE_BG=blue
+    local SOLARIZED_CYAN_BG=cyan
+    local SOLARIZED_GREEN_BG=green
 
     # 1st: ${pair/%,*/}
     # 2nd: ${pair/#*,/}
