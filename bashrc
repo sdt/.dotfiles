@@ -664,7 +664,7 @@ pathat ~/.dotfiles/bin
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
 source_if ~/.dotfiles/local/bashrc
-source ~/.dotfiles/tmux_colors.sh
+source ~/.dotfiles/tmux-colors.sh
 
 source_if ~/perl5/perlbrew/etc/bashrc
 if [ -z $PERLBREW_VERSION ]; then
