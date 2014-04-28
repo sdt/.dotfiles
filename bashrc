@@ -659,6 +659,10 @@ rsyslog() {
     ssh -AY "$@" tail -f /var/log/syslog
 }
 
+vcp() {
+    rsync --progress -rltDv "$@"
+}
+
 pathat ~/.dotfiles/bin
 
 source_if ~/.pythonbrew/etc/bashrc
