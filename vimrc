@@ -80,9 +80,6 @@ set modelines=5
 " =i : add #include guards to .h file
 " nnoremap <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
 
-" =d : insert date line into debian changelog
-nnoremap <Leader>d "=strftime("%d/%m/%Y")<CR>pI// Steve Thirlwall, <ESC>o//<ESC>78A=<ESC>kO//<ESC>78A=<ESC>
-
 " =s : search for trailing whitespace
 nnoremap <Leader>s /\s\+$<CR>
 " =S : delete all trailing whitespace
