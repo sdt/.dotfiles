@@ -18,6 +18,9 @@ command! -nargs=1 PMSource :e `perldoc -lm <args>`
 setlocal isfname+=:
 nnoremap <buffer> <leader>pm :PMSource <cfile><cr>
 
+" Don't consider : to be part of a keyword (this drives me mental)
+setlocal iskeyword-=:
+
 " =c check syntax (requires Vi::QuickFix module)
 nnoremap <buffer> <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
 
