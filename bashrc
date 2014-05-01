@@ -663,6 +663,10 @@ vcp() {
     rsync --progress -rltDv "$@"
 }
 
+xmltidy() {
+    xmlindent -i2 "$@" | egrep -v '^\s*$'
+}
+
 pathat ~/.dotfiles/bin
 
 source_if ~/.pythonbrew/etc/bashrc
