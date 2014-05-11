@@ -331,7 +331,6 @@ export TMUX_VIM_INI="$HOME/.dotfiles/tmux-vim.ini"
 export USELECTRC="$HOME/.dotfiles/uselectrc"
 
 export CPAN_MINI_PATH=$(grep local: $CPAN_MINI_CONFIG | sed -e "s!^.*~!$HOME!")
-export PERL_CPANM_OPT="-q"
 if [ -e $CPAN_MINI_PATH/authors/01mailrc.txt.gz ]; then
     PERL_CPANM_OPT="$PERL_CPANM_OPT --mirror $CPAN_MINI_PATH --mirror-only"
 fi
