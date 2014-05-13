@@ -19,4 +19,4 @@
 	url = git://github.com/vim-perl/vim-perl.git
 [submodule "vim/vim-clojure-static"]
 	path = vim/vim-clojure-static
-	url = git@github.com:guns/vim-clojure-static.git
+	url = git://github.com/guns/vim-clojure-static.git
