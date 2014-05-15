@@ -531,6 +531,10 @@ pod() {
     perlfind "$@"
 }
 
+cpanf() {
+    HARNESS_OPTIONS=j9 cpanm "$@" || cpanm "$@"
+}
+
 export SSH_ENV="$HOME/.ssh/environment"
 
 # Don't call this directly
