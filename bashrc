@@ -671,6 +671,7 @@ xmltidy() {
 }
 
 pathat ~/.dotfiles/bin
+pathat ~/bin
 
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
