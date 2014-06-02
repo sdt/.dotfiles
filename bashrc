@@ -442,8 +442,9 @@ rgit() {
 }
 
 fixgitemail() {
-    uselect -1 -s 'select commit email' sdt@dr.com stephent@strategicdata.com.au |\
-        xargs git config user.email
+    local EMAILS='sdt@dr.com stephent@strategicdata.com.au'
+    uselect -1 -s 'select commit email' $EMAILS | xargs git config user.email
+    [[ $? == 0 ]] && git commit --amend --reset-author
 }
 
 do_or_dry() {
