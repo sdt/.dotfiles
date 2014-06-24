@@ -12,13 +12,15 @@ dnsflush() { sudo killall -HUP mDNSResponder; }
 
 BREW_ROOT=$(brew --prefix)
 rebrew() {
-    brew update \
-        && [ -n "$( brew outdated )" ] \
-        && brew outdated \
-        && YES_or_no upgrade \
-        && brew upgrade \
-        && brew cleanup
+    brew update &&
+         [ -n "$( brew outdated )" ] &&
+        brew outdated &&
+        YES_or_no upgrade &&
+        brew upgrade &&
+        brew cleanup &&
+        brew cask cleanup
 }
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
