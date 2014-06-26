@@ -303,8 +303,6 @@ prepend_envvar() {
     #eval "echo \$envvar=\$$envvar"
 }
 
-prepend_envvar_here()    { prepend_envvar $1 $PWD; }
-
 prepend_envvar_at() {
     local var=$1
     shift
@@ -316,10 +314,10 @@ prepend_envvar_at() {
     done
 }
 
-perlhere() { PATHSEP=: prepend_envvar_here PERL5LIB; }
-perlat()   { prepend_envvar_at PERL5LIB   "$@"; }
-pathat()   { prepend_envvar_at PATH       "$@"; }
-pythat()   { prepend_envvar_at PYTHONPATH "$@"; }
+perlat()   { prepend_envvar_at PERL5LIB        "$@"; }
+pathat()   { prepend_envvar_at PATH            "$@"; }
+pythat()   { prepend_envvar_at PYTHONPATH      "$@"; }
+libat()    { prepend_envvar_at LD_LIBRARY_PATH "$@"; }
 
 export ACKRC="$HOME/.dotfiles/ackrc"
 export CPAN_MINI_CONFIG="$HOME/.dotfiles/minicpanrc"
@@ -690,6 +688,7 @@ fi
 if ismacos ; then
     source_if ~/.dotfiles/bashrc.macosx
 fi
+source ~/.dotfiles/bashrc.linuxbrew
 
 if any_exists ~/.dotfiles/*.local; then
     echo WARNING: these files should be transferred to ~/.dotfiles/local
