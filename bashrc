@@ -237,6 +237,12 @@ upload-tpg() {
     curl --user morepats ftp://users.tpg.com.au/"$dir" --upload-file "$file"
 }
 
+post() {
+    local uri="$1"
+    shift
+    curl --verbose -X POST -d "$@" "$uri"
+}
+
 # locate variants - only files or only dirs
 flocate() {
     locate "$@" | perl -nlE 'say if -f'
