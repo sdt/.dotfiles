@@ -688,7 +688,7 @@ source ~/.dotfiles/tmux-colors.sh
 source_if ~/perl5/perlbrew/etc/bashrc
 if [ -z $PERLBREW_VERSION ]; then
     # Only want these if perlbrew is not installed
-    source ~/.dotfiles/bashrc.strat-perl
+    source ~/.dotfiles/bashrc.stratdat
     source ~/.dotfiles/bashrc.huni-perl
     source ~/.dotfiles/bashrc.perl-local-lib
 fi
