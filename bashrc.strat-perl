@@ -8,4 +8,6 @@ if [ -d /usr/local/strategic ]; then
         dput sdrepo $( /bin/ls -c *.changes | uselect -1 )
     }
 
+    pathat /usr/local/strategic/node/bin
 fi
+
