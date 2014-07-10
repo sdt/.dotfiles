@@ -384,6 +384,8 @@ if [[ -n $TMUX ]]; then
         printenv SSH_AUTH_SOCK
     }
 
+    regit() { reauth && !!; }
+
     # tmouse on/off
     tmouse() {
         for i in resize-pane select-pane select-window; do
