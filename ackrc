@@ -7,7 +7,4 @@
 --ignore-dir=.Trash
 --ignore-dir=nytprof
 
-# This one is a bit of a special case
---ignore-dir=speed-up-2009-10
-
 --sort-files
