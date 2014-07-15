@@ -384,7 +384,13 @@ if [[ -n $TMUX ]]; then
         printenv SSH_AUTH_SOCK
     }
 
-    regit() { reauth && fc -s; }
+    regit() {
+        if [ $# == 0 ]; then
+            reauth && fc -s
+        else
+            reauth && git "$@"
+        fi
+    }
 
     # tmouse on/off
     tmouse() {
