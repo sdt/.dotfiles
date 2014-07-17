@@ -388,7 +388,7 @@ if [[ -n $TMUX ]]; then
         if [ $# == 0 ]; then
             reauth && fc -s
         else
-            reauth && git "$@"
+            reauth && echo git "$@" && git "$@"
         fi
     }
 
