@@ -386,7 +386,8 @@ if [[ -n $TMUX ]]; then
 
     regit() {
         if [ $# == 0 ]; then
-            reauth && fc -s
+            # reauth && !git
+            reauth && fc -s $( fc -lr 1 | egrep '^\d+\s+git' | head -n 1 | awk '{ print $1}' )
         else
             reauth && echo git "$@" && git "$@"
         fi
