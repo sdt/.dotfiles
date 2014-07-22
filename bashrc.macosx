@@ -17,10 +17,8 @@ rebrew() {
         brew outdated &&
         YES_or_no upgrade &&
         brew upgrade &&
-        brew cleanup &&
-        brew cask cleanup
+        brew cleanup
 }
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
