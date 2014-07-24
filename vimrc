@@ -4,6 +4,7 @@ let mapleader="="
 " Prepend our runtime paths so we override the defaults
 set runtimepath=
 set runtimepath+=~/.dotfiles/vim/bufexplorer
+set runtimepath+=~/.dotfiles/vim/dockerfile.vim
 set runtimepath+=~/.dotfiles/vim/vim-perl
 set runtimepath+=~/.dotfiles/vim/solarized
 set runtimepath+=~/.dotfiles/vim/vim-scala
