@@ -55,4 +55,5 @@ git config --global alias.co 'checkout'
 git config --global alias.unstage 'reset HEAD'
 git config --global alias.st 'status'
 git config --global alias.chp 'cherry-pick -n -x'
+git config --global alias.recent-branches "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'"
 echo ok.
