@@ -387,7 +387,7 @@ if [[ -n $TMUX ]]; then
     regit() {
         if [ $# == 0 ]; then
             # reauth && !git
-            reauth && fc -s $( fc -lr 1 | egrep '^\d+\s+git' | head -n 1 | awk '{ print $1}' )
+            reauth && eval $( history -p '!git' )
         else
             reauth && echo git "$@" && git "$@"
         fi
