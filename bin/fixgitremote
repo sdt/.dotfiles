@@ -14,10 +14,11 @@ remote_url() {
 }
 
 PUSH_URL=$( remote_url push |\
-        sed -e 's#^git://\([^/]*\)/\(.*\)$#git@\1:\2#' )
+        perl -pe 's#^(?:https?|git)://(.*?)/(.*)$#git@$1:$2#' )
 
 FETCH_URL=$( remote_url fetch |\
-        sed -e 's#^git@\([^:]*\):\([^/]*\)/\(.*\)#git://\1/\2/\3#' )
+        perl -pe 's#^git@(bitbucket\.org):(.*?)/(.*)#https://$1/$2/$3#' |\
+        perl -pe 's#^git@(.*?):(.*?)/(.*)$#git://$1/$2/$3#' )
 
 # Can't seem to do set-url --fetch, so set them both to fetch url,
 # and then switch the push url back again.
