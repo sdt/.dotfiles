@@ -14,7 +14,7 @@ remote_url() {
 }
 
 PUSH_URL=$( remote_url push |\
-        perl -pe 's#^(?:https?|git)://(.*?)/(.*)$#git@$1:$2#' )
+        perl -pe 's#^(?:https?|git)://(.*?)/(.*)$#git\@$1:$2#' )
 
 FETCH_URL=$( remote_url fetch |\
         perl -pe 's#^git@(bitbucket\.org):(.*?)/(.*)#https://$1/$2/$3#' |\
