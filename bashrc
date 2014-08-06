@@ -385,12 +385,14 @@ if [[ -n $TMUX ]]; then
     }
 
     regit() {
+        reauth
         if [ $# == 0 ]; then
-            # reauth && !git
-            reauth && history -p '!git' && eval $( history -p '!git' )
+            local lastcmd=$( history -p '!git' )
         else
-            reauth && echo git "$@" && git "$@"
+            local lastcmd="git $@"
         fi
+        echo $lastcmd
+        eval "$lastcmd"
     }
 
     # tmouse on/off
