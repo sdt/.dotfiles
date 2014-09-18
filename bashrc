@@ -159,7 +159,10 @@ fi
 export LESS="-FRX"
 
 # ... but keep the git pager as it should be
-export GIT_PAGER="less -FRSX"
+#export GIT_PAGER="less -FRSX"
+
+# ... or not, maybe
+export GIT_PAGER="less -FRX"
 
 _yes_or_no() {
     local default=$1 ; shift
