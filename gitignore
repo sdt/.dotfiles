@@ -12,3 +12,4 @@ cover_html
 .~*#
 *-local.conf
 .vimerrors.err
+.netrwhist
