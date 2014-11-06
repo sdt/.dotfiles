@@ -189,6 +189,8 @@ _yes_or_no() {
 
 YES_or_no() { _yes_or_no yes "$@"; }
 yes_or_NO() { _yes_or_no no  "$@"; }
+do_Yn()     { _yes_or_no yes "$@" && "$@" || echo 1>&2 Aborted ; }
+do_yN()     { _yes_or_no no  "$@" && "$@" || echo 1>&2 Aborted ; }
 
 export HISTSIZE=2000
 export HISTFILESIZE=2000
