@@ -3,7 +3,7 @@
 --ignore-dir=.build
 --ignore-dir=.cpanm
 --ignore-dir=.cpan
---ignore-dir=perlbrew
+--ignore-dir=perls
 --ignore-dir=.Trash
 --ignore-dir=nytprof
 
