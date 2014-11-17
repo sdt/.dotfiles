@@ -542,7 +542,7 @@ rebash() {
 redot() {
     if update-git-repo ~/.dotfiles; then
         rebash
-        source ~/.dotfiles/install.sh
+        ~/.dotfiles/install.sh
         return 0
     fi
     return 1
