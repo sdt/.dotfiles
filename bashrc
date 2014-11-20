@@ -302,27 +302,12 @@ strip_envvar() {
     echo ${h2%$pathsep}   # strip the final pathsep
 }
 
-prepend_envvar() {
-    local envvar=$1
-    local pathsep=${PATHSEP:-:}
-    eval "local envval=\$(strip_envvar \$$envvar $2)"
-    if test -z $envval; then
-        eval "export $envvar=\"$2\""
-    else
-        eval "export $envvar=\"$2$pathsep$envval\""
-    fi
-    #eval "echo \$envvar=\$$envvar"
-}
-
 prepend_envvar_at() {
-    local var=$1
-    shift
-    for i in $@; do
-        local path=$( fullpath "$i" )
-        if [ -d $path ]; then
-            prepend_envvar $var $path
-        fi
-    done
+    local sep=${PATHSEP:-:}
+    local var=$1 ; shift
+    local prefix=$( IFS="$sep"; echo "$*"; )
+    local newpath=$( eval ~/.dotfiles/bin/cleanpath "$prefix""$sep"\$$var )
+    eval "export $var=$newpath"
 }
 
 perlat()   { prepend_envvar_at PERL5LIB        "$@"; }
@@ -472,7 +457,7 @@ do_or_dry() {
     if [[ -n $DRY ]]; then
         echo "$@"
     else
-        eval "$@"
+        "$@"
     fi
 }
 

@@ -1,0 +1,35 @@
+#!/usr/bin/env perl
+use 5.14.0;
+use warnings;
+
+use Cwd qw( abs_path );
+
+if (@ARGV == 0 || @ARGV > 2) {
+    die "usage: $0 path [separator]\n";
+}
+my ($path, $sep) = @ARGV;
+$sep //= ':';
+
+my %seen;
+say join($sep,
+    grep { !$seen{$_}++ }       # strip duplicates
+    map { abs_path($_) }        # convert to absolute paths
+    grep { -d $_ }              # must exist and be a directory
+    grep { length $_ > 0 }      # strip empty fields
+    split($sep, $path));
+
+__END__
+
+=head1 NAME
+
+cleanpath
+
+=head1 DESCRIPTION
+
+Tidies a path variable by removing missing, duplicate and empty paths.
+
+=head1 SYNOPSIS
+
+cleanpath $PERL5LIB
+
+=cut
