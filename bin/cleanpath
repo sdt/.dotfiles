@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-use 5.14.0;
+use strict;
 use warnings;
 
 use Cwd qw( abs_path );
@@ -11,12 +11,13 @@ my ($path, $sep) = @ARGV;
 $sep //= ':';
 
 my %seen;
-say join($sep,
+print(
+    join($sep,
     grep { !$seen{$_}++ }       # strip duplicates
     map { abs_path($_) }        # convert to absolute paths
     grep { -d $_ }              # must exist and be a directory
     grep { length $_ > 0 }      # strip empty fields
-    split($sep, $path));
+    split($sep, $path)), "\n");
 
 __END__
 
