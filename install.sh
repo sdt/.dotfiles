@@ -54,7 +54,7 @@ git config --global alias.cv 'commit -v'
 git config --global alias.cf 'commit -m FIXME'
 git config --global alias.co 'checkout'
 git config --global alias.unstage 'reset HEAD'
-git config --global alias.st 'status'
+git config --global alias.st 'status -s'
 git config --global alias.chp 'cherry-pick -n -x'
 git config --global alias.recent-branches "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'"
 git config --global alias.blog '!sh -c "git lg $( git merge-base $1 master )^..$1" -'
