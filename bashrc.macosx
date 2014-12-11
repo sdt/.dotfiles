@@ -20,6 +20,16 @@ rebrew() {
         brew cleanup
 }
 
+bdup() {
+    if ! boot2docker status 2>/dev/null >/dev/null; then
+        echo Creating boot2docker VM
+        boot2docker init
+    fi
+
+    boot2docker up
+    eval $( boot2docker shellinit )
+}
+
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
 
