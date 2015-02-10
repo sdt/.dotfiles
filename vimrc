@@ -79,9 +79,6 @@ set modelines=5
 " let b:did_ftplugin = 1
 " filetype indent off
 
-" =i : add #include guards to .h file
-" nnoremap <Leader>i mi1GO<CR><ESC>1G"%pgUU:s/[^a-zA-Z0-9_]/_/g<CR>IINCLUDE_<ESC>"iyyI#ifndef <ESC>J0"ipI#define <ESC>Go<ESC>"ip<ESC>I#endif // <ESC>`i
-
 " =s : search for trailing whitespace
 nnoremap <Leader>s /\s\+$<CR>
 " =S : delete all trailing whitespace
