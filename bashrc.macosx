@@ -3,7 +3,7 @@
 alias l='/bin/ls -FG'
 alias ls='l -lh'
 
-dnsflush() { sudo killall -HUP mDNSResponder; }
+dnsflush() { sudo discoveryutil udnsflushcaches; }
 
 # Homebrew stuff
 #
