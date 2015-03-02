@@ -57,4 +57,5 @@ git config --global alias.wu 'log --stat origin..@{0}'
 git config --global alias.wup 'log -p origin..@{0} --'
 git config --global color.ui true
 git config --global core.excludesfile ~/.dotfiles/gitignore
+git config --global diff.renames true
 echo ok.
