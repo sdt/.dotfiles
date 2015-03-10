@@ -2,10 +2,12 @@
 
 # Remove a line from the .ssh/known_hosts file
 
+set -e
+
 if [ $# != 1 ]; then
     echo "usage: $0 known-hostfile-line-number"
     exit 1;
 fi
 
-sed -i .bak ${1}d ~/.ssh/known_hosts
+sed -i.bak ${1}d ~/.ssh/known_hosts
 diff ~/.ssh/known_hosts.bak ~/.ssh/known_hosts
