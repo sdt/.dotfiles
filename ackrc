@@ -6,5 +6,6 @@
 --ignore-dir=perls
 --ignore-dir=.Trash
 --ignore-dir=nytprof
+--ignore-file=is:.deps
 
 --sort-files
