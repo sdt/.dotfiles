@@ -44,7 +44,7 @@ case $SOLARIZED in
 
     dark)
         set_tmux_color STATUS                   BASE01  BASE02
-        set_tmux_color WINDOW_STATUS_CURRENT    YELLOW  BASE02
+        set_tmux_color WINDOW_STATUS_CURRENT    CYAN  BASE02
         set_tmux_color WINDOW_STATUS_BELL       ORANGE  BASE02
         ;;
 
