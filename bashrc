@@ -706,3 +706,7 @@ if any_exists ~/.dotfiles/*.local; then
     ls ~/.dotfiles/*.local
 fi
 
+# This needs to go after anything that modifies the prompt.
+if has direnv; then
+    eval "$(direnv hook bash)"
+fi
