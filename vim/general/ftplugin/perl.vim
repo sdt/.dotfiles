@@ -22,7 +22,8 @@ nnoremap <buffer> <leader>pm :PMSource <cfile><cr>
 setlocal iskeyword-=:
 
 " =c check syntax (requires Vi::QuickFix module)
-nnoremap <buffer> <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
+" nnoremap <buffer> <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
+nnoremap <buffer> <Leader>c :%w !perl -c<CR>
 
 " =x execute
 nnoremap <buffer> <Leader>x :%w !perl<CR>
