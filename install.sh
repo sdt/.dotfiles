@@ -59,4 +59,5 @@ git config --global alias.wup 'log -p origin..@{0} --'
 git config --global color.ui true
 git config --global core.excludesfile ~/.dotfiles/gitignore
 git config --global diff.renames true
+git config --global alias.stashed "stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'"
 echo ok.
