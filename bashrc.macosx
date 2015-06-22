@@ -30,8 +30,22 @@ bdup() {
     eval $( boot2docker shellinit )
 }
 
+boot2port() {
+    for port in "$@"; do
+        echo "Mapping port $port ..."
+        for proto in tcp udp; do
+            VBoxManage controlvm boot2docker-vm natpf1 \
+                "$proto-port-$port,$proto,,$port,,$port"
+        done
+    done
+
+    VBoxManage showvminfo --machinereadable boot2docker-vm \
+        | grep '^Forwarding.*-port-'
+}
+
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
 
 pathat /usr/local/bin /usr/local/share/npm/bin /usr/local/sbin
 pythat /usr/local/lib/python2.7/site-packages
+
