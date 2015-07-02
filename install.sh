@@ -41,6 +41,7 @@ install_link ~/.dotfiles/colordiffrc ~/.colordiffrc
 echo -n "Updating git config ... "
 git config --global alias.blog '!sh -c "git lg $( git merge-base $1 master )^..$1" -'
 git config --global alias.cf 'commit -m FIXME'
+git config --global alias.branch-name 'rev-parse --abbrev-ref HEAD'
 git config --global alias.chp 'cherry-pick -n -x'
 git config --global alias.ca 'commit -v --amend'
 git config --global alias.co 'checkout'
