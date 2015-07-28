@@ -20,9 +20,10 @@ augroup template_toolkit
 	autocmd BufNewFile,BufRead *.tt  setf tt2html
 augroup END
 
+filetype off
+syntax on
 filetype plugin on
 runtime macros/matchit.vim
-syntax on
 
 " Turn off the annoying continual highlight of matching parens
 let loaded_matchparen=1
