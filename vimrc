@@ -20,9 +20,13 @@ augroup template_toolkit
 	autocmd BufNewFile,BufRead *.tt  setf tt2html
 augroup END
 
+" Workaround ubuntu vim issue
+" Bug: https://bugs.launchpad.net/ubuntu/+source/vim/+bug/572627
+" Fix: http://stackoverflow.com/questions/3383502/pathogen-does-not-load-plugins
 filetype off
 syntax on
 filetype plugin on
+
 runtime macros/matchit.vim
 
 " Turn off the annoying continual highlight of matching parens
