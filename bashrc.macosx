@@ -20,6 +20,20 @@ rebrew() {
         brew cleanup
 }
 
+export DM=dmvm
+
+dm() {
+    docker-machine "$@" $DM
+}
+
+dmup() {
+    if ! dm status 2> /dev/null >/dev/null; then
+        dm create -d virtualbox
+    fi
+    dm start
+    eval $( dm $DM )
+}
+
 bdup() {
     if ! boot2docker status 2>/dev/null >/dev/null; then
         echo Creating boot2docker VM
