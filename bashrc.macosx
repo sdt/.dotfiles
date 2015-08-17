@@ -31,7 +31,7 @@ dmup() {
         dm create -d virtualbox
     fi
     dm start
-    eval $( dm $DM )
+    eval $( dm env )
 }
 
 bdup() {
