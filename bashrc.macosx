@@ -34,26 +34,16 @@ dmup() {
     eval $( dm env )
 }
 
-bdup() {
-    if ! boot2docker status 2>/dev/null >/dev/null; then
-        echo Creating boot2docker VM
-        boot2docker init
-    fi
-
-    boot2docker up
-    eval $( boot2docker shellinit )
-}
-
-boot2port() {
+dmport() {
     for port in "$@"; do
         echo "Mapping port $port ..."
         for proto in tcp udp; do
-            VBoxManage controlvm boot2docker-vm natpf1 \
+            VBoxManage controlvm $DM natpf1 \
                 "$proto-port-$port,$proto,,$port,,$port"
         done
     done
 
-    VBoxManage showvminfo --machinereadable boot2docker-vm \
+    VBoxManage showvminfo --machinereadable $DM \
         | grep '^Forwarding.*-port-'
 }
 
