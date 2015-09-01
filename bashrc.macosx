@@ -20,7 +20,7 @@ rebrew() {
         brew cleanup
 }
 
-export DM=dmvm
+export DM=boot2docker-vm
 
 dm() {
     docker-machine "$@" $DM
