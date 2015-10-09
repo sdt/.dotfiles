@@ -546,6 +546,7 @@ cpanf() {
 export SSH_ENV="$HOME/.ssh/environment"
 
 export GOPATH="$HOME/gocode"
+pathat "$GOPATH/bin"
 
 # Don't call this directly
 _start_ssh_agent() {
