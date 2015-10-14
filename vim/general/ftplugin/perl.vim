@@ -40,6 +40,8 @@ nnoremap <Leader>dp ouse Data::Printer; p<SPACE>
 " =pa : create package line from filename
 nnoremap <Leader>pa 1GO<ESC>"%P:s/^\(.*\/\)\?lib\///<CR>:s/\.pm$//<CR>:s/\//::/ge<CR>Ipackage <ESC>A;<ESC>
 
+set ts=4 sw=0 et
+
 "-- Begin common footer --------------------------------------------------------
 let &cpo = s:save_cpo
 unlet s:save_cpo
