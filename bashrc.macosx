@@ -53,6 +53,11 @@ source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
 pathat /usr/local/bin /usr/local/share/npm/bin /usr/local/sbin
 pythat /usr/local/lib/python2.7/site-packages
 
+hugs() {
+    [[ -z "$DOCKER_HOST" ]] && dmup
+    docker run -ti --rm -v "$PWD":/hugs sdthirlwall/hugs "$@"
+}
+
 # docker-compose is too much typing
 complete -F _docker-compose fig
 alias fig=docker-compose
