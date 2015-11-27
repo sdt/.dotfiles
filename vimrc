@@ -92,7 +92,7 @@ nnoremap <Leader>S :%s/\s\+$//<CR>
 " =tt : switch to tt2 syntax
 nnoremap <Leader>tt :set syntax=tt2<CR>
 
-" =dc : insert date line into debian changelog
+" =ts : insert date line into debian changelog
 nnoremap <Leader>ts 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
 
 " =- last buffer
@@ -101,8 +101,14 @@ nnoremap <Leader>- :n#<CR>
 " == open bufexplorer menu
 nnoremap <Leader>= :BufExplorer<CR>
 
-" =d git diff current file
-nnoremap <Leader>d :!clear && git diff %<CR>
+" =ga git add current file
+nnoremap <Leader>ga :!clear && git add %<CR>
+
+" =gd git diff current file
+nnoremap <Leader>gd :!clear && git diff %<CR>
+"
+" =gd git status
+nnoremap <Leader>gs :!clear && git st<CR>
 
 " =2 pairing mode
 nnoremap <Leader>2 :set invcursorline invcursorcolumn invnumber<CR>
