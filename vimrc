@@ -84,6 +84,8 @@ set modelines=5
 " let b:did_ftplugin = 1
 " filetype indent off
 
+" Disable control-A incrementing - this goes off by accident sometimes in tmux
+nnoremap <c-a> <Nop>
 " =s : search for trailing whitespace
 nnoremap <Leader>s /\s\+$<CR>
 " =S : delete all trailing whitespace
