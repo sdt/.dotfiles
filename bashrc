@@ -311,7 +311,7 @@ prepend_envvar_at() {
 }
 
 perlat()   { prepend_envvar_at PERL5LIB        "$@"; }
-perl6at()  { prepend_envvar_at PERL6LIB        "$@"; }
+p6at()     { prepend_envvar_at PERL6LIB        "$@"; }
 pathat()   { prepend_envvar_at PATH            "$@"; }
 pythat()   { prepend_envvar_at PYTHONPATH      "$@"; }
 libat()    { prepend_envvar_at LD_LIBRARY_PATH "$@"; }
