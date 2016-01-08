@@ -690,6 +690,8 @@ if has ruby && has gem; then
     pathat "$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 fi
 
+pathat ~/.cabal/bin
+
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
 source_if ~/.dotfiles/local/bashrc
