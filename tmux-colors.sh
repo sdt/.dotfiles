@@ -43,9 +43,9 @@ set_tmux_color() {
 case $SOLARIZED in
 
     dark)
-        set_tmux_color STATUS                   BASE01  BASE02
-        set_tmux_color WINDOW_STATUS_CURRENT    VIOLET  BASE02
-        set_tmux_color WINDOW_STATUS_BELL       RED     BASE02
+        set_tmux_color STATUS                   BASE01   BASE02
+        set_tmux_color WINDOW_STATUS_CURRENT    BASE0    BASE02
+        set_tmux_color WINDOW_STATUS_BELL       RED      BASE02
         ;;
 
     # This is unused now (we have an inverted dark scheme for light)
