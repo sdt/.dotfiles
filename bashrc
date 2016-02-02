@@ -681,6 +681,22 @@ xmltidy() {
     xmlindent -i2 "$@" | egrep -v '^\s*$'
 }
 
+# List kernels - can supply extra search terms: eg. kls 4.2.0-27
+kls() {
+    aptitude search -F %p "~i linux $@"
+}
+
+# Remove kernels - must specify the kernel
+krm() {
+    if [[ $# == 0 ]]; then
+        echo -e 'Please specify a kernel\n'
+        kls
+        return 1
+    fi
+
+    sudo aptitude remove -P $( kls "$@" )
+}
+
 pathat ~/.dotfiles/bin
 pathat ~/bin
 
