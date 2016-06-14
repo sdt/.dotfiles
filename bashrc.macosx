@@ -23,7 +23,9 @@ rebrew() {
 export DM=boot2docker-vm
 
 dm() {
-    docker-machine "$@" $DM
+    command="$1"
+    shift
+    docker-machine "$command" $DM "$@"
 }
 
 dmup() {
