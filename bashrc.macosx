@@ -28,7 +28,7 @@ dm() {
 
 dmup() {
     if ! dm status 2> /dev/null >/dev/null; then
-        dm create -d virtualbox
+        dm create -d virtualbox --virtualbox-cpu-count -1
     fi
     dm start
     eval $( dm env )
