@@ -713,6 +713,10 @@ source_if ~/.pythonz/etc/bashrc
 source_if ~/.dotfiles/local/bashrc
 source ~/.dotfiles/tmux-colors.sh
 
+if ismacos ; then
+    source_if ~/.dotfiles/bashrc.macosx
+fi
+
 source_if ~/perl5/perlbrew/etc/bashrc
 if [ -z $PERLBREW_VERSION ]; then
     # Only want these if perlbrew is not installed
@@ -721,9 +725,6 @@ if [ -z $PERLBREW_VERSION ]; then
     source ~/.dotfiles/bashrc.perl-local-lib
 fi
 
-if ismacos ; then
-    source_if ~/.dotfiles/bashrc.macosx
-fi
 source ~/.dotfiles/bashrc.linuxbrew
 
 if any_exists ~/.dotfiles/*.local; then
