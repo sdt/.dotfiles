@@ -1,12 +1,23 @@
-#!/bin/bash
+#!/usr/bin/env perl
 
-# Lists top-level homebrew formula - these can be deleted without affecting
-# other formula.
-#
-# Usage: brew toplevel
+use 5.14.0;
+use warnings;
 
-for i in $( brew list ); do
-    if [ -z "$( brew uses --installed $i )" ]; then
-        echo $i
-    fi
-done
+use IPC::System::Simple qw( capture );
+
+my @formulae;
+my %inclusions;
+
+for (capture('brew deps --installed')) {
+    chomp;
+
+    my ($formula, @deps) = /([-\/\w]+)/g;
+
+    $formula =~ s{^.*/}{};
+
+    push(@formulae, $formula);
+    $inclusions{$_}++ for @deps;
+}
+
+
+say for grep { !$inclusions{$_} } sort @formulae;
