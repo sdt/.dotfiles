@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+if [[ $# -lt 2 ]]; then
+    echo usage: $0 host images
+    exit 1
+fi
+
+if ! which -s pv; then
+    echo Install pv for progress reporting
+    alias pv=cat
+fi
+
+host=$1
+shift
+docker save "$@" | pv | ssh -o Compression=yes $host docker load
