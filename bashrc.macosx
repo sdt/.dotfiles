@@ -60,9 +60,5 @@ hugs() {
     docker run -ti --rm -v "$PWD":/hugs sdthirlwall/hugs "$@"
 }
 
-# docker-compose is too much typing
-complete -F _docker_compose fig
-alias fig=docker-compose
-
 # Our PERL5LIB is for homebrew perl, not system perl. This breaks git.
 alias git='PERL5LIB= git'

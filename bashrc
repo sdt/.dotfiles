@@ -697,6 +697,10 @@ krm() {
     sudo aptitude remove -P $( kls "$@" )
 }
 
+# docker-compose is too much typing
+complete -F _docker_compose fig
+alias fig=docker-compose
+
 pathat ~/.dotfiles/bin
 pathat ~/bin
 
