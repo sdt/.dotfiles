@@ -57,7 +57,8 @@ pythat /usr/local/lib/python2.7/site-packages
 
 fix-docker-time() {
     docker run alpine date
-    docker run --privileged --rm alpine date -s "$( date -u '+%Y-%m-%d %H:%M:%S' )"
+    #docker run --privileged --rm alpine date -s "$( date -u '+%Y-%m-%d %H:%M:%S' )"
+    docker run --rm --privileged alpine hwclock -s
     docker run alpine date
 }
 
