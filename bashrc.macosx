@@ -16,7 +16,7 @@ rebrew() {
          [ -n "$( brew outdated )" ] &&
         brew outdated &&
         YES_or_no upgrade &&
-        brew upgrade --all &&
+        brew upgrade &&
         brew cleanup
 }
 
