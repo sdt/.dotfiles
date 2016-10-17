@@ -6,21 +6,28 @@ use warnings;
 my $script = $0;
 $script =~ s!^.*/!!;
 
+#http://kodi.wiki/view/list_of_built-in_functions
 my %commands = (
     clean => {
         msg => 'Clean the Kodi library',
-        cmd => 'cleanLibrary(video)',
+        cmd => 'CleanLibrary(video)',
+    },
+
+    msg => {
+        msg => 'Write a message to the screen',
+        cmd => 'Notification(%s, %s)',
+        args => [qw( title message )],
     },
 
     play => {
         msg => 'Play a streaming video',
-        cmd => 'playMedia(%s)',
+        cmd => 'PlayMedia(%s)',
         args => [qw( video-url )],
     },
 
     update => {
         msg => 'Update the Kodi library',
-        cmd => 'updateLibrary(video)',
+        cmd => 'UpdateLibrary(video)',
     },
 );
 
