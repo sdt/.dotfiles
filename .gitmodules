@@ -23,3 +23,6 @@
 [submodule "vim/dockerfile.vim"]
 	path = vim/dockerfile.vim
 	url = git://github.com/honza/dockerfile.vim.git
+[submodule "vim/elm.vim"]
+	path = vim/elm.vim
+	url = git@github.com:lambdatoast/elm.vim.git

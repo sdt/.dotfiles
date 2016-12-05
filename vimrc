@@ -9,6 +9,7 @@ set runtimepath+=~/.dotfiles/vim/vim-perl
 set runtimepath+=~/.dotfiles/vim/solarized
 set runtimepath+=~/.dotfiles/vim/vim-scala
 set runtimepath+=~/.dotfiles/vim/vim-clojure-static
+set runtimepath+=~/.dotfiles/vim/elm.vim
 set runtimepath+=~/.dotfiles/vim/general
 set runtimepath+=~/.dotfiles/vim/after
 set runtimepath+=$VIMRUNTIME
