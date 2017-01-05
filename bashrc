@@ -731,6 +731,10 @@ fi
 
 source ~/.dotfiles/bashrc.linuxbrew
 
+if has platformio; then
+    eval "$(_PLATFORMIO_COMPLETE=source platformio)"
+fi
+
 if any_exists ~/.dotfiles/*.local; then
     echo WARNING: these files should be transferred to ~/.dotfiles/local
     ls ~/.dotfiles/*.local
