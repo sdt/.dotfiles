@@ -701,6 +701,10 @@ krm() {
 complete -F _docker_compose fig
 alias fig=docker-compose
 
+if has ag; then
+    alias ack=ag
+fi
+
 pathat ~/.dotfiles/bin
 pathat ~/bin
 
