@@ -9,7 +9,7 @@ set cpo-=C
 
 
 " =i : add #include guards to .h file
-nnoremap <Leader>i mi1GO<C-R>%<ESC>gUU:s/[^A-Z0-9_]/_/g<CR>IINCLUDE_<ESC>0"iyWI#ifndef <ESC>o#define <C-R>i<ESC>Go#endif // <C-R>i<ESC>`i
+nnoremap <Leader>i mi1GO<C-R>%<ESC>:s!^.*/!!e<CR>gUU:s/[^A-Z0-9_]/_/g<CR>IINCLUDE_<ESC>0"iyWI#ifndef <ESC>o#define <C-R>i<ESC>Go#endif // <C-R>i<ESC>`i
 
 
 "-- Begin common footer --------------------------------------------------------
