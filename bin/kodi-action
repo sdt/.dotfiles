@@ -29,6 +29,13 @@ my %commands = (
         msg => 'Update the Kodi library',
         cmd => 'UpdateLibrary(video)',
     },
+
+    youtube => {
+        msg => 'Play a youtube video',
+        map_args => \&get_youtube_id,
+        cmd => 'PlayMedia(%s)',
+        args => [qw( youtube-url )],
+    },
 );
 
 main();
@@ -38,14 +45,19 @@ sub main {
     usage() unless @ARGV;
 
     my $command = shift @ARGV;
+    my @args = @ARGV;
     my $opts = $commands{$command} or usage("Unknown command \"$command\"");
 
     my $expected_args = @{ $opts->{args} // [] };
-    my $got_args = @ARGV;
+    my $got_args = @args;
     usage("Expected $expected_args args, but got $got_args")
         unless $got_args == $expected_args;
 
-    my $kodi_command = sprintf($opts->{cmd}, @ARGV);
+    if ($opts->{map_args}) {
+        @args = $opts->{map_args}->(@args);
+    }
+
+    my $kodi_command = sprintf($opts->{cmd}, @args);
     exec('kodi-send', '--action', $kodi_command);
 }
 
@@ -59,4 +71,19 @@ sub usage {
         printf("\t%-20s* %s\n", $usage, $opts->{msg});
     }
     exit 1;
+}
+
+sub get_youtube_id {
+    my ($youtube_url) = @_;
+    my $prefix = 'plugin://plugin.video.youtube/play/?video_id=';
+    my $id = qr([a-zA-Z0-9_]+);
+
+    if ($youtube_url =~ /watch\?v=($id)/) {
+        return $prefix . $1;
+    }
+    if ($youtube_url =~ /youtu\.be\/($id)/) {
+        return $prefix . $1;
+    }
+
+    die "Can't get video id from $youtube_url";
 }
