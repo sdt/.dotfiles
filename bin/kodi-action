@@ -76,7 +76,7 @@ sub usage {
 sub get_youtube_id {
     my ($youtube_url) = @_;
     my $prefix = 'plugin://plugin.video.youtube/play/?video_id=';
-    my $id = qr([a-zA-Z0-9_]+);
+    my $id = qr([-a-zA-Z0-9_]+);
 
     if ($youtube_url =~ /watch\?v=($id)/) {
         return $prefix . $1;
