@@ -21,6 +21,9 @@ nnoremap <buffer> <leader>pm :PMSource <cfile><cr>
 " Don't consider : to be part of a keyword (this drives me mental)
 setlocal iskeyword-=:
 
+" Don't go searching in other files, this is seldom what I want
+set complete-=i
+
 " =c check syntax (requires Vi::QuickFix module)
 " nnoremap <buffer> <Leader>c :! perl -MVi::QuickFix=.vimerrors.err -c %<CR><CR>:cg<CR>:cl<CR>
 nnoremap <buffer> <Leader>c :%w !perl -c<CR>
