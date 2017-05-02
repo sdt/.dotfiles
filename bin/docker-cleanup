@@ -1,7 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e
 
-# Clean up containers which have exited
-docker ps -a -q --no-trunc -f status=created -f status=exited | xargs docker rm
-
-# Clean up dangling images
-docker images -q --no-trunc -f dangling=true | xargs docker rmi
+for i in container volume image; do
+    docker $i prune -f
+done
