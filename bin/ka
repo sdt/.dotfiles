@@ -1,0 +1,139 @@
+#!/usr/bin/env perl
+
+use 5.18.0;
+use warnings;
+
+# http://kodi.wiki/view/list_of_built-in_functions
+
+my $script = $0;
+$script =~ s!^.*/!!;
+
+my @actions = (
+    {
+        desc    => 'Clean the Kodi library',
+        match   => 'clean',
+        cmd     => 'CleanLibrary(video)',
+    },
+    {
+        desc    => 'Update the Kodi library',
+        match   => 'update',
+        cmd     => 'UpdateLibrary(video)',
+    },
+    {
+        desc    => 'Write a message to the screen',
+        usage   => 'msg [title] <message>',
+        match   => \&match_message,
+    },
+    {
+        desc    => 'Play a youtube video',
+        usage   => '<youtube-url>',
+        match   => \&match_youtube,
+    },
+    {
+        desc    => 'Play a general video',
+        usage   => '<url-or-filename>',
+        match   => \&match_video,
+    },
+);
+
+main();
+exit 0;
+
+sub main {
+    usage() unless @ARGV;
+    my @args = @ARGV;
+
+    for my $action (@actions) {
+        if (my $command = is_match($action, @args)) {
+            do_action($command);
+        }
+    }
+
+    usage("Unknown command \"@args\"");
+}
+
+sub is_match {
+    my ($action, $command, @args) = @_;
+
+    my $match = $action->{match};
+    my $ref = ref $match;
+
+    if ($ref eq '') {
+        if ($command eq $match) {
+            usage() unless @args == 0;
+            return $action->{cmd};
+        }
+    }
+    if ($ref eq 'CODE') {
+        return $match->($command, @args);
+    }
+    return;
+}
+
+sub do_action {
+    my ($kodi_command) = @_;
+
+    local $, = ' ';
+    say('kodi-send', '--action', $kodi_command);
+    exec('kodi-send', '--action', $kodi_command);
+}
+
+sub usage {
+    say @_ if @_;
+    say "usage: $script command [args...]";
+    for my $action (@actions) {
+        $action->{usage} //= $action->{match};
+    }
+    for my $action (sort { $a->{usage} cmp $b->{usage} } @actions) {
+        printf("\t%-24s - %s\n", $action->{usage}, $action->{desc});
+    }
+    exit 1;
+}
+
+sub match_youtube {
+    my ($arg) = @_;
+    my $id = qr([-a-zA-Z0-9_]+);
+    my $format = 'PlayMedia(plugin://plugin.video.youtube/play/?video_id=%s)';
+
+    my @regexes = (
+        qr/youtube\.com\/watch\?v=($id)/,
+        qr/youtu\.be\/($id)/,
+    );
+
+    for my $regex (@regexes) {
+        if ($arg =~ $regex) {
+            usage() unless @_ == 1;
+            return sprintf($format, $1);
+        }
+    }
+    return;
+}
+
+sub match_video {
+    my ($arg) = @_;
+
+    if ((-e $arg) || ($arg =~ /^https?:/)) {
+        usage() unless @_ == 1;
+        return "PlayMedia($arg)";
+    }
+    return;
+}
+
+sub match_message {
+    my $arg = shift;
+
+    return unless $arg eq 'msg';
+
+    my ($title, $message);
+    if (@_ == 2) {
+        ($title, $message) = @_;
+    }
+    elsif (@_ == 1) {
+        ($title, $message) = ('', shift);
+    }
+    else {
+        usage();
+    }
+
+    return "Notification($title, $message)";
+}
