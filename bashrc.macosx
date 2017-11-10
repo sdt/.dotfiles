@@ -10,7 +10,6 @@ dnsflush() { sudo killall -HUP mDNSResponder; }
 # Assuming brew is already in PATH. Set this up in bashrc.local if necessary.
 #
 
-BREW_ROOT=$(brew --prefix)
 rebrew() {
     brew update &&
          [ -n "$( brew outdated )" ] &&
@@ -49,10 +48,12 @@ dmport() {
         | grep '^Forwarding.*-port-'
 }
 
+pathat /usr/local/bin /usr/local/share/npm/bin /usr/local/sbin
+
+BREW_ROOT=$(brew --prefix)
+
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
-
-pathat /usr/local/bin /usr/local/share/npm/bin /usr/local/sbin
 
 fix-docker-time() {
     docker run alpine date
