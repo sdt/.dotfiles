@@ -26,3 +26,6 @@
 [submodule "vim/elm.vim"]
 	path = vim/elm.vim
 	url = git://github.com/lambdatoast/elm.vim.git
+[submodule "vim/vim-elixir"]
+	path = vim/vim-elixir
+	url = git://github.com/elixir-editors/vim-elixir.git
