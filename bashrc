@@ -697,37 +697,6 @@ krm() {
     sudo aptitude remove -P $( kls "$@" )
 }
 
-is-git-dir() {
-    git rev-parse 2> /dev/null
-}
-
-lf() {
-    if is-git-dir; then
-        # Use git ls-files to print the files from the current repo
-        (
-            git ls-files --cached --other --exclude-standard
-
-            # Recurse into the subdirs
-            # * make sure to prepend $path/ to each line
-            # * make sure to strip "Entering $path" (ffs...)
-            git submodule foreach --recursive \
-                    'git ls-files --cached --other --exclude-standard \
-                        | sed -e s@^@$path/@' \
-                | grep -v ^Entering
-        ) | perl -nlE 'say unless -d'               # strip any directories
-    else
-        command ack -f
-    fi
-}
-
-ack() {
-    lf | command ack -x "$@"
-}
-
-ff() {
-    lf | fgrep "${@:- }"
-}
-
 # docker-compose is too much typing
 complete -F _docker_compose fig
 alias fig=docker-compose
