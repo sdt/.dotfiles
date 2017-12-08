@@ -8,6 +8,7 @@ set cpo-=C
 "-- End common header ----------------------------------------------------------
 
 nnoremap <Leader>x :w<CR>:!elixir %<CR>
+nnoremap <Leader>r :w<CR>:!mix run %<CR>
 
 "-- Begin common footer --------------------------------------------------------
 let &cpo = s:save_cpo
