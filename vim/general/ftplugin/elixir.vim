@@ -9,6 +9,7 @@ set cpo-=C
 
 nnoremap <Leader>x :w<CR>:!elixir %<CR>
 nnoremap <Leader>r :w<CR>:!mix run %<CR>
+nnoremap <Leader>e 1GO#!/usr/bin/env elixir<ESC>j"%pF.DA do<ESC>0~Idefmodule <ESC>O<ESC>Go<CR>end<ESC>k
 
 "-- Begin common footer --------------------------------------------------------
 let &cpo = s:save_cpo
