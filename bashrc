@@ -448,10 +448,13 @@ rgit() {
     crgit git "$@"
 }
 
-fixgitemail() {
+addgitemail() {
     local EMAILS='sdt@cpan.org sdt@dr.com stephent@strategicdata.com.au'
-    uselect -1 -s 'select commit email' $EMAILS | xargs git config user.email
-    [[ $? == 0 ]] && git commit --amend --reset-author
+    uselect -1 -s 'select git email' $EMAILS | xargs git config user.email
+}
+
+fixgitemail() {
+    addgitemail && git commit --amend --reset-author
 }
 
 do_or_dry() {
