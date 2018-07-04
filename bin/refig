@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $# == 0 ]]; then
+    echo usage: $0 service 1>&2
+    exit 1
+fi
+
+docker-compose stop "$@"
+docker-compose rm -f "$@"
+docker-compose up -d "$@"
