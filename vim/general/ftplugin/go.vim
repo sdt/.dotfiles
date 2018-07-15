@@ -8,7 +8,7 @@ set cpo-=C
 "-- End common header ----------------------------------------------------------
 
 set noexpandtab
-set ts=4 sw=0
+set ts=4 sw=4
 
 nnoremap <Leader>c :! go build %<cr>
 nnoremap <Leader>f :% !gofmt -s<cr>

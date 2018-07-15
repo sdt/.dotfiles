@@ -7,7 +7,7 @@ let s:save_cpo = &cpo
 set cpo-=C
 "-- End common header ----------------------------------------------------------
 
-set ts=2 sw=0
+set ts=2 sw=2
 
 "-- Begin common footer --------------------------------------------------------
 let &cpo = s:save_cpo
