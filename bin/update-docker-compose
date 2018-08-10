@@ -14,6 +14,5 @@ echo Updating docker-compose to ${latest}
 kernel=$( uname -s )
 machine=$( uname -m )
 
-echo Fetching docker-compose v${latest}
 sudo curl -L https://github.com/docker/compose/releases/download/${latest}/docker-compose-${kernel}-${machine} -o /usr/local/bin/docker-compose
 sudo curl -L https://raw.githubusercontent.com/docker/compose/${latest}/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
