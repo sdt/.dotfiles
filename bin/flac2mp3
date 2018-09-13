@@ -14,7 +14,7 @@ for f in "$@"; do
     tracknumber="$(metaflac --show-tag=tracknumber "$f" | sed 's/[^=]*=//')"
 
     flac --decode --stdout "$f" \
-        | lame --preset extreme --add-id3v2 \
+        | lame --preset standard --add-id3v2 \
                --tt "$title" \
                --ta "$artist" \
                --tl "$album" \
