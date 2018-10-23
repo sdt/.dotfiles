@@ -714,7 +714,7 @@ pathat ~/bin
 pathat ~/.rakudobrew/bin
 
 if has ruby && has gem; then
-    pathat "$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+    pathat "$(ruby -r rubygems -e 'puts Gem.user_dir')/bin"
 fi
 
 pathat ~/.cabal/bin
