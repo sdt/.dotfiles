@@ -9,4 +9,5 @@ mounted_path=/media/motog5/music/
 remote_path=/storage/8674-45D8/music/
 remote_host=motog5
 
-rsync -av --delete --no-perms --no-times --size-only "$local_path" "$mounted_path"
+# --dry-run
+rsync "$@" -av --delete --no-perms --no-times --size-only "$local_path" "$mounted_path"
