@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $# != 2 ]]; then
+    echo usage: $0 phone-number amount 1>&2
+    exit 1
+fi
+
+jn() {
+    IFS="$1"
+    shift
+    echo "$*"
+}
+
+dial=100
+recharge=1
+cm2u=5
+phone=$1
+amount=$2
+
+code=$( jn '*' $dial $recharge $cm2u $phone $amount )
+echo "#${code}#"
