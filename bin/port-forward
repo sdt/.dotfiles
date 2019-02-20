@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+# SSH port forwarding helper
+
+# ssh -f <ssh-host> -L <local-port>:<target-host>:<target-port> -N
+
+case $# in
+    0)
+        echo "usage: $0 host port [ports...]" 1>&2
+        ;;
+
+    1)
+        ps x | grep ssh | grep $1 | grep -- -L | grep -- -N
+        ;;
+
+    *)
+        host=$1
+        shift
+        for port in $@; do
+            echo ssh -f $host -L $port:localhost:$port -N
+            ssh -f $host -L $port:localhost:$port -N
+        done
+        ;;
+esac
