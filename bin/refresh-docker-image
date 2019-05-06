@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ $# != 2 ]]; then
+    echo usage: $0 image container 1>&2
+    exit 1
+fi
+
+image="$1"
+container="$2"
+
+docker pull "$image"
+
+image_id=$( docker inspect "$image" -f '{{ .Id }}'  )
+container_id=$( docker inspect "$container" -f '{{ .Image }}' )
+
+if [[ "$image_id" == "$container_id" ]]; then
+    echo $container is already running latest $image
+else
+    echo Restarting $container with new $image
+
+    # Assuming this container is controlled by systemd, and will restart
+    # automatically.
+    docker stop "$container"
+fi
