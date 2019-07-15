@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Runs a docker registry browser against the given registry
+# https://hub.docker.com/r/klausmeyer/docker-registry-browser/
+
+if [[ $# == 0 || $1 != "http"* ]]; then
+    echo usage: $0 docker-registry-url 1>&2
+    exit 1
+fi
+
+export DOCKER_REGISTRY_URL="$1"
+shift
+
+docker run --rm \
+        -e ENABLE_DELETE_IMAGES=true \
+        -e DOCKER_REGISTRY_URL \
+        -p 8080:8080 \
+    klausmeyer/docker-registry-browser
