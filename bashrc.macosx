@@ -64,3 +64,6 @@ fix-docker-time() {
 
 # Our PERL5LIB is for homebrew perl, not system perl. This breaks git.
 alias git='PERL5LIB= git'
+
+# Yes, zsh is the new default shell. Got it. Now STFU pls.
+export BASH_SILENCE_DEPRECATION_WARNING=1
