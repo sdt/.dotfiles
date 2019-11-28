@@ -1,5 +1,6 @@
 set nocompatible
 let mapleader="="
+let perl_include_pod=1
 
 " Prepend our runtime paths so we override the defaults
 set runtimepath=
