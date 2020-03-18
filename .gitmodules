@@ -29,3 +29,6 @@
 [submodule "vim/vim-elixir"]
 	path = vim/vim-elixir
 	url = git://github.com/elixir-editors/vim-elixir.git
+[submodule "vim/vim-vue-plugin"]
+	path = vim/vim-vue-plugin
+	url = git://github.com/leafOfTree/vim-vue-plugin.git
