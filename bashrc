@@ -19,8 +19,6 @@ alias apc='sudo aptitude clean'
 alias apd='sudo aptitude update'
 alias apg='sudo aptitude safe-upgrade'
 
-alias http="python -m SimpleHTTPServer"
-
 set -o vi
 shopt -s dotglob histappend
 
@@ -216,6 +214,12 @@ find_file_upwards() {
 
 if has mvim && ! has gvim; then
     gvim() { mvim "$@"; }
+fi
+
+if has python3; then
+    alias http="python3 -m http.server"
+else
+    alias http="python -m SimpleHTTPServer"
 fi
 
 vs()  { find . -type f -iname '.*.sw?'; }
