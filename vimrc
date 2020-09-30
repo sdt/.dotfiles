@@ -141,6 +141,9 @@ nnoremap <Leader>gv :GC<CR>
 " =lv lv word under cursor
 nnoremap <Leader>lv :LC<CR>
 
+" =rs reload syntax
+nnoremap <Leader>rs :syntax sync fromstart<CR>
+
 if filereadable($HOME."/.dotfiles/local/vimrc")
     source ~/.dotfiles/local/vimrc
 endif
