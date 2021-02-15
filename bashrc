@@ -4,7 +4,7 @@
 alias l='/bin/ls -F --color=auto'
 alias ls='l -lh'
 alias la='l -A'
-alias df='df -h'
+alias df='df -h -x devtmpfs -x overlay -x tmpfs'
 alias lsa='ls -A'
 m() { less -R "$@"; }
 alias md='mkdir -p'
