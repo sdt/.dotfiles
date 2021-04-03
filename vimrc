@@ -13,6 +13,7 @@ set runtimepath+=~/.dotfiles/vim/vim-scala
 set runtimepath+=~/.dotfiles/vim/vim-clojure-static
 set runtimepath+=~/.dotfiles/vim/elm.vim
 set runtimepath+=~/.dotfiles/vim/vim-vue-plugin
+set runtimepath+=~/.dotfiles/vim/6502 " *.s / *.inc -> 6502
 set runtimepath+=~/.dotfiles/vim/general
 set runtimepath+=~/.dotfiles/vim/after
 set runtimepath+=$VIMRUNTIME
