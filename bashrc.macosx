@@ -67,3 +67,6 @@ alias git='PERL5LIB= git'
 
 # Yes, zsh is the new default shell. Got it. Now STFU pls.
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Mac-specific df
+alias df='/bin/df -h -Tnoautofs,devfs'
