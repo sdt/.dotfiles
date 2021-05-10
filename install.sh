@@ -51,6 +51,7 @@ git config --global alias.ds 'diff --stat'
 git config --global alias.dsc 'diff --stat --cached'
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 git config --global alias.llog 'log --date=local'
+git config --global alias.mff 'merge --ff-only'
 git config --global alias.recent-branches "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'"
 git config --global alias.st 'status -s'
 git config --global alias.steve 'tag -f steve-was-here'
