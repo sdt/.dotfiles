@@ -753,5 +753,14 @@ fi
 
 # This needs to go after anything that modifies the prompt.
 if has direnv; then
-    eval "$(direnv hook bash)"
+    # eval "$(direnv hook bash)"
+    # See: https://github.com/direnv/direnv/issues/627#issuecomment-634504650
+    _direnv_hook() {
+        local previous_exit_status=$?;
+        eval "$(direnv export bash)";
+        return $previous_exit_status;
+    };
+    if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
+        PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+    fi
 fi
