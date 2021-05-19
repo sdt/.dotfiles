@@ -22,3 +22,4 @@ else
     # automatically.
     docker stop "$container"
 fi
+echo # Just to make multiple invocations visually distinct
