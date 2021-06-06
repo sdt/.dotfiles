@@ -3,12 +3,10 @@
 use 5.14.0;
 use warnings;
 
-use IPC::System::Simple qw( capture );
-
 my @formulae;
 my %inclusions;
 
-for (capture('brew deps --installed')) {
+for (qx( brew deps --installed )) {
     chomp;
 
     my ($formula, @deps) = /([-\/\w]+)/g;
@@ -18,6 +16,6 @@ for (capture('brew deps --installed')) {
     push(@formulae, $formula);
     $inclusions{$_}++ for @deps;
 }
-
+die "$!" if $? != 0;
 
 say for grep { !$inclusions{$_} } sort @formulae;
