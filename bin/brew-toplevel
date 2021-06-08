@@ -6,16 +6,26 @@ use warnings;
 my @formulae;
 my %inclusions;
 
-for (qx( brew deps --installed )) {
-    chomp;
+my %toplevel;
+my %dependency;
 
-    my ($formula, @deps) = /([-\/\w]+)/g;
+# TODO: This might be implemented now as: brew leaves
+# TODO: What we really want is "brew rm" that automatically removes any
+#       dependencies that were automatically installed, and have no further
+#       requirements.
 
-    $formula =~ s{^.*/}{};
+for my $line (qx( brew deps --tree --installed )) {
+    chomp $line;
+    next unless $line;
 
-    push(@formulae, $formula);
-    $inclusions{$_}++ for @deps;
+    if ($line =~ /^.* (.*?)$/) {
+        $dependency{$1}++;
+    }
+    else {
+        $toplevel{$line}++;
+    }
+}
+for my $formula (sort keys %toplevel) {
+    say $formula unless $dependency{$formula};
 }
 die "$!" if $? != 0;
-
-say for grep { !$inclusions{$_} } sort @formulae;
