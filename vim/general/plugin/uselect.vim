@@ -37,7 +37,7 @@ command -nargs=1 FV call s:doFV('<args>')
 command -nargs=0 FC call s:doFV(expand('<cword>'))  " maybe want <cfile> ?
 
 function! s:doFV(pattern)
-    let cmd='ack -f | fgrep -- ' . shellescape(a:pattern) . ' | sort | ' . g:uselect_bin . ' -s ' . shellescape('fv ' . a:pattern)
+    let cmd='ag -l | fgrep -- ' . shellescape(a:pattern) . ' | sort | ' . g:uselect_bin . ' -s ' . shellescape('fv ' . a:pattern)
     call s:LoadFilesFromCommand(cmd)
 endfunction
 
@@ -56,7 +56,7 @@ command -nargs=1 GV call s:doGV('<args>')
 command -nargs=0 GC call s:doGV(expand('<cword>'))
 
 function! s:doGV(pattern)
-    let cmd='ack --heading --break -- ' . shellescape(a:pattern) . " | " . g:uselect_bin . " -i -m '^\\d+[:-]' -s " . shellescape('gv ' . a:pattern)
+    let cmd='ag --heading --break -- ' . shellescape(a:pattern) . " | " . g:uselect_bin . " -i -m '^\\d+[:-]' -s " . shellescape('gv ' . a:pattern)
     call s:LoadFilesFromCommand(cmd)
 endfunction
 
