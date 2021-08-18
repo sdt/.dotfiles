@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+# Just a form of docker-images which joins the image name and the tag together,
+# so it's easier to cun-t-paste.
+#
+# --format '{ json . }' to see all the fields available
+
+docker images --format 'table {{ .Repository }}:{{ .Tag }}\t{{ .ID }}\t{{ .CreatedSince }}\t{{ .Size }}'
