@@ -13,16 +13,34 @@ remote_url() {
     git remote -v | grep ^$REMOTE | grep -m 1 \($1\) | awk '{ print $2 }'
 }
 
-PUSH_URL=$( remote_url push |\
-        perl -pe 's#^(?:https?|git)://(.*?)/(.*)$#git\@$1:$2#' )
+make_push_url() {
+    url=$( remote_url push )
 
-FETCH_URL=$( remote_url fetch |\
-        perl -pe 's#^git@(bitbucket\.org):(.*?)/(.*)#https://$1/$2/$3#' |\
-        perl -pe 's#^git@(.*?):(.*?)/(.*)$#git://$1/$2/$3#' )
+    # These should all be mapped to git@$host:$repo/$org.git
+    echo $url | perl -pe 's#^(?:https?|git)://(.*?)/(.*)$#git\@$1:$2#'
+}
+
+make_fetch_url() {
+    # Bitbucket should use https://$host/$org/$repo.git
+    # gh.sdintra.net should use git@$host:$repo/$org.git
+    # else use git://$host/$org/$repo.git
+    url=$( remote_url fetch )
+
+    if [[ $url =~ bitbucket ]]; then
+        #echo BITBUCKET 1>&2
+        echo $url | perl -pe 's#^git@(.*?):(.*?)/(.*)$#https://$1/$2/$3#'
+    elif [[ $url =~ gh\.sdintra\.net ]]; then
+        #echo STRATDAT 1>&2
+        echo $url | perl -pe 's#^(?:https?|git)://(.*?)/(.*)$#git\@$1:$2#'
+    else
+        #echo ELSE 1>&2
+        echo $url | perl -pe 's#^git://(gh\.sdintra\.net)/(.*)#git\@$1:$2#'
+    fi
+}
 
 # Can't seem to do set-url --fetch, so set them both to fetch url,
 # and then switch the push url back again.
-git remote set-url $REMOTE $FETCH_URL
-git remote set-url --push $REMOTE $PUSH_URL
+git remote set-url        $REMOTE $( make_fetch_url )
+git remote set-url --push $REMOTE $( make_push_url  )
 
 git remote -v show | grep $REMOTE
