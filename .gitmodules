@@ -20,9 +20,6 @@
 [submodule "vim/vim-clojure-static"]
 	path = vim/vim-clojure-static
 	url = git://github.com/guns/vim-clojure-static.git
-[submodule "vim/dockerfile.vim"]
-	path = vim/dockerfile.vim
-	url = git://github.com/honza/dockerfile.vim.git
 [submodule "vim/elm.vim"]
 	path = vim/elm.vim
 	url = git://github.com/lambdatoast/elm.vim.git
