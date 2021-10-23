@@ -25,6 +25,11 @@ my @actions = (
         match   => \&match_message,
     },
     {
+        desc    => 'Play an odysse video',
+        usage   => '<odysse-url>',
+        match   => \&match_odysee,
+    },
+    {
         desc    => 'Play a youtube video',
         usage   => '<youtube-url>',
         match   => \&match_youtube,
@@ -88,6 +93,16 @@ sub usage {
         printf("\t%-24s - %s\n", $action->{usage}, $action->{desc});
     }
     exit 1;
+}
+
+sub match_odysee {
+    my ($arg) = @_;
+    my $format = 'PlayMedia(plugin://plugin.video.lbry/play/%s)';
+
+    if ($arg =~ m{odysee\.com/[^/]+/(.*?):}) {
+        return sprintf($format, $1);
+    }
+    return;
 }
 
 sub match_youtube {
