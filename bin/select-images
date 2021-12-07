@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+    filter=( : )        # select all - they all have a colon
+else
+    filter=( "$@" )
+fi
+
+# The tail command removes the column headers
+docker-images | tail -n +2 | sort | grep "${filter[@]}" \
+    | uselect -s 'Docker images' \
+    | awk '{print $1}'
