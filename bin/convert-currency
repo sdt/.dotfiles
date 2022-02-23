@@ -17,4 +17,4 @@ AMOUNT=$1
 FROM=${2:-USD}
 TO=${3:-AUD}
 
-curl -s "https://www.mastercard.us/settlement/currencyrate/conversion-rate?fxDate=0000-00-00&transCurr=${FROM^^}&crdhldBillCurr=${TO^^}&bankFee=0&transAmt=${AMOUNT}" | jq -s '.[].data'
+curl -s "https://www.mastercard.us/settlement/currencyrate/conversion-rate?fxDate=0000-00-00&transCurr=${FROM}&crdhldBillCurr=${TO}&bankFee=0&transAmt=${AMOUNT}" | jq -s '.[].data'
