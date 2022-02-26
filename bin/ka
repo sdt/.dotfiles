@@ -2,6 +2,7 @@
 
 use 5.18.0;
 use warnings;
+use File::Spec qw( );
 
 # http://kodi.wiki/view/list_of_built-in_functions
 
@@ -129,7 +130,8 @@ sub match_video {
 
     if ((-e $arg) || ($arg =~ /^https?:/)) {
         usage() unless @_ == 1;
-        return "PlayMedia($arg)";
+        my $fullpath = File::Spec->rel2abs($arg);
+        return "PlayMedia($fullpath)";
     }
     return;
 }
