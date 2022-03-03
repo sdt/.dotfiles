@@ -127,12 +127,17 @@ sub match_youtube {
 
 sub match_video {
     my ($arg) = @_;
+    usage() unless @_ == 1;
 
-    if ((-e $arg) || ($arg =~ /^https?:/)) {
-        usage() unless @_ == 1;
+    if (-e $arg) {
         my $fullpath = File::Spec->rel2abs($arg);
         return "PlayMedia($fullpath)";
     }
+
+    if ($arg =~ /^https?:/) {
+        return "PlayMedia($arg)";
+    }
+    say STDERR "Don't know what to do with $arg";
     return;
 }
 
