@@ -755,7 +755,8 @@ if any_exists ~/.dotfiles/*.local; then
 fi
 
 # This needs to go after anything that modifies the prompt.
-if has direnv; then
+# Disabled this for now. direnv shits me.
+if false && has direnv; then
     # eval "$(direnv hook bash)"
     # See: https://github.com/direnv/direnv/issues/627#issuecomment-634504650
     _direnv_hook() {
