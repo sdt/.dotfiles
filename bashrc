@@ -40,6 +40,9 @@ export NETHACKOPTIONS='color, catname:Coco, dogname:Walter the farting dog, fixi
 
 export IGNOREEOF=1
 
+# GNU quotes the output of ls which bugs me
+export QUOTING_STYLE=literal
+
 _make_color() {
     local code
     for i in $@; do
