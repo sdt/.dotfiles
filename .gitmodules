@@ -1,31 +1,31 @@
 [submodule "tmux-vim"]
 	path = tmux-vim
-	url = git://github.com/sdt/tmux-vim.git
+	url = https://github.com/sdt/tmux-vim.git
 [submodule "vim/bufexplorer"]
 	path = vim/bufexplorer
-	url = git://github.com/vim-scripts/bufexplorer.zip.git
+	url = https://github.com/vim-scripts/bufexplorer.zip.git
 [submodule "vim/solarized"]
 	path = vim/solarized
-    url = git://github.com/thomwiggers/vim-colors-solarized.git
-	#url = git://github.com/altercation/vim-colors-solarized.git
+	url = https://github.com/thomwiggers/vim-colors-solarized.git
+	#url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "uselect"]
 	path = uselect
-	url = git://github.com/sdt/uselect.git
+	url = https://github.com/sdt/uselect.git
 [submodule "vim/vim-scala"]
 	path = vim/vim-scala
-    url = git://github.com/derekwyatt/vim-scala.git
+	url = https://github.com/derekwyatt/vim-scala.git
 [submodule "vim/vim-perl"]
 	path = vim/vim-perl
-	url = git://github.com/vim-perl/vim-perl.git
+	url = https://github.com/vim-perl/vim-perl.git
 [submodule "vim/vim-clojure-static"]
 	path = vim/vim-clojure-static
-	url = git://github.com/guns/vim-clojure-static.git
+	url = https://github.com/guns/vim-clojure-static.git
 [submodule "vim/elm.vim"]
 	path = vim/elm.vim
-	url = git://github.com/lambdatoast/elm.vim.git
+	url = https://github.com/lambdatoast/elm.vim.git
 [submodule "vim/vim-elixir"]
 	path = vim/vim-elixir
-	url = git://github.com/elixir-editors/vim-elixir.git
+	url = https://github.com/elixir-editors/vim-elixir.git
 [submodule "vim/vim-vue-plugin"]
 	path = vim/vim-vue-plugin
-	url = git://github.com/leafOfTree/vim-vue-plugin.git
+	url = https://github.com/leafOfTree/vim-vue-plugin.git
