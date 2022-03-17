@@ -31,14 +31,27 @@ sub split_url {
     return ($host, $org, $repo);
 }
 
-sub make_push_url {
+sub make_ssh_url {
     my ($host, $org, $repo) = @_;
     return "git\@$host:$org/$repo.git";
 }
 
-sub make_fetch_url {
+sub make_https_url {
     my ($host, $org, $repo) = @_;
     return "https://$host/$org/$repo.git";
+}
+
+sub needs_auth {
+    my ($host, $org, $repo) = @_;
+    return $host eq 'gh.sdintra.net';
+}
+
+sub make_push_url {
+    return make_ssh_url(@_);
+}
+
+sub make_fetch_url {
+    return needs_auth(@_) ? make_ssh_url(@_) : make_https_url(@_);
 }
 
 sub main {
