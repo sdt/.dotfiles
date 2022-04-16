@@ -31,6 +31,11 @@ my @actions = (
         match   => \&match_odysee,
     },
     {
+        desc    => 'Play a vimo video',
+        usage   => '<vimeo-url>',
+        match   => \&match_vimeo,
+    },
+    {
         desc    => 'Play a youtube video',
         usage   => '<youtube-url>',
         match   => \&match_youtube,
@@ -103,6 +108,17 @@ sub match_odysee {
     if ($arg =~ m{odysee\.com/[^/]+/(.*?):}) {
         return sprintf($format, $1);
     }
+    return;
+}
+
+sub match_vimeo {
+    my ($arg) = @_;
+    my $format = 'PlayMedia(plugin://plugin.video.vimeo/play/?uri=%%2Fvideos%%2F%s)';
+
+    if ($arg =~ m{^https://vimeo.com/(\d+)$}) {
+        return sprintf($format, $1);
+    }
+
     return;
 }
 
