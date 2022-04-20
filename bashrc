@@ -456,7 +456,7 @@ rgit() {
 }
 
 addgitemail() {
-    local EMAILS='sdt@cpan.org sdt@dr.com stephent@strategicdata.com.au stephent@locigly.com.au'
+    local EMAILS='sdt@cpan.org sdt@dr.com stephent@strategicdata.com.au stephent@logicly.com.au'
     uselect -1 -s 'select git email' $EMAILS | xargs git config user.email
 }
 
