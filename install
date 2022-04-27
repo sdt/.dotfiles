@@ -1,3 +1,3 @@
 cd $HOME
-git clone --recursive git://github.com/sdt/.dotfiles.git
+git clone --recursive git@github.com:sdt/.dotfiles.git
 ~/.dotfiles/install.sh
