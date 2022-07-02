@@ -2,12 +2,8 @@
 
 # Trailing slashes please!
 local_path=/srv/export/audio/music/
-mounted_path=/media/motog5/music/
-
-# This no longer works with Oreo. The SD card is mounted 755, and we can't
-# write files from sshd.
-remote_path=/storage/8674-45D8/music/
-remote_host=motog5
+remote_path=/storage/028C-79C1/Music/
+remote_host=a73
 
 # --dry-run
-rsync "$@" -av --delete --no-perms --no-times --size-only "$local_path" "$mounted_path"
+rsync "$@" -av --exclude='.thumbnails' --delete --no-perms --no-times --size-only "$local_path" "$remote_host:$remote_path"
