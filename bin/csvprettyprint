@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# https://www.stefaanlippens.net/pretty-csv.html
+
+column -n -t -s,
