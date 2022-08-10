@@ -15,4 +15,6 @@ kernel=$( uname -s )
 machine=$( uname -m )
 
 sudo curl -L https://github.com/docker/compose/releases/download/${latest}/docker-compose-${kernel}-${machine} -o /usr/local/bin/docker-compose
-sudo curl -L https://raw.githubusercontent.com/docker/compose/${latest}/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+
+# docker-compose completions have been removed - don't clobber them
+#sudo curl -L https://raw.githubusercontent.com/docker/compose/${latest}/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose

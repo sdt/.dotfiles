@@ -745,6 +745,12 @@ fi
 
 source ~/.dotfiles/bashrc.linuxbrew
 
+for i in ~/.dotfiles/bash_completion.d/*; do
+    if ! [[ "$i" =~ '.' ]]; then # skip files with dots
+        source "$i"
+    fi
+done
+
 if has platformio; then
     eval "$(_PLATFORMIO_COMPLETE=source platformio)"
 fi
