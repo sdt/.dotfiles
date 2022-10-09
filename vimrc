@@ -145,6 +145,11 @@ nnoremap <Leader>lv :LC<CR>
 " =rs reload syntax
 nnoremap <Leader>rs :syntax sync fromstart<CR>
 
+" =pN resize tmux pane to N pages (81 * N - 1)
+nnoremap <Leader>p1 :!tmux resize-pane -x 80<cr>
+nnoremap <Leader>p2 :!tmux resize-pane -x 161<cr>
+nnoremap <Leader>p3 :!tmux resize-pane -x 242<cr>
+
 if filereadable($HOME."/.dotfiles/local/vimrc")
     source ~/.dotfiles/local/vimrc
 endif
