@@ -7,3 +7,5 @@ fi
 
 docker-compose rm -sfv "$@"
 docker-compose up -d "$@"
+sleep 2
+docker-compose logs "$@"
