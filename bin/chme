@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+sudo chown -R $( id -nu ):$( id -ng ) "$@"
