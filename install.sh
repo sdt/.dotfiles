@@ -54,6 +54,7 @@ git config --global alias.llog 'log --date=local'
 git config --global alias.mff 'merge --ff-only'
 git config --global alias.recent-branches "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'"
 git config --global alias.st 'status -s'
+git config --global alias.stashed "stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'"
 git config --global alias.steve 'tag -f steve-was-here'
 git config --global alias.w 'whatchanged -M -C -B'
 git config --global alias.wu 'log --stat origin..@{0}'
@@ -61,8 +62,8 @@ git config --global alias.wup 'log -p origin..@{0} --'
 git config --global color.ui true
 git config --global core.excludesfile ~/.dotfiles/gitignore
 git config --global diff.renames true
-git config --global alias.stashed "stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'"
 git config --global diff.tool console
 git config --global difftool.console.cmd 'colordiff -y -W $( tput cols ) $LOCAL $REMOTE'
+git config --global init.defaultBranch main
 git config --global user.name 'Stephen Thirlwall'
 echo ok.
