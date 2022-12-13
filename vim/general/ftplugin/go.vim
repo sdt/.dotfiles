@@ -7,7 +7,7 @@ let s:save_cpo = &cpo
 set cpo-=C
 "-- End common header ----------------------------------------------------------
 
-set expandtab
+set noexpandtab
 set ts=4 sw=4
 
 nnoremap <Leader>c :! go build %<cr>
