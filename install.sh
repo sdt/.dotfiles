@@ -56,6 +56,7 @@ git config --global alias.recent-branches "for-each-ref --sort=-committerdate re
 git config --global alias.st 'status -s'
 git config --global alias.stashed "stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'"
 git config --global alias.steve 'tag -f steve-was-here'
+git config --global alias.toplevel 'rev-parse --show-toplevel'
 git config --global alias.w 'whatchanged -M -C -B'
 git config --global alias.wu 'log --stat origin..@{0}'
 git config --global alias.wup 'log -p origin..@{0} --'
