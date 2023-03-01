@@ -5,7 +5,8 @@ if [[ $# == 0 ]]; then
     exit 1
 fi
 
-docker-compose rm -sfv "$@"
+docker-compose stop "$@"
+docker-compose rm -fv "$@"
 docker-compose up -d "$@"
 sleep 2
 docker-compose logs "$@"
