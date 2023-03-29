@@ -15,10 +15,6 @@ alias ef='printenv|grep -i'
 alias rm='rm -i'
 alias j=jobs
 
-alias apc='sudo aptitude clean'
-alias apd='sudo aptitude update'
-alias apg='sudo aptitude safe-upgrade'
-
 set -o vi
 shopt -s dotglob histappend
 
@@ -243,18 +239,6 @@ jsondump() {
     p 'dd jl r \*STDIN'
 }
 
-upload-tpg() {
-    local dir="$1"
-    local file="$2"
-    curl --user morepats ftp://users.tpg.com.au/"$dir" --upload-file "$file"
-}
-
-post() {
-    local uri="$1"
-    shift
-    curl --verbose -X POST -d "$@" "$uri"
-}
-
 # locate variants - only files or only dirs
 flocate() {
     locate "$@" | perl -nlE 'say if -f'
@@ -262,11 +246,6 @@ flocate() {
 
 dirlocate() {   # dlocate already exists
     locate "$@" | perl -nlE 'say if -d'
-}
-
-evi() {
-    [ $# -gt 0 ] || return
-    runv vi "$@"
 }
 
 # Rename some commands from uselect/example.bashrc
