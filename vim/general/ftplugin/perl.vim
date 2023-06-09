@@ -40,6 +40,9 @@ nnoremap <Leader>dd ouse Data::Dumper::Concise; print STDERR Dumper(
 " =dp : insert Data::Printer line
 nnoremap <Leader>dp ouse Data::Printer; p<SPACE>
 
+" =fl : insert say STDERR sprintf("%s(%d):", __FILE__, __LINE__)
+nnoremap <Leader>fl o<c-o>0say STDERR sprintf("%s(%d):", __FILE__, __LINE__);<ESC>
+
 " =pa : create package line from filename
 nnoremap <Leader>pa 1GO<ESC>"%P:s/^\(.*\/\)\?lib\///<CR>:s/\.pm$//<CR>:s/\//::/ge<CR>Ipackage <ESC>A;<ESC>
 
