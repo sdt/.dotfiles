@@ -223,21 +223,6 @@ fi
 vs()  { find . -type f -iname '.*.sw?'; }
 vsd() { find . -type f -iname '.*.sw?' -delete -exec echo Deleting {} ... \; ; }
 
-yamldump() {
-    has p || cpanm App::p
-    p 'dd yl r \*STDIN'
-}
-
-xmldump() {
-    has p || cpanm App::p
-    p 'dd xl r \*STDIN'
-}
-
-jsondump() {
-    has p || cpanm App::p
-    p 'dd jl r \*STDIN'
-}
-
 # locate variants - only files or only dirs
 flocate() {
     locate "$@" | perl -nlE 'say if -f'
@@ -523,12 +508,8 @@ redot() {
 }
 
 pod() {
-    has perlfind || cpanm App::perlfind
+    has perlfind || cpm.sh install App::perlfind
     perlfind "$@"
-}
-
-cpanf() {
-    HARNESS_OPTIONS=j9 cpanm "$@" || cpanm "$@"
 }
 
 export SSH_ENV="$HOME/.ssh/environment"
@@ -641,15 +622,6 @@ metacpan_favourites() {
     perl -Mojo -E "g('https://metacpan.org/author/$1')->dom('td.release a')->pluck('text')->each(sub{s/-/::/g;say})"
 }
 
-mfav() {
-    metacpan_favourites SDT
-}
-
-refav() {
-    cpanm Mojolicious IO::Socket::SSL
-    mfav | cpanm
-}
-
 any_exists() {
     for i in "$@"; do
         [ -e "$i" ] && return 0
@@ -667,22 +639,6 @@ vcp() {
 
 xmltidy() {
     xmlindent -i2 "$@" | egrep -v '^\s*$'
-}
-
-# List kernels - can supply extra search terms: eg. kls 4.2.0-27
-kls() {
-    aptitude search -F %p "~i linux $@"
-}
-
-# Remove kernels - must specify the kernel
-krm() {
-    if [[ $# == 0 ]]; then
-        echo -e 'Please specify a kernel\n'
-        kls
-        return 1
-    fi
-
-    sudo aptitude remove -P $( kls "$@" )
 }
 
 # docker-compose is too much typing
