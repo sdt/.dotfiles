@@ -62,5 +62,6 @@ git config --global diff.renames true
 git config --global diff.tool console
 git config --global difftool.console.cmd 'colordiff -y -W $( tput cols ) $LOCAL $REMOTE'
 git config --global init.defaultBranch main
+git config --global pull.ff only
 git config --global user.name 'Stephen Thirlwall'
 echo ok.
