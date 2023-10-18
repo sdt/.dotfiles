@@ -82,7 +82,10 @@ set errorfile=.vimerrors.err
 set backupskip=/tmp/*,/private/tmp/*
 set fillchars+=vert:\ ,fold:-
 set lcs+=tab:>_
-set nomodeline " for now - see CVE-2019-12735
+if v:version < 802
+    set nomodeline " see CVE-2019-12735 - fixed in 8.2
+endif
+
 set modelines=5
 
 " I added these years ago to avoid some unwanted new indenting behaviour
