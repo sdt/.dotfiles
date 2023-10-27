@@ -8,6 +8,10 @@ set -e
 
 # Extra bonus install-cpm feature: cpm.sh install-cpm
 
+if [[ $OSTYPE =~ darwin ]]; then
+    nproc() { sysctl -n hw.logicalcpu; }
+fi
+
 cpm_install_args=(
     --color
     --local-lib-contained="$PERL_LOCAL_LIB_ROOT"
