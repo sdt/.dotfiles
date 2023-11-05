@@ -70,3 +70,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Mac-specific df
 alias df='/bin/df -h -Tnoautofs,devfs'
+
+# https://github.com/crystal-lang/crystal/issues/13846
+export CRYSTAL_OPTS="--link-flags=-Wl,-ld_classic"
