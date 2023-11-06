@@ -29,3 +29,6 @@
 [submodule "vim/vim-vue-plugin"]
 	path = vim/vim-vue-plugin
 	url = https://github.com/leafOfTree/vim-vue-plugin.git
+[submodule "vim/vim-crystal"]
+	path = vim/vim-crystal
+	url = https://github.com/vim-crystal/vim-crystal.git

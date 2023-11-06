@@ -8,6 +8,7 @@ set runtimepath+=~/.dotfiles/vim/bufexplorer
 set runtimepath+=~/.dotfiles/vim/dockerfile.vim
 set runtimepath+=~/.dotfiles/vim/vim-perl
 set runtimepath+=~/.dotfiles/vim/solarized
+set runtimepath+=~/.dotfiles/vim/vim-crystal
 set runtimepath+=~/.dotfiles/vim/vim-elixir
 set runtimepath+=~/.dotfiles/vim/vim-scala
 set runtimepath+=~/.dotfiles/vim/vim-clojure-static
