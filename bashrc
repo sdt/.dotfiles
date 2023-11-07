@@ -662,7 +662,6 @@ pathat ~/.cabal/bin
 
 source_if ~/.pythonbrew/etc/bashrc
 source_if ~/.pythonz/etc/bashrc
-source_if ~/.dotfiles/local/bashrc
 source ~/.dotfiles/tmux-colors.sh
 
 if ismacos ; then
@@ -708,3 +707,6 @@ if false && has direnv; then
         PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
     fi
 fi
+
+# This should override everything else
+source_if ~/.dotfiles/local/bashrc
