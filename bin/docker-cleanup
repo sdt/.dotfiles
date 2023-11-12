@@ -1,3 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
-docker system prune --volumes -f
+docker system prune --force
+docker volume prune --force --all
