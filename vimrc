@@ -35,6 +35,14 @@ filetype plugin on
 
 runtime macros/matchit.vim
 
+" :help termcap-cursor-shape
+" 1,2 = block      (blink,steady)
+" 3,4 = underscore
+" 5,6 = pipe
+let &t_SI = "\e[5 q"
+let &t_SR = "\e[3 q"
+let &t_EI = "\e[2 q"
+
 " Turn off the annoying continual highlight of matching parens
 let loaded_matchparen=1
 
