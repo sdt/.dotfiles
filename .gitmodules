@@ -3,7 +3,7 @@
 	url = https://github.com/sdt/tmux-vim.git
 [submodule "vim/bufexplorer"]
 	path = vim/bufexplorer
-	url = https://github.com/vim-scripts/bufexplorer.zip.git
+	url = https://github.com/jlanzarotta/bufexplorer.git
 [submodule "vim/solarized"]
 	path = vim/solarized
 	url = https://github.com/thomwiggers/vim-colors-solarized.git
