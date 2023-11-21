@@ -87,7 +87,7 @@ endfunction
 " are not re-opened.
 "
 function! s:LoadFilesFromCommand(command)
-    let files=system(a:command)
+    let files=system(a:command . ' 2>/dev/null')
     let filelist=split(files, '\n')
     for filename in filelist
         execute ':e ' . filename
