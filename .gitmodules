@@ -11,9 +11,6 @@
 [submodule "uselect"]
 	path = uselect
 	url = https://github.com/sdt/uselect.git
-[submodule "vim/vim-scala"]
-	path = vim/vim-scala
-	url = https://github.com/derekwyatt/vim-scala.git
 [submodule "vim/vim-perl"]
 	path = vim/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
