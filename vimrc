@@ -104,16 +104,11 @@ set modelines=5
 
 " Disable control-A incrementing - this goes off by accident sometimes in tmux
 nnoremap <c-a> <Nop>
+
 " =s : search for trailing whitespace
 nnoremap <Leader>s /\s\+$<CR>
 " =S : delete all trailing whitespace
 nnoremap <Leader>S :%s/\s\+$//<CR>
-
-" =tt : switch to tt2 syntax
-nnoremap <Leader>tt :set syntax=tt2<CR>
-
-" =ts : insert date line into debian changelog
-nnoremap <Leader>ts 0I -- Stephen Thirlwall <stephen.thirlwall@strategicdata.com.au>  <ESC>:r !date +'\%a, \%-d \%b \%Y \%X \%z'<CR>kJ
 
 " =- last buffer
 nnoremap <Leader>- :n#<CR>
@@ -121,19 +116,9 @@ nnoremap <Leader>- :n#<CR>
 " == open bufexplorer menu
 nnoremap <Leader>= :BufExplorer<CR>
 
-" =ga git add current file
-nnoremap <Leader>ga :!clear && git add %<CR>
-
-" =gd git diff current file
-nnoremap <Leader>gd :!clear && git diff %<CR>
-"
-" =gd git status
-nnoremap <Leader>gs :!clear && git st<CR>
-
-" =2 pairing mode
-nnoremap <Leader>2 :set invcursorline invcursorcolumn invnumber<CR>
-
-" =t8 8-space tabs
+" =tN N-space tabs
+nnoremap <Leader>t2 :set ts=8 sw=8 noet<CR>
+nnoremap <Leader>t4 :set ts=8 sw=8 noet<CR>
 nnoremap <Leader>t8 :set ts=8 sw=8 noet<CR>
 
 " =md Make directory of current file
