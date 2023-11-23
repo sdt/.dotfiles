@@ -10,7 +10,6 @@ set runtimepath+=~/.dotfiles/vim/vim-perl
 set runtimepath+=~/.dotfiles/vim/solarized
 set runtimepath+=~/.dotfiles/vim/vim-crystal
 set runtimepath+=~/.dotfiles/vim/vim-elixir
-set runtimepath+=~/.dotfiles/vim/vim-clojure-static
 set runtimepath+=~/.dotfiles/vim/vim-vue-plugin
 set runtimepath+=~/.dotfiles/vim/6502 " *.s / *.inc -> 6502
 set runtimepath+=~/.dotfiles/vim/general

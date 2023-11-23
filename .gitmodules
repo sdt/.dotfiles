@@ -14,9 +14,6 @@
 [submodule "vim/vim-perl"]
 	path = vim/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
-[submodule "vim/vim-clojure-static"]
-	path = vim/vim-clojure-static
-	url = https://github.com/guns/vim-clojure-static.git
 [submodule "vim/vim-elixir"]
 	path = vim/vim-elixir
 	url = https://github.com/elixir-editors/vim-elixir.git
