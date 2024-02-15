@@ -40,6 +40,7 @@ install_link ~/.dotfiles/colordiffrc ~/.colordiffrc
 
 echo -n "Updating git config ... "
 git config --global alias.cf 'commit -m FIXME'
+git config --global alias.blaame 'blame -w -C -C -C'
 git config --global alias.branch-name 'rev-parse --abbrev-ref HEAD'
 git config --global alias.ca 'commit -v --amend'
 git config --global alias.co 'checkout'
@@ -50,6 +51,7 @@ git config --global alias.dsc 'diff --stat --cached'
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 git config --global alias.lf 'log --date=local --stat'
 git config --global alias.mff 'merge --ff-only'
+git config --global alias.pushf 'push --force-with-lease'
 git config --global alias.recent-branches "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'"
 git config --global alias.st 'status -s'
 git config --global alias.stashed "stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'"
