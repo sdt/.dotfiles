@@ -63,6 +63,7 @@ git config --global diff.tool console
 git config --global difftool.console.cmd 'colordiff -y -W $( tput cols ) $LOCAL $REMOTE'
 git config --global gpg.format ssh
 git config --global gpg.ssh.defaultKeyCommand ~/.dotfiles/bin/git-signing-key
+git config --global includeif.gitdir:~/projects/work/.path ~/.dotfiles/git/config.work
 git config --global init.defaultBranch main
 git config --global pull.ff only
 git config --global push.autoSetupRemote true

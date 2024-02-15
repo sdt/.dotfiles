@@ -1,0 +1,4 @@
+[commit]
+	gpgsign = true
+[user]
+	email = stephent@logicly.com.au
