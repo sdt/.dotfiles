@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+
+echo key::$( ssh-add -L | grep .git@ )
