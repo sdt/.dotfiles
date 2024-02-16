@@ -1,4 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
+if [[ -n "$SSH_AUTH_SOCK" ]]; then
+    if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
+        echo SSH_AUTH_SOCK is not a socket 1>&2
+        exit 1
+    fi
+fi
+
+if ! ssh-add -L | grep -q '.git@' ; then
+    echo No git signing keys found in ssh-agent 1>&2
+    exit 2
+fi
+
 echo key::$( ssh-add -L | grep .git@ )
