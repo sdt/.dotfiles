@@ -131,10 +131,30 @@ ansicolor() { printf '\e[%sm' $( ansicode "$@" ); }
 solacolor() { printf '\e[%sm' $( solarized_code "$@" ); }
 bashcolor() { printf '\[%s\]' $( ansicolor "$@" ); }
 
+# If the ssh auth socket needs resetting this will add an indicator into the
+# prompt. Commented out in PS1 below.
+ssh_ps1() {
+    # If SSH_AUTH_SOCK exists, but $SSH_AUTH_SOCK is not a socket, put an
+    # indicator into the prompt.
+    if [[ -n "$SSH_AUTH_SOCK" && ! -S "$SSH_AUTH_SOCK" ]]; then
+        echo -n "$(solacolor orange)--SSH-- $(solacolor reset)"
+    fi
+}
+
+# Use this with PROMPT_COMMAND to automatically reset the ssh auth socket.
+fix_ssh_auth_sock() {
+    if [[ -n "$SSH_AUTH_SOCK" && ! -S "$SSH_AUTH_SOCK" ]]; then
+        echo Auto-fix ssh auth sock
+        eval $( tmux show-environment | grep SSH_AUTH_SOCK )
+    fi
+}
+PROMPT_COMMAND=( 'fix_ssh_auth_sock' )
+
 PS1=""
 PS1+="$(bashcolor reset)"
 PS1+="${debian_chroot:+($debian_chroot)}"
 PS1+="$(bashcolor magenta)\$(__git_ps1 '(%s) ')"
+#PS1+="\$(ssh_ps1)"
 PS1+="$(bashcolor blue)\w"
 PS1+="\n"
 PS1+="$(bashcolor green)\u@\h \t"
