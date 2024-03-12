@@ -143,9 +143,10 @@ ssh_ps1() {
 
 # Use this with PROMPT_COMMAND to automatically reset the ssh auth socket.
 fix_ssh_auth_sock() {
-    if [[ -n "$SSH_AUTH_SOCK" && ! -S "$SSH_AUTH_SOCK" ]]; then
+    if [[ -n "$SSH_AUTH_SOCK" && ! -S "$SSH_AUTH_SOCK" ]] \
+            && tmux show-environment | grep -q SSH_AUTH_SOCK= ; then
         echo Auto-fix ssh auth sock
-        eval $( tmux show-environment | grep SSH_AUTH_SOCK )
+        eval $( tmux show-environment | grep SSH_AUTH_SOCK= )
     fi
 }
 PROMPT_COMMAND=( 'fix_ssh_auth_sock' )
