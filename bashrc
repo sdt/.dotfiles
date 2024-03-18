@@ -398,7 +398,7 @@ else
 
     # Start up tmux in an intelligentish fashion
     gotmux() {
-        if ! tmux ls > /dev/null; then
+        if ! tmux ls &> /dev/null; then
             # No tmux sessions - start a new one
             tmux
             return
