@@ -398,22 +398,22 @@ else
 
     # Start up tmux in an intelligentish fashion
     gotmux() {
-        if ! tmux ls &> /dev/null; then
-            # No tmux sessions - start a new one
-            tmux
-            return
+        new='Create new session'
+        if tmux ls &> /dev/null; then
+            session=$(
+                cat <( echo $new ) <( tmux ls ) |
+                    uselect -1 -s 'Select tmux session'
+            )
+        else
+            session=( "$new" )
         fi
 
-        new='Create new session'
-        session=$(
-            cat <( echo $new ) <( tmux ls ) |
-                uselect -1 -s 'Select tmux session'
-        )
-
+        start=$( date +%s )
         case "$session" in
 
         "") # Nothing selected
             echo No tmux then
+            return
             ;;
 
         $new) # Create new session
@@ -425,6 +425,13 @@ else
             tmux attach-session -t $( echo $session | cut -d: -f1 )
             ;;
         esac
+
+        end=$( date +%s )
+
+        # If we were in the tmux session for more than 10 seconds, log out
+        if [[ $(( end - start )) -gt 10 ]]; then
+            logout
+        fi
     }
 
 fi
