@@ -586,7 +586,6 @@ complete -f -X '!*.db' sqlite3
 
 source_if() {
     if [[ -e $1 ]]; then
-        echo sourcing $1
         source $1
     fi
 }
