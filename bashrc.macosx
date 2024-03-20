@@ -76,6 +76,9 @@ alias git='PERL5LIB= git'
 # Yes, zsh is the new default shell. Got it. Now STFU pls.
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# Work around +[NSString initialize] may have been in progress in another thread when fork() was called.
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 # Mac-specific df
 alias df='/bin/df -h -Tnoautofs,devfs'
 
