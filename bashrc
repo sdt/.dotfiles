@@ -585,7 +585,8 @@ socks_proxy() {
 complete -f -X '!*.db' sqlite3
 
 source_if() {
-    if [ -f $1 ]; then
+    if [[ -e $1 ]]; then
+        echo sourcing $1
         source $1
     fi
 }

@@ -48,12 +48,20 @@ dmport() {
         | grep '^Forwarding.*-port-'
 }
 
-pathat /usr/local/bin /usr/local/share/npm/bin /usr/local/sbin
+pathat /opt/homebrew/bin /usr/local/bin /usr/local/share/npm/bin /usr/local/sbin
 
 BREW_ROOT=$(brew --prefix)
 
 source_if ${BREW_ROOT}/etc/bash_completion
 source_if ${BREW_ROOT}/Library/Contributions/brew_bash_completion.sh
+
+if [[ "$BREW_ROOT" == /opt/homebrew ]]; then
+    export HOMEBREW_PREFIX="/opt/homebrew";
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+    export HOMEBREW_REPOSITORY="/opt/homebrew";
+    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+fi
 
 fix-docker-time() {
     docker run alpine date
