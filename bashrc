@@ -401,7 +401,7 @@ else
         new='Create new session'
         if tmux ls &> /dev/null; then
             session=$(
-                cat <( echo $new ) <( tmux ls ) |
+                cat <( tmux ls ) <( echo $new ) |
                     uselect -1 -s 'Select tmux session'
             )
         else
