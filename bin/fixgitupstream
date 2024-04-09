@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -euo pipefail
+
+git branch --set-upstream-to origin/"$( git branch --show-current )"
