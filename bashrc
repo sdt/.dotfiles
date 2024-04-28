@@ -141,13 +141,20 @@ fix_ssh_auth_sock() {
 }
 PROMPT_COMMAND=( 'fix_ssh_auth_sock' )
 
+if [[ "$HOSTNAME" =~ ^ip- ]]; then
+    # "Special" hosts get a red color in the prompt
+    ps1color=red
+else
+    ps1color=green
+fi
+
 PS1=""
 PS1+="$(bashcolor reset)"
 PS1+="${debian_chroot:+($debian_chroot)}"
 PS1+="$(bashcolor magenta)\$(__git_ps1 '(%s) ')"
 PS1+="$(bashcolor blue)\w"
 PS1+="\n"
-PS1+="$(bashcolor green)\u@\h \t"
+PS1+="$(bashcolor $ps1color)\u@\h \t"
 PS1+="$(bashcolor reset)\$"
 PS1+=" "
 
