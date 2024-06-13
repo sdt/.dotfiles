@@ -114,9 +114,9 @@ nnoremap <Leader>- :n#<CR>
 nnoremap <Leader>= :BufExplorer<CR>
 
 " =tN N-space tabs
-nnoremap <Leader>t2 :set ts=2 sw=2 noet<CR>
-nnoremap <Leader>t4 :set ts=4 sw=4 noet<CR>
-nnoremap <Leader>t8 :set ts=8 sw=8 noet<CR>
+nnoremap <Leader>t2 :set ts=2 sw=2 et<CR>
+nnoremap <Leader>t4 :set ts=4 sw=4 et<CR>
+nnoremap <Leader>t8 :set ts=8 sw=8 et<CR>
 
 " =md Make directory of current file
 nnoremap <Leader>md :!mkdir -p $( dirname % )<CR>
