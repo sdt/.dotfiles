@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+# Drop the first N lines of the input
+
+if [[ $# -eq 0 ]]; then
+  echo "usage: $0 <lines-to-drop>" 1>&2
+  exit 1
+fi
+
+count="$1" ; shift
+
+tail -n +$(( $count + 1 )) "$@"
