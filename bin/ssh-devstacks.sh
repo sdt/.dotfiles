@@ -6,23 +6,23 @@
 #
 # Devstack hosts:
 #
-#   host *.devstack.foo
-#     Hostname foo
+#   host *.foo.devstack.internal
+#     Hostname foo.domain
 #
-#   host *.devstack.bar
-#     Hostname bar
+#   host *.bar.devstack.internal
+#     Hostname bar.domain
 #
 # Devstack apps;
 #
-#   host app1.devstack.*
+#   host app1.*.devstack.internal
 #     LocalForward 2001 localhost:2001
 #     LocalForward 2002 localhost:2002
 #
-#   host app2.devstack.*
+#   host app2.*.devstack.internal
 #     LocalForward 4001 localhost:4001
 #     LocalForward 4002 localhost:4002
 #
-# Then to port forward app1 onto host bar: ssh -fNn app1.devstack.bar
+# Then to port forward app1 onto host bar: ssh -fNn app1.bar.devstack.internal
 #
 # This lists out the apps or hosts
 
@@ -43,10 +43,10 @@ __complete-devstack() {
   fi;
   case $COMP_CWORD in
     1)
-      which=hosts;
+      which=apps;
       ;;
     2)
-      which=apps;
+      which=hosts;
       ;;
     *)
       return;
@@ -55,17 +55,21 @@ __complete-devstack() {
   COMPREPLY=($( compgen -W "$( ssh-devstacks.sh $which )" "${COMP_WORDS[COMP_CWORD]}"));
 };
 complete -F __complete-devstack devstack;
-devstack() { ssh -fNn "$2.devstack.$1"; };
+devstack() { ssh -fNn "$1.$2.devstack.internal"; };
 END
 }
 
 case "$1" in
   apps)
-    fgrep '.devstack.*' ~/.ssh/config | awk -F '[ .]' '{  print $2; }' | sort
+    grep '^host.*\.\*\.devstack' ~/.ssh/config \
+        | awk -F '[ .]' '{ print $2 }' \
+        | sort
     ;;
 
   hosts)
-    fgrep '*.devstack.' ~/.ssh/config | awk -F '[ .]' '{  print $4; }' | sort
+    grep '^host.*\*\..*\.devstack' ~/.ssh/config \
+        | awk -F '[ .]' '{ print $3 }' \
+        | sort
     ;;
 
   install)
