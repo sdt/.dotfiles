@@ -61,14 +61,16 @@ END
 
 case "$1" in
   apps)
-    grep '^host.*\.\*\.devstack' ~/.ssh/config \
-        | awk -F '[ .]' '{ print $2 }' \
+    grep -i '^host.*\.\*\.devstack' ~/.ssh/config \
+        | egrep -o '\S+\.\*\.devstack\.internal' \
+        | cut -d. -f1 \
         | sort
     ;;
 
   hosts)
-    grep '^host.*\*\..*\.devstack' ~/.ssh/config \
-        | awk -F '[ .]' '{ print $3 }' \
+    grep -i '^host.*\*\..*\.devstack' ~/.ssh/config \
+        | egrep -o '\*\.\S+\.devstack\.internal' \
+        | cut -d. -f2 \
         | sort
     ;;
 
