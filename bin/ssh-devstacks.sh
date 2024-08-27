@@ -27,7 +27,7 @@
 # This lists out the apps or hosts
 
 usage() {
-    echo usage: $0 '<apps|hosts>' 1>&2
+    echo usage: $0 '<apps|hosts|install|ps>' 1>&2
     exit 1
 }
 
@@ -76,6 +76,19 @@ case "$1" in
 
   install)
     install
+    ;;
+
+  ps)
+    pgrep -lf 'ssh -fNn .*.\devstack\.internal' | while read line; do
+        parts=( $line )
+        pid="${parts[0]}"
+        host="${parts[3]}"
+        ports=$(
+            lsof -p $pid -P -sTCP:LISTEN 2>/dev/null \
+                | grep IPv4 | awk '{ print $9 }' | cut -d: -f2 | tr '\n' ' '
+        )
+        echo $pid $host $ports
+    done | column -t
     ;;
 
   *)
