@@ -8,7 +8,7 @@ runtime colors/solarized.vim
 " Solarized colorscheme overrides
 hi StatusLine    cterm=NONE ctermfg=3
 hi StatusLineNC  cterm=bold
-hi VertSplit     cterm=bold ctermfg=2
+hi VertSplit     cterm=bold ctermfg=2 ctermbg=0
 
 " Make long git commit messages more visible
 hi def link gitcommitOverflow		Error
