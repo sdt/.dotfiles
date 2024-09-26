@@ -23,3 +23,6 @@
 [submodule "vim/vim-crystal"]
 	path = vim/vim-crystal
 	url = https://github.com/vim-crystal/vim-crystal.git
+[submodule "vim/vim-pony"]
+	path = vim/vim-pony
+	url = https://github.com/dleonard0/pony-vim-syntax.git
