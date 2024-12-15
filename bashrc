@@ -322,29 +322,6 @@ export SCR_AW_BG=.
 export SCR_FG=.
 export SCR_BG=.
 
-# Start up screen in an intelligentish fashion
-#
-start_screen() {
-    case $(screen -ls | fgrep -c '(Detached)') in
-        0)
-            # No detached sessions - start a new session
-            exec screen
-            ;;
-        1)
-            # One detached session - connect to it
-            exec screen -r
-            ;;
-        *)
-            # More that one detached session - let the user decide
-            echo
-            screen -r       # this will fail and list the sessions
-            ;;
-    esac
-}
-
-alias sc='screen -X'
-alias sch='sc title $(hostname)'
-
 # Leaky pipes! (with output prefix)
 leak() { perl -ple "print STDERR '$*', \$_"; }
 
@@ -507,17 +484,6 @@ export DZIL_GLOBAL_CONFIG_ROOT=${HOME}/.dotfiles/dzil
 # Handy alias for unravelling tricky perl constructs
 alias perlparse='perl -MO=Deparse,-p -e'
 
-# Run perl coverage tests on specified files
-# eg. cover_test t/some_test.t && http
-cover_test () {
-    rm -i -rf cover_db/
-    PERL5OPT=-MDevel::Cover env perl -Ilib $* 2> /dev/null
-    cover
-}
-
-alias mydebuild='debuild -uc -us -i -I -tc'
-alias debfiles='dpkg-deb -c'
-
 # Reload .bashrc
 rebash() {
     unalias -a
@@ -581,50 +547,6 @@ source_if() {
     fi
 }
 
-cdup() {
-    local n=$1
-    local d=..
-    local i=1
-
-    while [ $i -lt $n ]; do
-        d="$d/.."
-        i=$(( $i + 1 ))
-    done
-    cd $d
-}
-
-resize_images() {
-    isnum() { [[ -n $1 && -z ${1//[0-9]/} ]]; }
-
-    if [[ $# -lt 3 ]] || ! isnum $1 || ! isnum $2 ; then
-        echo usage: resize_images max-width max-height files...
-        return 1
-    fi
-
-    local w=$1; shift
-    local h=$1; shift
-
-    # Gamma-correct resizing
-
-    mogrify -verbose \
-            -auto-orient \
-            -gamma .454545 \
-            -resize "${w}x${h}>" \
-            -gamma 2.2 \
-                "$@" 2>&1 | grep '=>'
-}
-
-# Print working directory of a given process id
-procwd() {
-    local pid=$1;
-    lsof -p $pid -a -d cwd -Fn | grep ^n | cut -c 2-;
-}
-
-# tt 'some [% template %] stuff'
-tt() {
-    perl -MTemplate -E "Template->new->process(\'$@', {}, sub { say @_ })"
-}
-
 # jn delimiter args - like perl join ("join" was taken)
 jn() (
     IFS="$1"
@@ -639,33 +561,11 @@ filter() {
     runv egrep -v "$( jn '|' "$@" )" ;
 }
 
-# metacpan_favourites username
-# - list perl distributions marked as favourites on metacpan
-metacpan_favourites() {
-    if [[ -z $1 ]]; then
-        echo usage: metacpan_favourites username
-        return 1
-    fi
-    perl -Mojo -E "g('https://metacpan.org/author/$1')->dom('td.release a')->pluck('text')->each(sub{s/-/::/g;say})"
-}
-
 any_exists() {
     for i in "$@"; do
         [ -e "$i" ] && return 0
     done
     return 1
-}
-
-rsyslog() {
-    ssh -AY "$@" tail -f /var/log/syslog
-}
-
-vcp() {
-    rsync --progress -rltDv "$@"
-}
-
-xmltidy() {
-    xmlindent -i2 "$@" | egrep -v '^\s*$'
 }
 
 # docker-compose is too much typing
