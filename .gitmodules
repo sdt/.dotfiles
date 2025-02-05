@@ -26,3 +26,6 @@
 [submodule "vim/vim-pony"]
 	path = vim/vim-pony
 	url = https://github.com/dleonard0/pony-vim-syntax.git
+[submodule "dircolors-solarized"]
+	path = dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
