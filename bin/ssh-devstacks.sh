@@ -55,7 +55,22 @@ __complete-devstack() {
   COMPREPLY=($( compgen -W "$( ssh-devstacks.sh $which )" "${COMP_WORDS[COMP_CWORD]}"));
 };
 complete -F __complete-devstack devstack;
-devstack() { ssh -fNn "$1.$2.devstack.internal"; };
+devstack() {
+  case $# in
+    0)
+      ssh-devstacks.sh ps;
+      ;;
+
+    2)
+      ssh -fNn "$1.$2.devstack.internal";
+      ;;
+
+    *)
+      echo "usage: devstack <stack> <host>" 1>&2;
+      return 1;
+      ;;
+  esac;
+};
 END
 }
 
