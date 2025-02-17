@@ -38,6 +38,7 @@ do_install tmux.conf
 do_install sqliterc ".read $HOME/.dotfiles/sqliterc"
 install_link ~/.dotfiles/colordiffrc ~/.colordiffrc
 install_link ~/.dotfiles/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
+install_link ~/.dotfiles/haskeline ~/.haskeline
 
 echo -n "Updating git config ... "
 git config --global alias.cf 'commit -m FIXME'
