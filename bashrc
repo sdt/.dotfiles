@@ -408,8 +408,10 @@ mcd() { mkdir -p "$1"; cd "$1"; }
 
 if has colordiff; then
     alias diff="colordiff -u"
-else
+elif ismacos; then
     alias diff="diff -u"
+else
+    alias diff="diff -u --color"
 fi
 
 # Git submodules helpers
