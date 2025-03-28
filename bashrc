@@ -207,7 +207,7 @@ do_Yn()     { _yes_or_no yes "$@" && "$@" || echo 1>&2 Aborted ; }
 do_yN()     { _yes_or_no no  "$@" && "$@" || echo 1>&2 Aborted ; }
 
 export HISTSIZE=10000
-export HISTCONTROL=erasedups
+export HISTCONTROL=erasedups:ignorespace
 export EDITOR=vim
 
 export DBIC_TRACE_PROFILE=console
