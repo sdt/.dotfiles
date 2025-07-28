@@ -27,11 +27,11 @@
 # This lists out the apps or hosts
 
 usage() {
-    echo usage: $0 '<apps|hosts|install|ps>' 1>&2
+    echo usage: $0 '<apps|hosts|install|ps|urls <stack>>' 1>&2
     exit 1
 }
 
-if [[ $# != 1 ]]; then
+if [[ $# -gt 2 ]]; then
   usage
 fi
 
@@ -62,7 +62,9 @@ devstack() {
       ;;
 
     2)
-      ssh -fNn "$1.$2.devstack.internal";
+      local devstack="$1.$2.devstack.internal";
+      ssh -fNn "$devstack";
+      ssh-devstacks.sh urls "$devstack";
       ;;
 
     *)
@@ -104,6 +106,11 @@ case "$1" in
         )
         echo $pid $host $ports
     done | column -t
+    ;;
+
+  urls)
+    lsof -p "$( pgrep -f "$2" )" -P -sTCP:LISTEN 2>/dev/null \
+      | grep IPv4 | awk '{ print "http://" $9 }'
     ;;
 
   *)
