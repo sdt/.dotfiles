@@ -56,22 +56,23 @@ __complete-devstack() {
 };
 complete -F __complete-devstack devstack;
 devstack() {
-  case $# in
-    0)
-      ssh-devstacks.sh ps;
-      ;;
+  if [[ $# -eq 0 ]]; then
+    ssh-devstacks.sh ps;
+    return 0;
+  fi;
 
-    2)
-      local devstack="$1.$2.devstack.internal";
-      ssh -fNn "$devstack";
-      ssh-devstacks.sh urls "$devstack";
-      ;;
+  if [[ $# -gt 2 ]]; then
+    echo "usage: devstack <stack> <host>" 1>&2;
+    return 1;
+  fi;
 
-    *)
-      echo "usage: devstack <stack> <host>" 1>&2;
-      return 1;
-      ;;
-  esac;
+  local default_host=chopper;
+  local stack="$1";
+  local host="${2:-$default_host}";
+  local devstack="$stack.$host.devstack.internal";
+
+  ssh -fNn "$devstack";
+  ssh-devstacks.sh urls "$devstack";
 };
 END
 }
