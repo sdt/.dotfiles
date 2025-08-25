@@ -306,7 +306,6 @@ libat()    { prepend_envvar_at LD_LIBRARY_PATH "$@"; }
 export ACKRC="$HOME/.dotfiles/ackrc"
 export ACK_PAGER="less"
 export BUILDKIT_PROGRESS=plain
-export COMPOSE_BAKE=0
 export COMPOSE_MENU=0
 export INPUTRC="$HOME/.dotfiles/inputrc"
 export SCREENRC="$HOME/.dotfiles/screenrc"
