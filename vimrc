@@ -89,6 +89,7 @@ set confirm
 set errorfile=.vimerrors.err
 set backupskip=/tmp/*,/private/tmp/*
 set fillchars+=vert:\ ,fold:-
+set nofoldenable
 set lcs+=tab:>_
 if v:version < 802
     set nomodeline " see CVE-2019-12735 - fixed in 8.2
