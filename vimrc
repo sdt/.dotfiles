@@ -73,6 +73,7 @@ endif
 
 " BufExplorer settings
 let g:bufExplorerShowRelativePath=1
+let g:bufExplorerFindActive=0
 
 " uselect settings
 let g:uselect_bin = "~/.dotfiles/uselect/uselect"
