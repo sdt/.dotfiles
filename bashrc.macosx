@@ -10,36 +10,6 @@ dnsflush() { sudo killall -HUP mDNSResponder; }
 # Assuming brew is already in PATH. Set this up in bashrc.local if necessary.
 #
 
-
-export DM=boot2docker-vm
-
-dm() {
-    command="$1"
-    shift
-    docker-machine "$command" $DM "$@"
-}
-
-dmup() {
-    if ! dm status 2> /dev/null >/dev/null; then
-        dm create -d virtualbox --virtualbox-cpu-count -1
-    fi
-    dm start
-    eval $( dm env )
-}
-
-dmport() {
-    for port in "$@"; do
-        echo "Mapping port $port ..."
-        for proto in tcp udp; do
-            VBoxManage controlvm $DM natpf1 \
-                "$proto-port-$port,$proto,,$port,,$port"
-        done
-    done
-
-    VBoxManage showvminfo --machinereadable $DM \
-        | grep '^Forwarding.*-port-'
-}
-
 pathat /opt/homebrew/bin /usr/local/bin /usr/local/share/npm/bin /usr/local/sbin
 
 BREW_ROOT=$(brew --prefix)
@@ -54,13 +24,6 @@ if [[ "$BREW_ROOT" == /opt/homebrew ]]; then
     export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 fi
-
-fix-docker-time() {
-    docker run alpine date
-    #docker run --privileged --rm alpine date -s "$( date -u '+%Y-%m-%d %H:%M:%S' )"
-    docker run --rm --privileged alpine hwclock -s
-    docker run alpine date
-}
 
 # Our PERL5LIB is for homebrew perl, not system perl. This breaks git.
 alias git='PERL5LIB= git'
