@@ -10,14 +10,6 @@ dnsflush() { sudo killall -HUP mDNSResponder; }
 # Assuming brew is already in PATH. Set this up in bashrc.local if necessary.
 #
 
-rebrew() {
-    brew update &&
-         [ -n "$( brew outdated )" ] &&
-        brew outdated &&
-        YES_or_no upgrade &&
-        brew upgrade &&
-        brew cleanup
-}
 
 export DM=boot2docker-vm
 
