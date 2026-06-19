@@ -5,6 +5,15 @@ alias ls='l -lh'
 
 dnsflush() { sudo killall -HUP mDNSResponder; }
 
+SSH_AUTH_SOCK_1PASSWORD=~/.1password/agent.sock
+
+if [[ -S "$SSH_AUTH_SOCK_1PASSWORD" ]]; then
+    export SSH_AUTH_SOCK_1PASSWORD
+    export SSH_AUTH_SOCK_SYSTEM="$SSH_AUTH_SOCK"
+else
+    unset SSH_AUTH_SOCK_1PASSWORD
+fi
+
 # Homebrew stuff
 #
 # Assuming brew is already in PATH. Set this up in bashrc.local if necessary.

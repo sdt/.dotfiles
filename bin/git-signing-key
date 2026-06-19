@@ -1,7 +1,9 @@
 #!/bin/bash
 set -eu
 
-if [[ -n "$SSH_AUTH_SOCK" ]]; then
+if [[ -N "$SSH_AUTH_SOCK_1PASSWORD" && -S "$SSH_AUTH_SOCK_1PASSWORD" ]]; then
+    export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_1PASSWORD"
+elif [[ -n "$SSH_AUTH_SOCK" ]]; then
     if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
         echo SSH_AUTH_SOCK is not a socket 1>&2
         exit 1
