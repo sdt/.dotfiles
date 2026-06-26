@@ -1,7 +1,9 @@
 #!/bin/bash
 set -eu
 
-if [[ -N "$SSH_AUTH_SOCK_1PASSWORD" && -S "$SSH_AUTH_SOCK_1PASSWORD" ]]; then
+: ${SSH_AUTH_SOCK_1PASSWORD:=''}
+
+if [[ -n "$SSH_AUTH_SOCK_1PASSWORD" && -S "$SSH_AUTH_SOCK_1PASSWORD" ]]; then
     export SSH_AUTH_SOCK="$SSH_AUTH_SOCK_1PASSWORD"
 elif [[ -n "$SSH_AUTH_SOCK" ]]; then
     if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
