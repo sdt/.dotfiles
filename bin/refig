@@ -1,12 +1,17 @@
 #!/bin/bash
 
 if [[ $# == 0 ]]; then
-    echo usage: $0 service 1>&2
-    exit 1
+  echo usage: $0 service [services...] 1>&2
+  exit 1
 fi
 
-docker-compose stop "$@"
-docker-compose rm -fv "$@"
-docker-compose up -d "$@"
+services=()
+for i in "$@"; do
+  services+=( ${i%%/*} )
+done
+
+docker-compose stop "${services[@]}"
+docker-compose rm -fv "${services[@]}"
+docker-compose up -d "${services[@]}"
 sleep 2
-docker-compose logs "$@"
+docker-compose logs "${services[@]}"
