@@ -18,6 +18,10 @@ case $# in
         shift
         for port in $@; do
             echo ssh -f $host -L $port:localhost:$port -N
+
+            # kill off anything on the port already.
+            lsof -ti:$port | xargs kill -9
+            
             ssh -f $host -L $port:localhost:$port -N
         done
         ;;
