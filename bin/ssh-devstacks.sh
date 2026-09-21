@@ -61,14 +61,19 @@ devstack() {
     return 0;
   fi;
 
-  if [[ $# -gt 2 ]]; then
+  if [[ -n "$DEFAULT_DEVSTACK_HOST" ]]; then
+    local minargs=1;
+  else
+    local minargs=2;
+  fi;
+
+  if [[ $# -lt $minargs || $# -gt 2 ]]; then
     echo "usage: devstack <stack> <host>" 1>&2;
     return 1;
   fi;
 
-  local default_host=chopper;
   local stack="$1";
-  local host="${2:-$default_host}";
+  local host="${2:-$DEFAULT_DEVSTACK_HOST}";
   local devstack="$stack.$host.devstack.internal";
 
   ssh -fNn "$devstack";
